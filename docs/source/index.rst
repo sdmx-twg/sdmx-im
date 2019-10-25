@@ -3,10 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to sdmx's documentation!
-================================
+Welcome to SDMX documentation!
+==============================
 
-We are in the process of cleaning up, unifying and simplifying the repositories associated to the SDMX standard's formats, documentation, technical references and examples. This is done in the context of the forthcomming version 3.0.0 of the SDMX standard ...
+We are in the process of cleaning up, unifying and simplifying the repositories associated to the SDMX standard's formats, documentation, technical references, guidelines and examples. This is done in the context of the forthcomming version 3.0.0 of the SDMX standard ...
+
 During this process we intend to regroup and simplify the access to the documentation of the standard.
 
 Please bare with us whilst this is being executed. 
