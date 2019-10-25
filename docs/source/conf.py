@@ -21,6 +21,8 @@ project = 'Statistical Data and Metadata eXchange'
 copyright = '2019, sdmx-twg'
 author = 'sdmx-twg'
 
+# -- Default readthedocs override --------------------------------------------
+master_doc = 'index'
 
 # -- General configuration ---------------------------------------------------
 
