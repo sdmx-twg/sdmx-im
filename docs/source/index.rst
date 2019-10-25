@@ -17,16 +17,13 @@ Progress will be visible in the :literal:`develop` and other branches of this re
 
 
 
+Table of Contents
+=================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
+   framework
+   informationModel
+   technicalNotes
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
