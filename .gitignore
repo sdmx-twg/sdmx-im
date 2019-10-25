@@ -1,5 +1,6 @@
-
-
+# readthedocs/sphinx build folder #
+###################################
+docs/build/
 
 # OS generated files #
 ######################
