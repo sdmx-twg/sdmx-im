@@ -215,7 +215,7 @@ from sidebarGenerator import SidebarGenerator
 s = SidebarGenerator(globals(), "sdmx-im")
 
 s.toctree("Technical Specification", 3) \
-#  .sdmxIMToc("", "informationModel/SDMX_2_1_SECTION_2_InformationModel") \
+  .sdmxLocalToc("", "informationModel/InformationModelIndex") \
   .newLine()
 
 s.toctree("Formats") \

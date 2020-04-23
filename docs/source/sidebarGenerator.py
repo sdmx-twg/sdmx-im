@@ -31,7 +31,7 @@ class SidebarGenerator:
 
 
 
-  def sdmxIMToc(self, desc, link, mapId=""):
+  def sdmxLocalToc(self, desc, link, mapId=""):
     if not mapId:
       args = desc, link
     else:
