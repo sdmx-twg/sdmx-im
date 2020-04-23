@@ -1,58 +1,5 @@
-SDMX Standards: Section 1
-
-Framework for
-
-SDMX Technical Standards
-
-Version 2.1
-
-April 2011
-
-© SDMX 2011
-
-http://www.sdmx.org/
-
-Contents
-========
-
-`1 Introduction 1 <#introduction>`__
-
-`2 Changes from Previous Version 1 <#changes-from-previous-version>`__
-
-`3 Processes and Business Scope 3 <#processes-and-business-scope>`__
-
-`3.1 Process Patterns 3 <#process-patterns>`__
-
-`3.2 SDMX and Process Automation 5 <#sdmx-and-process-automation>`__
-
-`3.3 Statistical Data and Metadata 6 <#statistical-data-and-metadata>`__
-
-`3.4 The SDMX View of Statistical Exchange
-7 <#the-sdmx-view-of-statistical-exchange>`__
-
-`3.5 SDMX Registry Services 12 <#sdmx-registry-services>`__
-
-`3.6 Web services 13 <#web-services>`__
-
-`4 The SDMX Information Model 13 <#the-sdmx-information-model>`__
-
-`5 SDMX-EDI 14 <#sdmx-edi>`__
-
-`6 SDMX-ML 15 <#sdmx-ml>`__
-
-`7 Conformance 17 <#conformance>`__
-
-`8 Dependencies on SDMX content-oriented guidelines
-17 <#dependencies-on-sdmx-content-oriented-guidelines>`__
-
-`8.1 Cross-Domain Concepts 17 <#cross-domain-concepts>`__
-
-`8.2 Metadata Common Vocabulary 17 <#metadata-common-vocabulary>`__
-
-`8.3 Statistical Subject-Matter Domains
-18 <#statistical-subject-matter-domains>`__
-
-`9 Looking Forward 18 <#looking-forward>`__
+Framework for SDMX Technical Standards
+++++++++++++++++++++++++++++++++++++++
 
 Introduction
 ============
@@ -424,8 +371,7 @@ but are also discussed in more detail elsewhere in this specification.
 
 |image0|
 
--  Figure 1: High Level Schematic of Major Artefacts in the SDMX
-   Information Model
+Figure 1: High Level Schematic of Major Artefacts in the SDMX Information Model
 
 The SDMX View of Statistical Exchange
 -------------------------------------
@@ -1097,5 +1043,5 @@ community (statistical offices, central banks and other national and
 international organisations dealing with statistics) in further
 enhancing the Technical Standards and improving its use.
 
-.. |image0| image:: ./media-SDMX_2-1_SECTION_1_Framework/media/image2.png
+.. |image0| image:: /_static/media-SDMX_2-1_SECTION_1_Framework/media/image2.png
 
