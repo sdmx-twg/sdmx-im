@@ -215,7 +215,8 @@ from sidebarGenerator import SidebarGenerator
 s = SidebarGenerator(globals(), "sdmx-im")
 
 s.toctree("Technical Specification", 3) \
-  .sdmxLocalToc("Framework", "Sections/Section1/SDMX_2-1_SECTION_1_Framework.rst") \
+  .sdmxLocalToc("Framework", "Sections/Section1/SDMX_2-1_SECTION_1_Framework") \
+  .sdmxLocalToc("Information Model", "Sections/Section2/SDMX_2_1_SECTION_2_InformationModel") \
   .newLine()
 
 s.toctree("Formats") \
