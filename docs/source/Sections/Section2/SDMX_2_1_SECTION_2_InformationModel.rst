@@ -1,330 +1,8 @@
-© SDMX 2011
-
-http://www.sdmx.org/
-
-**Contents**
-
-`1 Introduction 1 <#introduction>`__
-
-`1.1 Related Documents 1 <#related-documents>`__
-
-`1.2 Modelling Technique and Diagrammatic Notes
-1 <#modelling-technique-and-diagrammatic-notes>`__
-
-`1.3 Overall Functionality 2 <#overall-functionality>`__
-
-`1.3.1 Information Model Packages 2 <#information-model-packages>`__
-
-`1.3.2 Version 1.0 3 <#version-1.0>`__
-
-`1.3.3 Version 2.0/2.1 3 <#version-2.02.1>`__
-
-`2 Actors and Use Cases 5 <#actors-and-use-cases>`__
-
-`2.1 Introduction 5 <#introduction-1>`__
-
-`2.2 Use Case Diagrams 6 <#use-case-diagrams>`__
-
-`2.2.1 Maintenance of Structural and Provisioning Definitions
-6 <#maintenance-of-structural-and-provisioning-definitions>`__
-
-`2.2.2 Publishing and Using Data and Reference Metadata
-10 <#publishing-and-using-data-and-reference-metadata>`__
-
-`3 SDMX Base Package 13 <#sdmx-base-package>`__
-
-`3.1 Introduction 13 <#introduction-2>`__
-
-`3.2 Base Structures - Identification, Versioning, and Maintenance
-14 <#base-structures---identification-versioning-and-maintenance>`__
-
-`3.2.1 Class Diagram 14 <#class-diagram>`__
-
-`3.2.2 Explanation of the Diagram 14 <#explanation-of-the-diagram-2>`__
-
-`3.3 Basic Inheritance 18 <#basic-inheritance>`__
-
-`3.3.1 Class Diagram– Basic Inheritance from the Base Inheritance
-Classes
-18 <#class-diagram-basic-inheritance-from-the-base-inheritance-classes>`__
-
-`3.3.2 Explanation of the Diagram 19 <#explanation-of-the-diagram-3>`__
-
-`3.4 Data Types 19 <#data-types>`__
-
-`3.4.1 Class Diagram 19 <#class-diagram-1>`__
-
-`3.4.2 Explanation of the Diagram 20 <#explanation-of-the-diagram-4>`__
-
-`3.5 The Item Scheme Pattern 21 <#the-item-scheme-pattern>`__
-
-`3.5.1 Context 21 <#context>`__
-
-`3.5.2 Class Diagram 21 <#class-diagram-2>`__
-
-`3.5.3 Explanation of the Diagram 22 <#explanation-of-the-diagram-5>`__
-
-`3.6 The Structure Pattern 23 <#the-structure-pattern>`__
-
-`3.6.1 Context 23 <#context-1>`__
-
-`3.6.2 Class Diagrams 24 <#class-diagrams>`__
-
-`3.6.3 Explanation of the Diagrams 26 <#explanation-of-the-diagrams>`__
-
-`4 Specific Item Schemes 31 <#specific-item-schemes>`__
-
-`4.1 Introduction 31 <#introduction-3>`__
-
-`4.2 Inheritance View 32 <#inheritance-view>`__
-
-`4.3 Codelist 33 <#codelist>`__
-
-`4.3.1 Class Diagram 33 <#class-diagram-3>`__
-
-`4.3.2 Explanation of the Diagram 34 <#explanation-of-the-diagram-6>`__
-
-`4.4 Concept Scheme and Concepts 36 <#concept-scheme-and-concepts>`__
-
-`4.4.1 Class Diagram - Inheritance 36 <#class-diagram---inheritance>`__
-
-`4.4.2 Explanation of the Diagram 37 <#explanation-of-the-diagram-7>`__
-
-`4.4.3 Class Diagram - Relationship
-38 <#class-diagram---relationship>`__
-
-`4.4.4 Explanation of the diagram 38 <#explanation-of-the-diagram-8>`__
-
-`4.5 Category Scheme 40 <#category-scheme>`__
-
-`4.5.1 Context 40 <#context-2>`__
-
-`4.5.2 Class diagram - Inheritance
-40 <#class-diagram---inheritance-1>`__
-
-`4.5.3 Explanation of the Diagram 41 <#explanation-of-the-diagram-9>`__
-
-`4.5.4 Class diagram - Relationship
-42 <#class-diagram---relationship-1>`__
-
-`4.6 Organisation Scheme 44 <#organisation-scheme>`__
-
-`4.6.1 Class Diagram 44 <#class-diagram-4>`__
-
-`4.6.2 Explanation of the Diagram 44 <#explanation-of-the-diagram-10>`__
-
-`4.7 Reporting Taxonomy 48 <#reporting-taxonomy>`__
-
-`4.7.1 Class Diagram 48 <#class-diagram-5>`__
-
-`4.7.2 Explanation of the Diagram 48 <#explanation-of-the-diagram-11>`__
-
-`5 Data Structure Definition and Dataset
-51 <#data-structure-definition-and-dataset>`__
-
-`5.1 Introduction 51 <#introduction-4>`__
-
-`5.2 Inheritance View 52 <#inheritance-view-1>`__
-
-`5.2.1 Class Diagram 52 <#class-diagram-6>`__
-
-`5.2.2 Explanation of the Diagram 53 <#explanation-of-the-diagram-12>`__
-
-`5.3 Data Structure Definition – Relationship View
-55 <#data-structure-definition-relationship-view>`__
-
-`5.3.1 Class Diagram 55 <#class-diagram-7>`__
-
-`5.3.2 Explanation of the Diagrams
-55 <#explanation-of-the-diagrams-1>`__
-
-`5.4 Data Set – Relationship View 65 <#data-set-relationship-view>`__
-
-`5.4.1 Context 65 <#context-3>`__
-
-`5.4.2 Class Diagram 65 <#class-diagram-8>`__
-
-`5.4.3 Explanation of the Diagram 66 <#explanation-of-the-diagram-13>`__
-
-`6 Cube 74 <#cube>`__
-
-`6.1 Context 74 <#context-4>`__
-
-`6.2 Support for the Cube in the Information Model
-74 <#support-for-the-cube-in-the-information-model>`__
-
-`7 Metadata Structure Definition and Metadata Set
-75 <#metadata-structure-definition-and-metadata-set>`__
-
-`7.1 Context 75 <#context-5>`__
-
-`7.2 Inheritance 75 <#inheritance>`__
-
-`7.2.1 Introduction 75 <#introduction-5>`__
-
-`7.2.2 Class Diagram - Inheritance
-76 <#class-diagram---inheritance-2>`__
-
-`7.2.3 Explanation of the Diagram 77 <#explanation-of-the-diagram-14>`__
-
-`7.3 Metadata Structure Definition
-77 <#metadata-structure-definition>`__
-
-`7.3.1 Introduction 77 <#introduction-6>`__
-
-`7.3.2 Structures Already Described
-77 <#structures-already-described>`__
-
-`7.3.3 Class Diagram – Relationship 78 <#class-diagram-relationship>`__
-
-`7.3.4 Explanation of the Diagram 78 <#explanation-of-the-diagram-15>`__
-
-`7.4 Metadata Set 84 <#metadata-set>`__
-
-`7.4.1 Class Diagram 84 <#class-diagram-9>`__
-
-`7.4.2 Explanation of the Diagram 85 <#explanation-of-the-diagram-16>`__
-
-`8 Hierarchical Code List 92 <#hierarchical-code-list>`__
-
-`8.1 Scope 92 <#scope>`__
-
-`8.2 Inheritance 93 <#inheritance-1>`__
-
-`8.2.1 Class Diagram 93 <#class-diagram-10>`__
-
-`8.2.2 Explanation of the Diagram 93 <#explanation-of-the-diagram-17>`__
-
-`8.3 Relationship 94 <#relationship>`__
-
-`8.3.1 Class Diagram 94 <#class-diagram-11>`__
-
-`8.3.2 Explanation of the Diagram 94 <#explanation-of-the-diagram-18>`__
-
-`9 Structure Set and Mappings 98 <#structure-set-and-mappings>`__
-
-`9.1 Scope 98 <#scope-1>`__
-
-`9.2 Structure Set 99 <#structure-set>`__
-
-`9.2.1 Class Diagram – Inheritance 99 <#class-diagram-inheritance>`__
-
-`9.2.2 Class Diagram – Relationship
-100 <#class-diagram-relationship-1>`__
-
-`9.2.3 Explanation of the Diagram
-100 <#explanation-of-the-diagram-19>`__
-
-`9.3 Structure Map 102 <#structure-map>`__
-
-`9.3.1 Class Diagram 102 <#class-diagram-12>`__
-
-`9.3.2 Explanation of the Diagram
-102 <#explanation-of-the-diagram-20>`__
-
-`9.4 Item Scheme Map 104 <#item-scheme-map>`__
-
-`9.4.1 Context 104 <#context-6>`__
-
-`9.4.2 Class Diagram 105 <#class-diagram-13>`__
-
-`9.4.3 Explanation of the Diagram
-105 <#explanation-of-the-diagram-21>`__
-
-`9.5 Hybrid Codelist Map 108 <#hybrid-codelist-map>`__
-
-`9.5.1 Class Diagram 108 <#class-diagram-14>`__
-
-`9.5.2 Explanation of the Diagram
-108 <#explanation-of-the-diagram-22>`__
-
-`10 Constraints 111 <#constraints>`__
-
-`10.1 Scope 111 <#scope-2>`__
-
-`10.2 Inheritance 111 <#inheritance-2>`__
-
-`10.2.1 Class Diagram of Constrainable Artefacts - Inheritance
-111 <#class-diagram-of-constrainable-artefacts---inheritance>`__
-
-`10.2.2 Explanation of the Diagram
-111 <#explanation-of-the-diagram-23>`__
-
-`10.3 Constraints 112 <#constraints-1>`__
-
-`10.3.1 Relationship Class Diagram – high level view
-112 <#relationship-class-diagram-high-level-view>`__
-
-`10.3.2 Explanation of the Diagram
-113 <#explanation-of-the-diagram-24>`__
-
-`10.3.3 Relationship Class Diagram – Detail
-114 <#relationship-class-diagram-detail>`__
-
-`11 Data Provisioning 124 <#data-provisioning>`__
-
-`11.1 Class Diagram 124 <#class-diagram-15>`__
-
-`11.2 Explanation of the Diagram 125 <#explanation-of-the-diagram-26>`__
-
-`11.2.1 Narrative 125 <#narrative-22>`__
-
-`11.2.2 Definitions 126 <#definitions-21>`__
-
-`12 Process 128 <#process>`__
-
-`12.1 Introduction 128 <#introduction-7>`__
-
-`12.2 Model – Inheritance and Relationship view 129 <#_Toc290467427>`__
-
-`12.2.1 Class Diagram 129 <#class-diagram-16>`__
-
-`12.2.2 Explanation of the Diagram
-129 <#explanation-of-the-diagram-27>`__
-
-`13 Transformations and Expressions
-132 <#transformations-and-expressions>`__
-
-`13.1 Scope 132 <#scope-3>`__
-
-`13.2 Model - Inheritance View 133 <#model---inheritance-view>`__
-
-`13.2.1 Class Diagram 133 <#class-diagram-17>`__
-
-`13.2.2 Explanation of the Diagram
-133 <#explanation-of-the-diagram-28>`__
-
-`14 Appendix 1: A Short Guide To UML in the SDMX Information Model
-137 <#appendix-1-a-short-guide-to-uml-in-the-sdmx-information-model>`__
-
-`14.1 Scope 137 <#scope-4>`__
-
-`14.2 Use Cases 137 <#use-cases-2>`__
-
-`14.3 Classes and Attributes 138 <#classes-and-attributes>`__
-
-`14.3.1 General 138 <#general>`__
-
-`14.3.2 Abstract Class 139 <#abstract-class>`__
-
-`14.4 Associations 139 <#associations>`__
-
-`14.4.1 General 139 <#general-1>`__
-
-`14.4.2 Simple Association 139 <#simple-association>`__
-
-`14.4.3 Aggregation 140 <#aggregation>`__
-
-`14.4.4 Association Names and Association-end (role) Names
-141 <#association-names-and-association-end-role-names>`__
-
-`14.4.5 Navigability 141 <#navigability>`__
-
-`14.4.6 Inheritance 142 <#inheritance-3>`__
-
-`14.4.7 Derived association 142 <#derived-association>`__
+Information Model
++++++++++++++++++
 
 Change History
+==============
 
 Version 1.0 – initial release September 2004.
 
@@ -815,11 +493,9 @@ compartments for one or both of attributes and operations (sometimes
 called methods). In this document the operations compartment is not
 shown as there are no operations.
 
-=========================================
 |image0|
-=========================================
+
 Figure 1 Class with operations suppressed
-=========================================
 
 In some diagrams for some classes the attribute compartment is
 suppressed even though there may be some attributes. This is deliberate
@@ -831,11 +507,9 @@ and is done to aid clarity of the diagram. The method used is:
 -  On other diagrams, such as inheritance diagrams, the attributes may
    be suppressed from the class for clarity.
 
-==============================================
 |image1|
-==============================================
+
 Figure 2 Class with attributes also suppressed
-==============================================
 
 Note that, in any case, attributes inherited from a super class are not
 shown in the sub class.
@@ -951,11 +625,9 @@ Family: as both of these terms are used in various communities they are
 synonymous. The term Data Structure Definition is used in the model and
 this document.
 
-=================================================================
 |image3|
-=================================================================
+
 Figure 4 SDMX Information Model Version 2.0/2.1 package structure
-=================================================================
 
 Additional constructs that are specific to a registry based scenario can
 be found in the Specification of Registry Interfaces. For information
@@ -1026,11 +698,9 @@ Maintenance of Structural and Provisioning Definitions
 Use cases
 ^^^^^^^^^
 
-================================================================================================
 |image5|
-================================================================================================
+
 Figure 6 **Use cases for maintaining data and metadata structural and provisioning definitions**
-================================================================================================
 
 Explanation of the Diagram
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1202,11 +872,9 @@ Base Structures - Identification, Versioning, and Maintenance
 Class Diagram
 ~~~~~~~~~~~~~
 
-=========================================================
 |image33|
-=========================================================
+
 Figure 9: SDMX Identification, Maintenance and Versioning
-=========================================================
 
 .. _explanation-of-the-diagram-2:
 
@@ -1343,9 +1011,7 @@ Data Types
 Class Diagram
 ~~~~~~~~~~~~~
 
-=========
 |image35|
-=========
 
 Figure 11: Class Diagram of Basic Data Types
 
@@ -1429,11 +1095,9 @@ The ItemScheme is the basis for CategoryScheme, Codelist, ConceptScheme,
 Class Diagram
 ~~~~~~~~~~~~~
 
-=================================
 |image36|
-=================================
+
 Figure 12 The Item Scheme pattern
-=================================
 
 .. _explanation-of-the-diagram-5:
 
@@ -1545,11 +1209,9 @@ Class Diagrams
 
 Figure 13: The Structure Pattern
 
-======================================================
 |image38|
-======================================================
+
 Figure 14: Representation within the Structure Pattern
-======================================================
 
 Explanation of the Diagrams
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1795,11 +1457,9 @@ Codelist
 Class Diagram
 ~~~~~~~~~~~~~
 
-=======================================
 |image39|
-=======================================
+
 Figure 15 Class diagram of the Codelist
-=======================================
 
 .. _explanation-of-the-diagram-6:
 
@@ -1882,11 +1542,9 @@ Concept Scheme and Concepts
 Class Diagram - Inheritance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-=============================================
 |image40|
-=============================================
+
 Figure 16 Class diagram of the Concept Scheme
-=============================================
 
 .. _explanation-of-the-diagram-7:
 
@@ -2038,11 +1696,9 @@ to any set of IdentiableArtefacts in a Categorisation.
 Class diagram - Inheritance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-==========================================================
 |image42|
-==========================================================
+
 Figure 18 Inheritance Class diagram of the Category Scheme
-==========================================================
 
 .. _explanation-of-the-diagram-9:
 
@@ -2156,11 +1812,9 @@ Organisation Scheme
 Class Diagram
 ~~~~~~~~~~~~~
 
-===============================================
 |image44|
-===============================================
+
 Figure 20 The Organisation Scheme class diagram
-===============================================
 
 .. _explanation-of-the-diagram-10:
 
@@ -2405,11 +2059,9 @@ Inheritance View
 Class Diagram
 ~~~~~~~~~~~~~
 
-==================================================================================
 |image46|
-==================================================================================
+
 Figure 22 Class inheritance in the Data Structure Definition and Data Set Packages
-==================================================================================
 
 .. _explanation-of-the-diagram-12:
 
@@ -2528,9 +2180,7 @@ Class Diagram
 
 |image47|
 
-==============================================================================================
 Figure 23 Relationship class diagram of the Data Structure Definition excluding representation
-==============================================================================================
 
 .. _explanation-of-the-diagrams-1:
 
@@ -2790,11 +2440,9 @@ DataStructureDefinition.
 Class Diagram
 ~~~~~~~~~~~~~
 
-=======================================
 |image50|
-=======================================
+
 Figure 26 Class Diagram of the Data Set
-=======================================
 
 .. _explanation-of-the-diagram-13:
 
@@ -4984,11 +4632,9 @@ The **actor** can be defined as follows:
 
 The actor is depicted as a stick man as shown below.
 
-===============
 |image69|
-===============
+
 Figure 45 Actor
-===============
 
 The **use cas**\ e can be defined as follows:
 
@@ -4996,23 +4642,17 @@ The **use cas**\ e can be defined as follows:
    is a sequence of actions a system performs that yields an observable
    result of value to a particular actor”
 
-==================
 |image70|
-==================
+
 Figure 46 Use case
-==================
 
-============================
 |image71|
-============================
-Figure 47 Actor and use case
-============================
 
-==========================
+Figure 47 Actor and use case
+
 |image72|
-==========================
+
 Figure 48 Extend use cases
-==========================
 
 An extend use case is where a use case may be optionally extended by a
 use case that is independent of the using use case. The arrow in the
@@ -5031,11 +4671,9 @@ entity-relationship model (E-R model) is the entity and the attribute.
 In fact, if the UML is used purely as a means of modelling data, then
 there is little difference between a class and an entity.
 
-==================================
 |image73|
-==================================
+
 Figure 49 Class and its attributes
-==================================
 
 Figure 49 shows that a class is represented by a rectangle split into
 three compartments. The top compartment is for the class name, the
@@ -5063,11 +4701,9 @@ purpose (i.e. it is always implemented as one of its sub classes). In
 the diagram in this document an abstract class is depicted with its name
 in italics, and coloured white.
 
-=======================================
 |image74|
-=======================================
+
 Figure 50 Abstract and concrete classes
-=======================================
 
 Associations
 ------------
@@ -5088,11 +4724,9 @@ used.
 Simple Association
 ~~~~~~~~~~~~~~~~~~
 
-==============================
 |image75|
-==============================
+
 Figure 51 A simple association
-==============================
 
 Here the DataflowDefinition class has an association with the
 DataStructureDefinition class. The diagram shows that a
@@ -5121,11 +4755,9 @@ Aggregation
 
 Figure 52: A simple aggregate association
 
-=============================================
 |image77|
-=============================================
+
 Figure 53 A composition aggregate association
-=============================================
 
 An association with an aggregation relationship indicates that one class
 is a subordinate class (or a part) of another class. In an aggregation
@@ -5150,11 +4782,9 @@ called /*items* (this means it is derived from the association between
 the super classes – in this case between the *ItemScheme* and the
 *Item,* and another between Category called /*hierarchy*.
 
-=========================================
 |image78|
-=========================================
+
 Figure 54 Association names and end names
-=========================================
 
 Furthermore, it is possible to give role names to the association-ends
 to give more semantic meaning – such as parent and child in a tree
@@ -5187,11 +4817,9 @@ the association is referenced from the class at the non-navigable end.
 This is aligned, in general, with the way this is implemented in the XML
 schemas.
 
-=============================
 |image79|
-=============================
+
 Figure 55 One way association
-=============================
 
 Here it is possible to navigate from A to B, but there is no
 implementation support for navigatation from B to A using this
@@ -5208,11 +4836,9 @@ associations with other classes, and have many (but not necessarily all)
 attributes in common. Inheritance is shown as a triangle at the super
 class.
 
-=====================
 |image80|
-=====================
+
 Figure 56 Inheritance
-=====================
 
 Here the Dimension is derived from Component which itself is derived
 from *IdentifiableArtefact*. Both Component and IdentifiableArtefact are
@@ -5230,11 +4856,9 @@ between sub classes that are derived from the associations of the super
 classes from which the sub classes inherit. A derived association is
 shown by “/” preceding the association name e.g. */name*.
 
-==============================
 |image81|
-==============================
+
 Figure 57 Derived associations
-==============================
 
 .. [1]
    OLAP: On line analytical processing
@@ -5242,86 +4866,86 @@ Figure 57 Derived associations
 .. [2]
    BNF: Backus Naur Form
 
-.. |image0| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image2.emf
-.. |image1| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image3.emf
-.. |image2| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image4.jpeg
-.. |image3| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image5.png
-.. |image4| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image6.png
-.. |image5| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image7.emf
-.. |image6| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image8.emf
-.. |image7| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image9.emf
-.. |image8| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image10.emf
-.. |image9| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image11.emf
-.. |image10| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image12.emf
-.. |image11| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image13.emf
-.. |image12| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image14.emf
-.. |image13| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image15.emf
-.. |image14| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image16.emf
-.. |image15| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image17.emf
-.. |image16| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image18.emf
-.. |image17| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image19.emf
-.. |image18| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image20.emf
-.. |image19| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image21.emf
-.. |image20| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image22.emf
-.. |image21| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image23.emf
-.. |image22| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image24.emf
-.. |image23| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image25.emf
-.. |image24| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image26.emf
-.. |image25| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image27.emf
-.. |image26| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image28.emf
-.. |image27| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image29.emf
-.. |image28| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image30.emf
-.. |image29| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image31.emf
-.. |image30| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image32.emf
-.. |image31| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image33.emf
-.. |image32| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image34.emf
-.. |image33| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image35.emf
-.. |image34| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image36.emf
-.. |image35| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image37.emf
-.. |image36| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image38.emf
-.. |image37| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image39.emf
-.. |image38| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image40.emf
-.. |image39| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image41.emf
-.. |image40| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image42.emf
-.. |image41| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image43.emf
-.. |image42| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image44.emf
-.. |image43| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image45.emf
-.. |image44| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image46.emf
-.. |image45| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image47.emf
-.. |image46| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image48.emf
-.. |image47| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image49.emf
-.. |image48| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image50.emf
-.. |image49| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image51.emf
-.. |image50| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image52.emf
-.. |image51| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image53.emf
-.. |image52| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image54.emf
-.. |image53| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image55.emf
-.. |image54| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image56.emf
-.. |image55| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image57.emf
-.. |image56| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image58.emf
-.. |image57| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image59.emf
-.. |image58| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image60.emf
-.. |image59| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image61.emf
-.. |image60| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image62.emf
-.. |image61| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image63.emf
-.. |image62| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image64.emf
-.. |image63| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image65.emf
-.. |image64| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image66.emf
-.. |image65| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image67.emf
-.. |image66| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image68.jpeg
-.. |image67| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image69.emf
-.. |image68| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image70.emf
-.. |image69| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image71.emf
-.. |image70| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image72.emf
-.. |image71| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image73.emf
-.. |image72| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image74.emf
-.. |image73| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image75.emf
-.. |image74| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image76.emf
-.. |image75| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image77.emf
-.. |image76| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image78.emf
-.. |image77| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image79.emf
-.. |image78| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image80.emf
-.. |image79| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image81.emf
-.. |image80| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image82.emf
-.. |image81| image:: ./media-SDMX_2_1_SECTION_2_InformationModel/media/image83.emf
+.. |image0| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image2.png
+.. |image1| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image3.png
+.. |image2| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image4.jpeg
+.. |image3| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image5.png
+.. |image4| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image6.png
+.. |image5| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image7.png
+.. |image6| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image8.png
+.. |image7| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image9.png
+.. |image8| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image10.png
+.. |image9| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image11.png
+.. |image10| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image12.png
+.. |image11| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image13.png
+.. |image12| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image14.png
+.. |image13| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image15.png
+.. |image14| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image16.png
+.. |image15| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image17.png
+.. |image16| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image18.png
+.. |image17| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image19.png
+.. |image18| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image20.png
+.. |image19| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image21.png
+.. |image20| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image22.png
+.. |image21| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image23.png
+.. |image22| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image24.png
+.. |image23| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image25.png
+.. |image24| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image26.png
+.. |image25| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image27.png
+.. |image26| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image28.png
+.. |image27| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image29.png
+.. |image28| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image30.png
+.. |image29| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image31.png
+.. |image30| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image32.png
+.. |image31| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image33.png
+.. |image32| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image34.png
+.. |image33| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image35.png
+.. |image34| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image36.png
+.. |image35| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image37.png
+.. |image36| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image38.png
+.. |image37| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image39.png
+.. |image38| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image40.png
+.. |image39| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image41.png
+.. |image40| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image42.png
+.. |image41| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image43.png
+.. |image42| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image44.png
+.. |image43| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image45.png
+.. |image44| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image46.png
+.. |image45| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image47.png
+.. |image46| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image48.png
+.. |image47| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image49.png
+.. |image48| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image50.png
+.. |image49| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image51.png
+.. |image50| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image52.png
+.. |image51| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image53.png
+.. |image52| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image54.png
+.. |image53| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image55.png
+.. |image54| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image56.png
+.. |image55| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image57.png
+.. |image56| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image58.png
+.. |image57| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image59.png
+.. |image58| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image60.png
+.. |image59| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image61.png
+.. |image60| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image62.png
+.. |image61| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image63.png
+.. |image62| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image64.png
+.. |image63| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image65.png
+.. |image64| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image66.png
+.. |image65| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image67.png
+.. |image66| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image68.jpeg
+.. |image67| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image69.png
+.. |image68| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image70.png
+.. |image69| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image71.png
+.. |image70| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image72.png
+.. |image71| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image73.png
+.. |image72| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image74.png
+.. |image73| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image75.png
+.. |image74| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image76.png
+.. |image75| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image77.png
+.. |image76| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image78.png
+.. |image77| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image79.png
+.. |image78| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image80.png
+.. |image79| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image81.png
+.. |image80| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image82.png
+.. |image81| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image83.png
 
