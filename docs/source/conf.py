@@ -187,10 +187,10 @@ epub_exclude_files = ['search.html']
 # os environment var  @see: https://docs.readthedocs.io/en/stable/builds.html#build-environment
 #                     @see: https://docs.readthedocs.io/en/stable/guides/environment-variables.html
 if onRTD:
-  print '**Building done on readthedocs container... '
+  print ('**Building done on readthedocs container... ')
   plantuml = 'java -Djava.awt.headless=true -jar /usr/share/plantuml/plantuml.jar -config ../plantuml.conf'
 else:
-  print '**Building done locally... '
+  print ('**Building done locally... ')
   plantuml = 'java -Djava.awt.headless=true -jar C:/Users/Leroy/Documents/dev/sdmx/plantuml.jar -config ../plantuml.conf'
 
 plantuml_output_format = 'png'
@@ -215,15 +215,13 @@ from sidebarGenerator import SidebarGenerator
 s = SidebarGenerator(globals(), "sdmx-im")
 
 s.toctree("Technical Specification", 3) \
-  .sdmxIMToc("", "informationModel/SDMX_2_1_SECTION_2_InformationModel") \
-  .sdmxIMToc("", "informationModel/changeHistory") \
+#  .sdmxIMToc("", "informationModel/SDMX_2_1_SECTION_2_InformationModel") \
   .newLine()
 
 s.toctree("Formats") \
-  .sdmxIMToc("SDMX EDI", "formats/sdmxedi")  \
   .subPrjToc("sdmx-ml", "SDMX ML")  \
-  .subPrjToc("sdmx-csv", "SDMX CSV")  \
-  .subPrjToc("sdmx-json", "SDMX JSON")  \
+  .subPrjToc("sdmx-csv", "SDMX CSV (TBD)")  \
+  .subPrjToc("sdmx-json", "SDMX JSON (TBD)")  \
   .newLine()
 
 s.toctree("Web service APIs") \
@@ -231,16 +229,13 @@ s.toctree("Web service APIs") \
   .subPrjToc("sdmx-soap", "SOAP API")  \
   .newLine()
 
-s.toctree("Guidelines") \
-  .sdmxIMToc("", "guidelines/guidelines.rst") \
+s.toctree("Tools & applications") \
+  .subPrjToc("sdmx-tck", "TCK")  \
   .newLine()
 
-s.toctree("Glossary") \
-  .sdmxIMToc("", "glossary/SDMX_Glossary_Version_1_0_February_2016.rst") \
-  .newLine()
-
-s.toctree("Examples") \
-  .sdmxIMToc("", "examples/example1") \
-  .newLine()
+#s.toctree("Older versions") \
+#  .subPrjToc("sdmx-ml-v2_1", "SDMX-ML v2.1")  \
+#  .subPrjToc("sdmx-ml-v2_0", "SDMX-ML v2.0")  \
+#  .newLine()
 
 s.writeIfChanged("_sidebar.rst.inc")
