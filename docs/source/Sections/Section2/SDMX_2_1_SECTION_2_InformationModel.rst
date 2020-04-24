@@ -493,9 +493,23 @@ compartments for one or both of attributes and operations (sometimes
 called methods). In this document the operations compartment is not
 shown as there are no operations.
 
-|image0|
+.. _image0:
+.. figure:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image2.png
+    :alt: Class with operations suppressed
+    :align: center
+    
+    Class with operations suppressed
 
-Figure 1 Class with operations suppressed
+.. _uml1:
+.. uml::
+   :align: center
+   :caption: Class with operations suppressed
+  
+   object ExtendedFacet {
+    facetType : ExtendedFacetType
+    facetValue: String
+    facetValueType : ExtendedFacetType
+   }
 
 In some diagrams for some classes the attribute compartment is
 suppressed even though there may be some attributes. This is deliberate
