@@ -16,6 +16,7 @@ import sys
 import os
 from os.path import abspath, join, dirname
 sys.path.insert(0, abspath(join(dirname(__file__))))
+currentFolder=abspath(join(dirname(__file__)))
 
 # -- RTD configuration ------------------------------------------------
 # onRtd is whether we are on readthedocs.org
@@ -194,7 +195,7 @@ if onRTD:
   plantuml = 'java -Djava.awt.headless=true -jar /usr/share/plantuml/plantuml.jar -config ../plantuml.conf'
 else:
   print ('**Building done locally... ')
-  plantuml = 'java -Djava.awt.headless=true -jar C:/Users/Leroy/Documents/dev/sdmx/plantuml.jar -config ../plantuml.conf'
+  plantuml = 'java -Djava.awt.headless=true -jar C:/Users/Leroy/Documents/dev/sdmx/plantuml.jar -config %s/plantuml.conf' % currentFolder
 
 plantuml_output_format = 'png'
 plantuml_syntax_error_image = True
