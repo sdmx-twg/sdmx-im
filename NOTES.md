@@ -105,6 +105,11 @@ On windows, use `make.bat html` to generate the documentation in the sub-folder 
 On linux, use `make html`  to generate the documentation in the sub-folder`build/html`\
 Open the `index.html` file found in the `build/html` folder.
 
+I currently use in git bash under windows: 
+```sh
+export READTHEDOCS_VERSION=develop ; rm -r build/ && ./make.bat html
+```
+
 Please mind that the inter-links (between repositories) will not work in the local generated content. It will instead link to the online version - *I did not find a way to re-direct to the local sibling folder easily...*
 
 
@@ -140,9 +145,24 @@ s.writeIfChanged("_sidebar.rst.inc")
 
 
 # Other considerations/references
-## RegEx used for Replacements
-Usage: regex to search and replace some figure captions from the automatic conversion of docx => rst using pandoc.
+## what was  done
+* conversion: doc &rarr; docx &rarr; rst
+* image path adjustment from `../xyz` &rarr; `/_static/xyz`
+* figure cleanup : 
+  * removed title markup that was arount them
+  * if simple, replace with `.. figure::` directive, caption & label
+  * 
 
-- `^={1,}$\n(\|.*\|)$\n^={1,}$\n(Figure .*)\n^={1,}$` to `$1 $2`
-- `(\|.*\|)$\n\n(Figure .*)`to `$1 $2`
+
+
+## Some replacements regex
+Usage: regex to search and replace (in Visual Studio Code for example).
+The idea is to tweak automatically converted parts of the document.
+
+* Strange double quotes:
+  * `“` with `"`
+  * `”` with `"`
+* Other 
+  * `^={1,}$\n(\|.*\|)$\n^={1,}$\n(Figure .*)\n^={1,}$` to `$1 $2`
+  * `(\|.*\|)$\n\n(Figure .*)`to `$1 $2`
 
