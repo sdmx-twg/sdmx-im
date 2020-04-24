@@ -88,7 +88,7 @@ The major changes from 1.0 to 2.0 can be briefly summarized:
    structures and formats (along with related structural metadata), the
    version 2.0 specification also provides for the exchange of metadata
    which is distinct from the structural metadata in the 1.0 version.
-   This category includes “reference” metadata (regarding data quality,
+   This category includes "reference" metadata (regarding data quality,
    methodology, and similar types – it can be configured by the user to
    include whatever concepts require reporting); metadata related to
    data provisioning (release calendar information, description of the
@@ -323,8 +323,8 @@ simplest and most easily comprehensible technique that will support the
 exchange of this broad set of data and related metadata.
 
 The term "metadata" is very broad indeed. A distinction can be made
-between “structural” metadata – those concepts used in the description
-and identification of statistical data and metadata – and “reference”
+between "structural" metadata – those concepts used in the description
+and identification of statistical data and metadata – and "reference"
 metadata – the larger set of concepts that describe and qualify
 statistical data sets and processing more generally, and which are often
 associated not with specific observations or series of data, but with
@@ -332,7 +332,7 @@ entire collections of data or even the institutions which provide that
 data.
 
 The SDMX Information Model provides for the structuring not only of
-data, but also of “reference” metadata. While these reference metadata
+data, but also of "reference" metadata. While these reference metadata
 structures exist independent of the data and its structural metadata,
 they are often linked. The SDMX Information Model provides for the
 attachment of reference metadata to any part of the data or structural
@@ -344,7 +344,7 @@ quality-related metadata is a major part.
 
 Metadata are associated not only with data, but also with the process of
 providing and managing the flow of data. The SDMX Information Model
-provides for a set of metadata concerned with “data provisioning” –
+provides for a set of metadata concerned with "data provisioning" –
 metadata which are useful to those who need to understand the content
 and form of a data provider’s output. Each data provider can describe in
 standard fashion the content of and dependencies within the data and
@@ -366,12 +366,16 @@ statistical data meeting the definition above; several optimized formats
 are specified based on the specific requirements of each implementation,
 as described below in the SDMX-ML section.
 
-The formal objects in the information model are presented briefly below,
+The formal objects in the information model are presented briefly below in :numref:`image0`,
 but are also discussed in more detail elsewhere in this specification.
 
-|image0|
-
-Figure 1: High Level Schematic of Major Artefacts in the SDMX Information Model
+.. _image0: 
+.. figure:: /_static/media-SDMX_2-1_SECTION_1_Framework/media/image2.png
+    :alt: High Level Schematic of Major Artefacts in the SDMX Information Model
+    :width: 100%
+    :align: center
+    
+    High Level Schematic of Major Artefacts in the SDMX Information Model
 
 The SDMX View of Statistical Exchange
 -------------------------------------
@@ -458,7 +462,7 @@ includes:
    2.0):** Each data set has a set of structural metadata. These
    descriptions are referred to in SDMX as Data Structure Definitions,
    which include information about how concepts are associated with the
-   measures, dimensions, and attributes of a data “cube,” along with
+   measures, dimensions, and attributes of a data "cube," along with
    information about the representation of data and related identifying
    and descriptive (structural) metadata. In Version 2.1, the term "Key
    Family" is replaced by "Data Structure Definition" (DSD) both in XML
@@ -483,9 +487,9 @@ includes:
 
 -  **Concept Scheme:** A concept scheme is a maintained list of concepts
    that are used in data structure definitions and metadata structure
-   definitions. There can be many such concept schemes. A “core”
+   definitions. There can be many such concept schemes. A "core"
    representation of the concept can be specified (e.g. a core code
-   list, or other representation such as “date”). Note that this core
+   list, or other representation such as "date"). Note that this core
    representation can be overridden in the data structure definition or
    metadata structure definition that uses the concept. Indeed,
    organisations wishing to remain with version 1.0 key family schema
@@ -533,9 +537,9 @@ includes:
    express the fact that it provides a particular data flow covering a
    specific set of countries and topics, Importantly, the actual source
    of registered data or metadata is attached to the provision agreement
-   (in terms of a URL). The term “agreement” is used because this
-   information can be understood as the basis of a “service-level
-   agreement”. In SDMX, however, this is informational metadata to
+   (in terms of a URL). The term "agreement" is used because this
+   information can be understood as the basis of a "service-level
+   agreement". In SDMX, however, this is informational metadata to
    support the technical systems, as opposed to any sort of contractual
    information (which is outside the scope of a technical
    specification).
@@ -551,12 +555,12 @@ includes:
    relationships between specific, related sets of data and metadata.
    They can be used to map dimensions and attributes to one another, to
    map concepts, to map code lists, and to map category schemes. They
-   can be used to describe “cubes” of data, even when the data within
+   can be used to describe "cubes" of data, even when the data within
    the cube does not share a single dimensionality.
 
 -  **Reporting Taxonomy:** A reporting taxonomy allows an organisation
    to link (possibly in a hierarchical way) a number of cube or data
-   flow definitions which together form a complete “report” of data or
+   flow definitions which together form a complete "report" of data or
    metadata. This supports primary reporting which often comprises
    multiple cubes of heterogeneous data, but may also support other
    collection and reporting functions. It also supports the
@@ -578,9 +582,9 @@ includes:
 
 **Notes on Data Structuring**
 
-A “cube” is a rich, multi-dimensional construct, which can be viewed
-along any of its axes (or “dimensions”). Whilst the full structure of
-cube data can be described in SDMX, the actual “data” specification of
+A "cube" is a rich, multi-dimensional construct, which can be viewed
+along any of its axes (or "dimensions"). Whilst the full structure of
+cube data can be described in SDMX, the actual "data" specification of
 SDMX takes a slightly narrower view of these requirements in its version
 2.0/2.1 specifications for the purposes of formatting the data for
 transmission. The view of data in many SDMX formats is primarily as time
@@ -591,11 +595,11 @@ through time.
 There are, however, many types of statistical data which are not
 typically organized for exchange as time series where data are organized
 around some other, non-time dimension of the cube – what is often called
-“cross-sectional” data. SDMX supports a unified format that represents
+"cross-sectional" data. SDMX supports a unified format that represents
 in the data set an organisation of the data along any single dimension.
 In this context, time series is a particular case of the unified format.
 
-Another type of structure commonly found in statistical “cubes” of data
+Another type of structure commonly found in statistical "cubes" of data
 is the hierarchical classification, used to describe the points along
 any of its dimensions (or axes). In the 1.0 version, SDMX standards did
 not provide full support for this functionality. The introduction of
@@ -604,7 +608,7 @@ the standard.
 
 Further, there is support for the expression of functional dependencies
 between the various dimensions of a cube, giving support for better
-processing of “sparse cubes”. This is an aspect of “constraints”, which
+processing of "sparse cubes". This is an aspect of "constraints", which
 allow for the framing of a cube region, or for the provision of a set of
 valid keys within the total set of keys described by the data structure
 definition.
@@ -626,13 +630,13 @@ The Metadata Structure Definition takes *any* concept from concept
 schemes, and describes how they can be formed into a reporting or
 dissemination structure as metadata attributes – either as a flat list,
 or as a hierarchy. The metadata attributes are assigned representations
-(coded, textual, etc.) and the number of occurrences. The “target” of
+(coded, textual, etc.) and the number of occurrences. The "target" of
 the metadata – that is, the class of process, information, organisation,
 exchange, etc. – which is the subject of the metadata is described.
 Because the SDMX Information Model gives a formalization of statistical
 exchange and dissemination, the model can be used as a typology of the
 different actors and resources within statistical activities. Thus, the
-“targets” (subjects) of reference metadata sets and metadata flows can
+"targets" (subjects) of reference metadata sets and metadata flows can
 be described as corresponding to some standard class by reference to
 this model.
 
@@ -647,7 +651,7 @@ SDMX Registry Services
 In order to provide visibility into the large amount of data and
 metadata which exists within the SDMX model of statistical exchange, it
 is felt that an architecture based on a set of registry services is
-potentially useful. A “registry” – as understood in web-services
+potentially useful. A "registry" – as understood in web-services
 terminology – is an application which maintains and stores metadata for
 querying, and which can be used by any other application in the network
 with sufficient access privileges (though note that the mechanism of
@@ -682,7 +686,7 @@ The registry services discussed here can be briefly summarized:
    users with maintenance agency access privileges to submit and modify
    structural metadata. In this aspect the registry is acting as a
    structural metadata repository. However, it is permissible in an SDMX
-   structure to submit just the “stub” of the structural object, such as
+   structure to submit just the "stub" of the structural object, such as
    a code list, and for this stub to reference the actual location from
    where the metadata can be retrieved, either from a file or a
    structural metadata resource, such as another registry.
@@ -703,7 +707,7 @@ The registry services discussed here can be briefly summarized:
    objects, and the provider agreements which describe how the data and
    metadata are made available, and how they are categorized.
 
--  **Subscription/Notification:** It is possible to “subscribe” to
+-  **Subscription/Notification:** It is possible to "subscribe" to
    specific objects in a registry, so that a notification will be sent
    to all subscribers whenever the registry objects are updated.
 
@@ -763,24 +767,24 @@ GESMES/TS-based systems. Version 2.0/2.1 expands upon the version 1.0
 basis to provide a more comprehensive model.
 
 SDMX recognizes that statistical data is structured; in SDMX this
-structure is termed a Data Structure Definition. “Data sets” are made up
-of one or more lower-level “groups”, based on their degrees of
-similarity. Each group is in turn comprised of one or more “series” of
-data. Each series or section has a “key” - values for each of a cluster
+structure is termed a Data Structure Definition. "Data sets" are made up
+of one or more lower-level "groups", based on their degrees of
+similarity. Each group is in turn comprised of one or more "series" of
+data. Each series or section has a "key" - values for each of a cluster
 of concepts, also called "dimensions" - which identifies it, and one or
-more “observations”, which typically combine the time of the
+more "observations", which typically combine the time of the
 observation, and the value of the observation (e.g., measurement).
 Additionally, metadata may be attached at any level of this structure as
-descriptive “attributes”. Code lists (enumerations) and other patterns
+descriptive "attributes". Code lists (enumerations) and other patterns
 for representation of data and metadata are also modelled.
 
-There is some similarity between “cube” structures commonly used to
+There is some similarity between "cube" structures commonly used to
 process statistical data, and the Data Structure Definition idea in the
 SDMX Information Model. It is important to note that the data as
 structured according to the SDMX Information Model is optimized for
 exchange, potentially with partners who may have no ability to process a
-“cube” of data coming from complex statistical systems. SDMX time series
-can be understood as “slices” of the cube. Such a slice is identified by
+"cube" of data coming from complex statistical systems. SDMX time series
+can be understood as "slices" of the cube. Such a slice is identified by
 its key. A "series" key consists of the values for all dimensions
 specified by the key family except time. It is certainly possible to
 reconstruct and describe data cubes from SDMX-structured data, and to
@@ -790,7 +794,7 @@ with hierarchical code lists, constraints, and relationships between
 data structure definitions.
 
 In version 2.0/2.1, the SDMX standards also provide a view of reference
-metadata: a mechanism for referencing the meaningful “objects” within
+metadata: a mechanism for referencing the meaningful "objects" within
 the SDMX view of statistical exchange processes (data providers,
 structures, provisioning agreements, dataflows, metadata flows, etc.) to
 which metadata is attached; a mechanism for describing a set of
@@ -926,9 +930,9 @@ support a specific set of processing requirements.
 7. *Registry:* All of the possible interactions with the SDMX registry
    services are supported using SDMX-ML interfaces. All but one of these
    documents are based on a synchronous exchange of documents – a
-   “request” message answered by a “response” message. There are two
-   basic types of request – a “Submit”, which writes metadata to the
-   registry services, and a “Query”, which is used to discover that
+   "request" message answered by a "response" message. There are two
+   basic types of request – a "Submit", which writes metadata to the
+   registry services, and a "Query", which is used to discover that
    metadata. Registry interactions provide formats for all types of
    provisioning metadata, as well as for subscription/notification,
    structural metadata, and data and metadata registration. The
@@ -986,10 +990,10 @@ definitions.
 
 The intent of this guideline is two-fold: to provide a core set of
 concepts which can be used to structure statistical data and metadata,
-to promote interoperability between systems (“structural metadata”, as
+to promote interoperability between systems ("structural metadata", as
 described above); and to promote the exchange of metadata more widely,
 with a set of harmonized concept names and definitions for other types
-of metadata (“reference metadata”, as defined above.)
+of metadata ("reference metadata", as defined above.)
 
 Metadata Common Vocabulary
 --------------------------
@@ -1015,7 +1019,7 @@ statistical exchange and categorization. It acts as a standard scheme
 against which the categorization schemes of various counterparties can
 be mapped, to facilitate interoperable data and metadata exchange. It
 serves another useful purpose, however, which is to allow an
-organization of corresponding “domain groups”, each of which could
+organization of corresponding "domain groups", each of which could
 define standard data structure definitions, concepts, etc. within their
 domains. Such groups already exist within the international community.
 SDMX would use the Statistical Subject-Matter Domains list to facilitate
@@ -1042,6 +1046,3 @@ work should take advantage of a wider participation of the SDMX user
 community (statistical offices, central banks and other national and
 international organisations dealing with statistics) in further
 enhancing the Technical Standards and improving its use.
-
-.. |image0| image:: /_static/media-SDMX_2-1_SECTION_1_Framework/media/image2.png
-
