@@ -1,6 +1,7 @@
 # readthedocs/sphinx build folder #
 ###################################
 docs/build/
+_build
 _sidebar.rst.inc
 
 # OS generated files #
