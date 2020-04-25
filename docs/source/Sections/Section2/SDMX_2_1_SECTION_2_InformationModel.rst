@@ -493,7 +493,7 @@ compartments for one or both of attributes and operations (sometimes
 called methods). In this document the operations compartment is not
 shown as there are no operations.
 
-.. _image0:
+.. _classWithOpsSupp:
 .. figure:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image2.png
     :alt: Class with operations suppressed
     :align: center
@@ -503,7 +503,7 @@ shown as there are no operations.
 .. _uml1:
 .. uml::
    :align: center
-   :caption: Class with operations suppressed
+   :caption: Class with operations suppressed 2
   
    object ExtendedFacet {
     facetType : ExtendedFacetType
@@ -4925,7 +4925,6 @@ Figure 57 Derived associations
 .. [2]
    BNF: Backus Naur Form
 
-.. |image0| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image2.png
 .. |image1| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image3.png
 .. |image2| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image4.jpeg
 .. |image3| image:: /_static/media-SDMX_2_1_SECTION_2_InformationModel/media/image5.png
