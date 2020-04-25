@@ -2353,86 +2353,131 @@ DataStructureDefinition. This is supported in the StructureMap.
 
 .. _definitions-10:
 
- Definitions
+Definitions
 ^^^^^^^^^^^
+.. _table_demo1:
+.. list-table:: The general table 1
+  :align: center
+  :width: 100%
+  :widths: 20 20 60
+  :header-rows: 1
 
-========================= =========================== ===============================================================================================================================================================================================================================================================================================
-Class                     Feature                     Description
-StructureUsage                                        See “SDMX Base”.
-DataflowDefinition        Inherits from               Abstract concept (i.e. the structure without any data) of a flow of data that providers will provide for different reference periods.
-                                                     
-                          *StructureUsage*           
-\                         /structure                  Associates a Dataflow Definition to the Data Structure Definition.
-DataStructureDefinition                               A collection of metadata concepts, their structure and usage when used to collect or disseminate data.
-\                         /grouping                   An association to a set of metadata concepts that have an identified structural role in a Data Structure Definition.
-Group                     Inherits from               A set metadata concepts that define a partial key derived from the Dimension Descriptor in a Data Structure Definition.
-DimensionDescriptor                                  
-                          *ComponentList*            
-\                         +constraint                 Identifies an Attachment Constraint that specifies the sub set of Dimension, Measure, or Attribute values to which an Attribute can be attached.
-\                         /components                 An association to the Dimension and Measure Dimension components that comprise the group.
-DimensionDescriptor       Inherits from               An ordered set of metadata concepts that, combined, classify a statistical series, and whose values, when combined (the key) in an instance such as a data set, uniquely identify a specific observation.
-                                                     
-                          *ComponentList*            
-\                         /components                 An association to the Dimension, Measure Dimension, and Time Dimension comprising the Key Descriptor.
-AttributeDescriptor       Inherits from               A set metadata concepts that define the attributes of a Data Structure Definition.
-                                                     
-                          *ComponentList*            
-\                         */*\ components             An association to a Data Attribute component.
-MeasureDescriptor         Inherits from               A metadata concept that defines the measure of a Data Structure Definition.
-                                                     
-                          *ComponentList*            
-\                         /components                 An association to a measure component.
-Dimension                 Inherits from               A metadata concept used (most probably together with other metadata concepts) to classify a statistical series, e.g. a statistical concept indicating a certain economic activity or a geographical reference area.
-                                                     
-                          Component                  
-\                         /role                       Association to the Concept that specifies the role that that the Dimension plays in the Data Structure Definition.
-\                         /conceptIdentity            An association to the metadata concept which defines the semantic of the Dimension.
-MeasureDimension          Inherits from               A statistical concept that identifies the component in the key structure that has an enumerated list of measures. This dimension has, as its representation the Concept Scheme that enumerates the measure concepts.
-                                                     
-                          Dimension                  
-TimeDimension             Inherits from               A metadata concept that identifies the component in the key structure that has the role of “time”.
-                                                     
-                          Dimension                  
-*DataAttribute*           Inherits from               A characteristic of an object or entity.
-                                                     
-                          Component                  
-                                                     
-                          Sub class                  
-                                                     
-                          | ReportingYear            
-                          | StartDay                 
-\                         /role                       Association to the Concept that specifies the role that that the Data Attribute plays in the Data Structure Definition.
-\                         usageStatus                 Defines the usage status which is constrained by the data type Usage Status.
-\                         +relatedTo                  Association to a Attribute Relationship.
-\                         /conceptIdentity            An association to the Concept which defines the semantic of the component.
-ReportingYearStartDay     Inherits from DataAttribute A specialised Data Attribute whose value is used in conjunction with the predefined reporting periods in the Time Dimension. If this is not present, then by default all reporting period values for the Time Dimension will be assumed to be based on a reporting year start day of January 1.
-*PrimaryMeasure*          Inherits from               The metadata concept that is the phenomenon to be measured in a data set. In a data set the instance of the measure is often called the observation.
-                                                     
-                          *Component*                
-\                         /conceptIdentity            An association to the Concept which carries the values of the measures.
-*AttributeRelationship*   Abstract Class              Specifies the type of artefact to which a Data Attribute can be attached in a Data Set.
-                                                     
-                          Sub classes                
-                                                     
-                          | NoSpecified              
-                          | Relationship             
-                                                     
-                          | PrimaryMeasure           
-                          | Relationship             
-                                                     
-                          GroupRelationship          
-                                                     
-                          | Dimension                
-                          | Relationship             
-*NoSpecifiedRelationship*                             The Data Attribute is not related to any specific construct.
-*PrimaryMeasure                                       The Data Attribute is related to the Primary Measure construct.
-Relationship*                                        
-*GroupRelationship*                                   The Data Attribute is related to a Group Dimension Descriptor construct.
-\                         +groupKey                   An association to the Group Dimension Descriptor
-*DimensionRelationship*                               The Data Attribute is related to a set of Dimensions.
-\                         +dimensions                 Association to the set of Dimensions to which the Data Attribute is related.
-\                         +groupKey                   Association to the Group Dimension Descriptor which specifies the set of Dimensions to which the Data Attribute is attached.
-========================= =========================== ===============================================================================================================================================================================================================================================================================================
+  * - Class
+    - Feature
+    - Description
+  * - StructureUsage
+    - 
+    - See “SDMX Base”.
+  * - DataflowDefinition
+    - Inherits from *StructureUsage*
+    - Abstract concept (i.e. the structure without any data) of a flow of data that providers will provide for different reference periods.
+  * - DataStructureDefinition
+    - 
+    - A collection of metadata concepts, their structure and usage when used to collect or disseminate data.
+  * - 
+    - /grouping
+    - An association to a set of metadata concepts that have an identified structural role in a Data Structure Definition.
+  * - GroupDimensionDescriptor
+    - Inherits from *ComponentList*
+    - A set metadata concepts that define a partial key derived from the Dimension Descriptor in a Data Structure Definition.
+  * -
+    - +constraint
+    - Identifies an Attachment Constraint that specifies the sub set of Dimension, Measure, or Attribute values to which an Attribute can be attached.
+  * -
+    - /components
+    - An association to the Dimension and Measure Dimension components that comprise the group.
+  * - DimensionDescriptor
+    - Inherits from *ComponentList*
+    - An ordered set of metadata concepts that, combined, classify a statistical series, and whose values, when combined (the key) in an instance such as a data set, uniquely identify a specific observation.
+  * - 
+    - /components
+    - An association to the Dimension, Measure Dimension, and Time Dimension comprising the Key Descriptor.
+  * - AttributeDescriptor
+    - Inherits from *ComponentList*
+    - A set metadata concepts that define the attributes of a Data Structure Definition.
+  * - 
+    - /components
+    - An association to a Data Attribute component.
+  * - MeasureDescriptor
+    - Inherits from *ComponentList*
+    - A metadata concept that defines the measure of a Data Structure Definition.
+  * - 
+    - /components
+    - 
+  * - Dimension
+    - Inherits from *Component*
+    - A metadata concept used (most probably together with other metadata concepts) to classify a statistical series, e.g. a statistical concept indicating a certain economic activity or a geographical reference area.
+  * - 
+    - /role
+    - Association to the Concept that specifies the role that that the Dimension plays in the Data Structure Definition. 
+  * - 
+    - /conceptIdentity
+    - An association to the metadata concept which defines the semantic of the Dimension.
+  * - MeasureDimension
+    - Inherits from *Dimension*
+    - A statistical concept that identifies the component in the key structure that has an enumerated list of measures. This dimension has, as its representation the Concept Scheme that enumerates the measure concepts.
+  * - TimeDimension
+    - Inherits from *Dimension*
+    - A metadata concept that identifies the component in the key structure that has the role of “time”.
+  * - DataAttribute
+    - Inherits from *Component*; Sub class *ReportingYear*, *StartDay*
+    - A characteristic of an object or entity.
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+  * - 
+    - 
+    - 
+
+**THIS IS AN ALTERNATE WAY OF CREATING TABLES THAT IS MORE CUMBERSONE
+BUT ALLOWS FOR MUCH MORE FLEXIBILITY SUCH AS MULTI-LINE AND LISTS
+ETC.**
+
+.. _table_demo2:
+.. table:: The general table 2
+  :align: center
+  :width: 100%
+  :widths: 20, 20, 60
+
+  +--------------------+------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+  |       Class        |     Feature                        |                                                              Description                                                              |
+  +====================+====================================+=======================================================================================================================================+
+  | StructureUsage     | Feature                            | See “SDMX Base”.                                                                                                                      |
+  +--------------------+------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+  | DataflowDefinition | Inherits from                      | Abstract concept (i.e. the structure without any data) of a flow of data that providers will provide for different reference periods. |
+  |                    |                                    |                                                                                                                                       |
+  |                    | StructureUsage                     |                                                                                                                                       |
+  +--------------------+------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 
 The explanation of the classes, attributes, and associations comprising
 the Representation is described in the section on the SDMX Base.
