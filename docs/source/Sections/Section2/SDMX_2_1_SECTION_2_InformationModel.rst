@@ -2785,7 +2785,7 @@ following way:
       HierarchicalCodelist where the HierarchicalCodelist uses code
       lists that are not used in the DataStructureDefinition
 
- Metadata Structure Definition and Metadata Set
+Metadata Structure Definition and Metadata Set
 ==============================================
 
 .. _context-5:
