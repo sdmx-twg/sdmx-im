@@ -151,8 +151,11 @@ s.writeIfChanged("_sidebar.rst.inc")
 * figure cleanup : 
   * removed title markup that was arount them
   * if simple, replace with `.. figure::` directive, caption & label
-  * 
-
+  * verification and correction of some tables using the [documentation](https://rest-sphinx-memo.readthedocs.io/en/latest/ReST.html#tables)
+  * created a `customStyles.css` file to extend a bit the content area and allow a wider column.
+  * added a `layout.html` template to include the custom styles
+  * added a `favicon.ico` to the root of the `docs` 
+  * converted one table to a `list-table` to show an easier way to write a table (with however a bit less flexibility) - cf. `SDMX_2_1_SECTION_2_InformationModel.rst:2358`
 
 
 ## Some replacements regex
@@ -166,3 +169,6 @@ The idea is to tweak automatically converted parts of the document.
   * `^={1,}$\n(\|.*\|)$\n^={1,}$\n(Figure .*)\n^={1,}$` to `$1 $2`
   * `(\|.*\|)$\n\n(Figure .*)`to `$1 $2`
 
+## some useful references
+* [Tables documentation](https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#tables)
+* 
