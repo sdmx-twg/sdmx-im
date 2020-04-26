@@ -366,7 +366,7 @@ statistical data meeting the definition above; several optimized formats
 are specified based on the specific requirements of each implementation,
 as described below in the SDMX-ML section.
 
-The formal objects in the information model are presented briefly below in :numref:`image0`,
+The formal objects in the information model are presented briefly below,
 but are also discussed in more detail elsewhere in this specification.
 
 .. _image0: 
