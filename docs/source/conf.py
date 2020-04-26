@@ -196,7 +196,7 @@ epub_exclude_files = ['search.html']
 #                     @see: https://docs.readthedocs.io/en/stable/guides/environment-variables.html
 if onRTD:
   print ('**Building done on readthedocs container... ')
-  plantuml = 'java -Djava.awt.headless=true -jar /usr/share/plantuml/plantuml.jar -v -config ../plantuml.conf'
+  plantuml = 'java -Djava.awt.headless=true -jar /usr/share/plantuml/plantuml.jar -v -config %s/plantuml.conf' % currentFolder
 else:
   print ('**Building done locally... ')
   plantuml = 'java -Djava.awt.headless=true -jar C:/Users/Leroy/Documents/dev/sdmx/plantuml.jar -config %s/plantuml.conf' % currentFolder
