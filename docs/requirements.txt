@@ -1,1 +1,1 @@
-sphinxcontrib-plantuml==0.18
+sphinxcontrib-plantuml==0.17.1
