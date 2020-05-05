@@ -17,7 +17,7 @@
 
 
 # SDMX Standard technical documentation
-## Choosen documentation system
+## Chosen documentation system
 It was decided that from SDMX 3.0, the TWG would rely on [Sphynx](http://sphinx-doc.org/) to generete and keep up to date the SDMX standard's documentation. 
 
 Each repository under `sdmx-twg` in GitHub that will participate in this documentation generation will follow the same rules and have a common sidebar generator script that should be kept in sync.
