@@ -171,4 +171,5 @@ The idea is to tweak automatically converted parts of the document.
 
 ## some useful references
 * [Tables documentation](https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#tables)
-* 
+* [RST tables with proper editor](https://dev.to/atorin/tables--restructuredtext-1m6n)
+* [RST cheatsheet](https://github.com/ralsina/rst-cheatsheet/blob/master/rst-cheatsheet.rst)
