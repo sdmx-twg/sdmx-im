@@ -1,5 +1,5 @@
 - [SDMX Standard technical documentation](#sdmx-standard-technical-documentation)
-  - [Choosen documentation system](#choosen-documentation-system)
+  - [Chosen documentation system](#chosen-documentation-system)
   - [Repository structure](#repository-structure)
   - [Hosting platform](#hosting-platform)
   - [Documentation source language](#documentation-source-language)
