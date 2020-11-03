@@ -1,3 +1,21 @@
+- [SDMX Standard technical documentation](#sdmx-standard-technical-documentation)
+  - [Choosen documentation system](#choosen-documentation-system)
+  - [Repository structure](#repository-structure)
+  - [Hosting platform](#hosting-platform)
+  - [Documentation source language](#documentation-source-language)
+- [Creation, adaptation & compilation process](#creation-adaptation--compilation-process)
+  - [Existing documents conversion](#existing-documents-conversion)
+  - [Converted files integration](#converted-files-integration)
+  - [Site generation (local)](#site-generation-local)
+  - [Site generation(online)](#site-generationonline)
+- [Particularities](#particularities)
+  - [Special files of the `docs` folder](#special-files-of-the-docs-folder)
+- [Other considerations/references](#other-considerationsreferences)
+  - [what was  done](#what-was-done)
+  - [Some replacements regex](#some-replacements-regex)
+  - [some useful references](#some-useful-references)
+
+
 # SDMX Standard technical documentation
 ## Choosen documentation system
 It was decided that from SDMX 3.0, the TWG would rely on [Sphynx](http://sphinx-doc.org/) to generete and keep up to date the SDMX standard's documentation. 
