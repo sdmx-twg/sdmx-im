@@ -32,10 +32,10 @@ Within that folder, the structure followed corresponds to the best practices of 
 ## Hosting platform
 There was a single user (and project: `sdmx`) registered with the site. In that project, multiple projects have been configured with links (watches) on the various branches of the corresponding repositories on Github.
 
-The generated documentation will then be hosted on readthedocs.org and linked toa subdomain of the sdmx web site: [docs.sdmx.org](http://docs.sdmx.org). 
+The generated documentation will then be hosted on readthedocs.org and linked to a subdomain of the sdmx web site: [docs.sdmx.org](http://docs.sdmx.org). 
 The DNS was modified to create a new **sub-domain** called `docs`. It has been configured to point to the [latest production release](http://readthedocs.org/project/sdmx/latest).
 
-The `sdmx`project linking to the `sdmx-im` acts as the glue between all the other repositories (e.g.: formats, rest, ...).
+The `sdmx` project linking to the `sdmx-im` acts as the glue between all the other repositories (e.g.: formats, rest, ...).
 
 
 ## Documentation source language
@@ -115,12 +115,12 @@ done
 
 
 ## Converted files integration
-Once the newly converted files (`.rst`) have been made available, they need ot be integrated in to the main documentation. This can be as simple as refering to them from an already integrated `rst` file. In our case, we simply copied them into the project, structured them in sub-folders and referenced them either in the TOC or in the `index.rst`file.
+Once the newly converted files (`.rst`) have been made available, they need to be integrated into the main documentation. This can be as simple as refering to them from an already integrated `rst` file. In our case, we simply copied them into the project, structured them in sub-folders and referenced them either in the TOC or in the `index.rst` file.
 
 
 ## Site generation (local)
 On windows, use `make.bat html` to generate the documentation in the sub-folder `build/html` \
-On linux, use `make html`  to generate the documentation in the sub-folder`build/html`\
+On linux, use `make html`  to generate the documentation in the sub-folder`build/html` \
 Open the `index.html` file found in the `build/html` folder.
 
 I currently use in git bash under windows: 
@@ -132,7 +132,7 @@ Please mind that the inter-links (between repositories) will not work in the loc
 
 
 ## Site generation(online)
-ONce the documentation has been written locally and verified, the code commited, it is usually pushed back to the origin repository (GitHub). Using Git, the documentation can be created and version controled locally. Once the documentation is deemed to have reached a correct level and is thus ready to be published, the repository can be pushed back to the online SDMX-TWG repositories. \
+Once the documentation has been written locally and verified, the code committed, it is usually pushed back to the origin repository (GitHub). Using Git, the documentation can be created and version controlled locally. Once the documentation is deemed to have reached a correct level and is thus ready to be published, the repository can be pushed back to the online SDMX-TWG repositories. \
 This action will actually trigger a documentation re-compilation on readthedocs.org because a project was configured there to watch for such changes in the repositories.
 
 
@@ -140,13 +140,13 @@ This action will actually trigger a documentation re-compilation on readthedocs.
 ## Special files of the `docs` folder
   * `Makefile` - Sphinx file to manage the documentation building system
   * `make.bat` - Sphinx file to manage the documentation building system
-  * `sidebarGenerator.py` -  Functions for managing and generating the TOC (this files needs to be **synced** accross repositories of the SDMX-TWG)
+  * `sidebarGenerator.py` -  Functions for managing and generating the TOC (this files needs to be **synced** across repositories of the SDMX-TWG)
   * `_sidebar.rst.inc` - generated file (from sidebarGenerator.py) - do not commit (part of the .gitignore file)
   * `plantuml.conf` - Common configuration for the PlantUML diagrams
   * `conf.py` - configuration of the Sphynx system & configuration of the TOC
   * `index.rst` - entry point of the documentation
 
-There are essentially two TOC item creation functions: `sdmxLocalToc(...)` and `sdmxPrjToc`. They are used to create either an internal or an extarnal (to the docuemntation of another repository in sdmx-twg) link.
+There are essentially two TOC item creation functions: `sdmxLocalToc(...)` and `sdmxPrjToc`. They are used to create either an internal or an external (to the documentation of another repository in sdmx-twg) link.
 
 Example:
 ```python
@@ -166,7 +166,7 @@ s.writeIfChanged("_sidebar.rst.inc")
 ## what was  done
 * conversion: doc &rarr; docx &rarr; rst
 * image path adjustment from `../xyz` &rarr; `/_static/xyz`
-* figure cleanup : 
+* figure cleanup: 
   * removed title markup that was arount them
   * if simple, replace with `.. figure::` directive, caption & label
   * verification and correction of some tables using the [documentation](https://rest-sphinx-memo.readthedocs.io/en/latest/ReST.html#tables)
