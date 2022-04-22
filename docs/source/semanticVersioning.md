@@ -115,23 +115,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 ## SDMX 3.0 Rest API queries for wildcarded artefact versions
 
-In order to resolve wildcarded dependencies, the SDMX 3.0 Rest API supports retrievals of wildcarded artefact versions.  
-
-1) Artefact queries for a specific version X.Y.Z or X.Y.Z-EXT MUST return the exact specified version. This type of queries MUST be used for resolving fixed version references.  
-        *Example*: Querying for 1.3.2 will return version 1.3.2. Querying for 1.3.2-draft will return version 1.3.2-draft.
-
-1) Artefact queries where MAJOR, MINOR or PATCH version parts are extended with “+” (X+.Y.Z, X.Y+.Z or X.Y.Z+) MUST return the latest available released version within the wildcard scope. Such wildcarded queries MUST NOT specify a specific pre-release version extension. This type of queries MUST be used for resolving wildcarded version references in released artefacts.  
-        *Example*: Querying for 1.3+.2 will return version 1.4.1 if that is the latest released version.
-
-1) Artefact queries where the version is extended using “\*” (X.Y.Z\*, X+.Y.Z\*, X.Y+.Z\* or X.Y.Z+\*) MUST return the latest available pre-released or released version within the wildcard scope. Such queries MUST NOT specify a specific pre-release version extension. This type of queries MUST be used for resolving wildcarded version references in pre-released artefacts.  
-        *Example*: Querying for 1.3.2\* will return version 1.3.2-draft.6 if that is the latest version of all pre-released or released versions within this wildcard scope. Querying for 1.3+.2\* will return version 1.5.0-draft if that is the latest version of all pre-released or released versions within this wildcard scope.
-
-1) Artefact queries where the lastest (or all) version parts in X.Y.Z are replaced by the “all” keyword MUST return all available pre-released or released versions within the wildcard scope. Such queries MUST NOT specify a specific pre-release version extension:  
-   - “all” means all versions  
-   - “X.all” means all versions >= “X.0.0” and < “X+1.0.0" (all backwards compatible versions >= “X.0.0")  
-   - “X.Y.all” means all versions >= “X.Y.0” and < “X.Y+1.0" (all forwards and backwards compatible versions >= “X.Y.0")  
-   
-[*Note*: “+” and "\*" are safe characters in HTTP queries.]
+In order to resolve wildcarded dependencies, the SDMX 3.0 Rest API supports retrievals of wildcarded artefact versions with a specific list of wildcard characters. For more information, consult the [SDMX Rest API specification](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/index.md). 
 
 ## Why Use SDMX 3.0 Semantic Versioning?
 
@@ -187,14 +171,5 @@ No, but use good judgement. A 255 character version string is probably overkill,
 No, “v1.2.3” is not a semantic version. The semantic version is “1.2.3”.
 
 **Is there a suggested regular expression (RegEx) to check an SDMX 3.0.0 Semantic Versioning string?**  
-There are two. One with named groups for those systems that support them (PCRE [Perl Compatible Regular Expressions, i.e. Perl, PHP and R], Python and Go).  
 
-Reduced version (without SemVer "build metadata") from: https://regex101.com/r/Ly7O1x/3/  
-
-`^(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)(?:-(?P<prerelease>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?$`  
-
-And one with numbered capture groups instead (so cg1 = major, cg2 = minor, cg3 = patch, cg4 = prerelease and cg5 = buildmetadata) that is compatible with ECMA Script (JavaScript), PCRE (Perl Compatible Regular Expressions, i.e. Perl, PHP and R), Python and Go.  
-
-Reduced version (without SemVer "build metadata") from: https://regex101.com/r/vkijKf/1/  
-
-`^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?$`
+Please check the SDMX-ML and SDMX-JSON schemas.
