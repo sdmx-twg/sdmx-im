@@ -155,6 +155,9 @@ It is your responsibility as a professional modeller to properly document the ar
 **What do I do if I accidentally release a backwards incompatible change as a minor version?**  
 As soon as you realise that you’ve broken the SDMX 3.0 Semantic Versioning specification, fix the problem and release a new minor version that corrects the problem and restores backwards compatibility. Even under this circumstance, it is unacceptable to modify versioned releases. If it’s appropriate, document the offending version and inform your users of the problem so that they are aware of the offending version.
 
+**What are the rules for deleting a version? Does it mean I can re-release the same version with different content?**
+SDMX Semantic Versioning doesn't and cannot control such things. SDMX Semantic Versioning is about a contract between producers and consumers to which both adhere. Producers can freely delete (e.g. old outdated, unused) artefacts and upload new artefacts with new versions. However, a producer who deletes a stable artefact and then uploads a changed artefact with the same stable version, breaks the contract. And the clients will be unhappy because their consuming systems might get broken!
+  
 **What should I do if I update my own dependencies without changing the public artefact?**  
 That would be considered compatible since it does not affect the public artefact. Artefacts that explicitly depend on the same dependencies as your artefact should have their own dependency specifications and the author will notice any conflicts. Determining whether the change is a patch level or minor level modification depends on whether you updated your dependencies in order to change a property or introduce new backwards compatible items. For the latter instance, one would obviously expect a minor level increment.
 
@@ -171,5 +174,4 @@ No, but use good judgement. A 255 character version string is probably overkill,
 No, “v1.2.3” is not a semantic version. The semantic version is “1.2.3”.
 
 **Is there a suggested regular expression (RegEx) to check an SDMX 3.0.0 Semantic Versioning string?**  
-
 Please check the SDMX-ML and SDMX-JSON schemas.
