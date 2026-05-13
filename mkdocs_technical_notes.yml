@@ -1,0 +1,17 @@
+site_name: technical_notes
+
+nav:
+- Purpose and Structure: technical_notes/0_Purpose_and_Structure.md
+- General Notes on This Document: technical_notes/1_General_Notes_on_This_Document.md
+- Guide for SDMX Format Standards: technical_notes/2_Guide_for_SDMX_Format_Standards.md
+- General Notes for Implementers: technical_notes/3_General_Notes_for_Implementers.md
+- Reference Metadata: technical_notes/4_Reference_Metadata.md
+- Codelist: technical_notes/5_Codelist.md
+- Geospatial Information Support: technical_notes/6_Geospatial_information_support.md
+- Maintenance Agencies and Metadata Providers: technical_notes/7_Maintenance_Agencies_and_Metadata_Providers.md
+- Concept Roles: technical_notes/8_Concept_Roles.md
+- Constraints: technical_notes/9_Constraints.md
+- Transforming Between Versions of SDMX: technical_notes/10_Transforming_between_versions_of_SDMX.md
+- Validation and Transformation Language: technical_notes/11_Validation_and_Transformation_Language__VTL_.md
+- Structure Mapping: technical_notes/12_Structure_Mapping.md
+- ANNEX Semantic Versioning: technical_notes/13_ANNEX_Semantic_Versioning.md
