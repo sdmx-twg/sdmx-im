@@ -1,2 +1,0 @@
-SDMX Information Model
-======================

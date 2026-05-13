@@ -1,0 +1,10 @@
+site_name: framework
+
+nav:
+- framework/0_framework-introduction.md
+- Change History: framework/1_framework-change-history.md
+- Processes and Business Scope: framework/2_framework-processes-and-business-scope.md
+- The SDMX Information Model: framework/3_framework-the-sdmx-information-model.md
+- The SDMX Transmission Formats: framework/4_framework-the-sdmx-transmission-formats.md
+- Dependencies on SDMX content-oriented guidelines: framework/5_framework-dependencies-on-sdmx-content-oriented-guidelines.md
+- Validation and Transformation Language: framework/6_framework-validation-and-transformation-language.md
