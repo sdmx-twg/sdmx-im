@@ -23,7 +23,7 @@ above, the classes in the grey shaded area are specific to a
 registry-based scenario where data sources (either physical data and
 metadata sets or databases and metadata repositories) are registered.
 More details on how these classes are used in a registry scenario can be
-found in the SDMX Registry Interface document. (Section [Registry Specification](../../registry_specification/registry_specification/1_Introduction.md)).
+found in the SDMX Registry Interface document. (Section [Registry Specification](../../registry_specification/1_Introduction.md)).
 
 A `ProvisionAgreement` / `MetadataProvisionAgreement` links the artefact
 that defines how data / metadata are structured and classified

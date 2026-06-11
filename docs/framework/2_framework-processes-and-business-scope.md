@@ -468,7 +468,7 @@ registry -- instead, it specifies the standard interfaces which may be
 supported by a registry. Thus, users may implement an SDMX-conformant
 registry in any fashion they choose, provided the interfaces are
 supported as specified in the
-[Registry Specification Section](../../registry_specification/registry_specification/1_Introduction.md).
+[Registry Specification Section](../../registry_specification/1_Introduction.md).
 These interfaces are expressed as XML documents, but also REST API
 request/response messages
 
