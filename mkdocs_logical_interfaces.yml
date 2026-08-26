@@ -1,0 +1,5 @@
+site_name: logical_interfaces
+
+nav:
+  - Identification of SDMX Objects: logical_interfaces/6_Identification_of_SDMX_Objects.md
+  - Implementation Notes: logical_interfaces/7_Implementation_Notes.md

@@ -1,0 +1,20 @@
+site_name: information_model
+
+nav:
+- information_model/0_Introduction.md
+- Change History: information_model/0_change_history.md
+- Actors and Use Cases: information_model/1_Actors_and_Use_Cases.md
+- SDMX Base Package: information_model/2_SDMX_Base_Package.md
+- Specific Item Schemes: information_model/3_Specific_Item_Schemes.md
+- Data Structure Definition and Dataset: information_model/4_Data_Structure_Definition_and_Dataset.md
+- Cube: information_model/5_Cube.md
+- Metadata Structure Definition and Metadata Set: information_model/6_Metadata_Structure_Definition_and_Metadata_Set.md
+- Hierarchy: information_model/7_Hierarchy.md
+- Structure Map: information_model/8_Structure_Map.md
+- RepresentationMap: information_model/9_RepresentationMap.md
+- ItemSchemeMap: information_model/10_ItemSchemeMap.md
+- Constraints: information_model/11_Constraints.md
+- Data Provisioning: information_model/12_Data_Provisioning.md
+- Process: information_model/13_Process.md
+- Validation and Transformation Language: information_model/14_Validation_and_Transformation_Language.md
+- Appendix 1 A Short Guide to UML in the SDMX Information Model: information_model/15_Appendix_1:_A_Short_Guide_to_UML_in_the_SDMX_Information_Model.md
