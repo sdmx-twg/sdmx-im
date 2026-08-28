@@ -17,6 +17,7 @@ used.
 ### Class Diagram
 
 ![](media/image72.png)
+![](media/sdmx_process-process_inheritance.svg)
 /// figure-caption | 46
 Inheritance and Relationship class diagram of Process and
 Transitions

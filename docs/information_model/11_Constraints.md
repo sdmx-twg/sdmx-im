@@ -28,6 +28,7 @@ These specifications are called `Constraint` in this model.
 ### Class Diagram of Constrainable Artefacts - Inheritance
 
 ![](media/image67.png)
+![](media/sdmx_registry-constrainable_inheritance.svg)
 /// figure-caption | 41
 Inheritance class diagram of constrainable and provisioning
 artefacts
@@ -67,6 +68,7 @@ applicable only to the DSDs / MSDs which contain the Components being restricted
 ### Relationship Class Diagram – high level view
 
 ![](media/image68.png)
+![](media/sdmx_registry-constraint_relationship_high_level.svg)
 ///  figure-caption
 Relationship class diagram showing constraint metadata
 ///
@@ -115,6 +117,7 @@ the DSD that it is attached to.
 ### Relationship Class Diagram – Detail
 
 ![](media/image69.png){ width="550" }
+![](media/sdmx_registry-constraint_relationship.svg){ width="550" }
 ///  figure-caption
 Constraints – Key Set, Cube Region and Metadata Target Region
 ///

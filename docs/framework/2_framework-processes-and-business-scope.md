@@ -193,7 +193,7 @@ The formal objects in the information model are presented schematically
 in Figure 1, and are discussed in more detail elsewhere in this
 document.
 
-![](./media/image2.png){ height="850" }
+![](./media/sdmx_framework.svg){ height="850" }
 /// figure-caption
 High Level Schematic of Major Artefacts in the SDMX 3.0
 Information Model

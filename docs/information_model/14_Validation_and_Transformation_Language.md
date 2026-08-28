@@ -46,6 +46,7 @@ often referenced below.
 ### Class Diagram
 
 ![](media/image73.png)
+![](media/sdmx_transformation-transformation-inheritance.svg)
 /// figure-caption | 47
 Class inheritance diagram in the Transformations and
 Expressions Package
@@ -63,8 +64,9 @@ These schemes inherit from the `ItemScheme` and therefore have the
 following attributes:
 
 - `id`
-- `uri`
+- `agencyID`
 - `urn`
+- `+link`
 - `version`
 - `validFrom`
 - `validTo`
@@ -80,8 +82,8 @@ associations of `Item` which itself inherits from `NameableArtefact`. They
 have the following attributes:
 
 - `id`
-- `uri`
 - `urn`
+- `+link`
 
 The multi-lingual name and description are provided by the relationship
 to `InternationalString` from `NameableArtefact`.
@@ -91,6 +93,7 @@ to `InternationalString` from `NameableArtefact`.
 ### Class Diagram
 
 ![](media/image74.png)
+![](media/sdmx_transformation-transformation-relationship.svg)
 /// figure-caption
 Relationship diagram in the Transformations and Expressions
 Package

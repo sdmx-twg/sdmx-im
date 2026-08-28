@@ -80,7 +80,7 @@ The purpose of this revision is threefold:
 
 1. The following attributes are added to Maintainable:
     1. `isExternalReference`
-    2. structure URL
+    2. `structureURL`
     3. `serviceURL`
 2. Added Nameable Artefact and moved the Name and Description
     associations from Identifiable Artefact to Nameable Artefact. This
@@ -90,7 +90,7 @@ The purpose of this revision is threefold:
     of Maintainable Artefact – this means that only Maintainable objects
     can be versioned, and objects contained in a maintainable object
     cannot be independently versioned.
-4. Renamed `MaintenanceAgency` to Agency 0 this is its name in the schema
+4. Renamed `MaintenanceAgency` to `Agency`. This is its name in the schema
     and the URN.
 5. Removed abstract class Association as a subclass of Item (as these
     association types are not maintained in Item Schemes). Specific
@@ -418,3 +418,11 @@ Changed Maintainable Artefacts
     - Attachment: removed data source attachments
 - Data Structure new property: Evolving Structure
 - Dataflow new property: Dimension Constraint 
+
+## Version 3.2 - release December 2026
+
+- Annotation's `url`(s) are replaced by `+links`, which aligns with the HATEOS principles. This was already available in SDMX-JSON.
+- IdentifiableArtefact's property `uri` is replaced by `+links`, which aligns with the HATEOS principles. This was already available in SDMX-JSON and partially in SDMX-XML.
+- VersionableArtefact properties `validFrom` and `validTo` only apply to artefacts that are not semantically versioned.
+- A `Codelist`, may extend other `Codelist`s *only* of the same `Codelist` type. However, extending is not supported for `GeoGridCodelist`s. Unique URN classes are introduced for each Codelist type.
+- Added `validFrom` and `validTo` properties to `Code`s

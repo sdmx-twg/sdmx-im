@@ -39,6 +39,7 @@ The principal features of the `Hierarchy` are:
 ### Class Diagram
 
 ![](media/image61.png)
+![](media/sdmx_codelist-hierarchy_inheritance.svg)
 /// figure-caption | 35
 Inheritance class diagram for the `Hierarchy`
 ///
@@ -68,6 +69,7 @@ shown in the relationship section below.
 ### Class Diagram
 
 ![](media/image62.png)
+![](media/sdmx_codelist-hierarchy_relationship.svg)
 /// figure-caption
 Relationship class diagram of the `Hierarchy`
 ///
@@ -129,8 +131,8 @@ Dimension in the context of a Dataflow.
 |  | `+child` | Association to a child `Level` of `Level`. |
 | `CodingFormat` |  | Specifies format information for the codes at this level in the hierarchy such as whether the codes at the level are alphabetic, numeric or alphanumeric and the code length. |
 | `HierarchicalCode` |  | A hierarchic structure of code references. |
-|  | `validFrom` | Date from which the construct is valid. |
-|  | `validTo` | Date from which the construct is superseded. |
+|  | `validFrom` | An `ObservationalTimePeriod`. Date-time (start of the given time period) from which the construct is valid. |
+|  | `validTo` | An `ObservationalTimePeriod`. Date-time (end of the given time period) from which the construct ceases to be valid. |
 |  | `+code` | Association to the `Code` that is used at the specific point in the hierarchy. |
 |  | `+child` | Association to a child `Code` in the hierarchy. |
 |  | `+level` | Association to a `Level` where levels have been defined for the `Hierarchy`. |

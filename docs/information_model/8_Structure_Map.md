@@ -24,6 +24,7 @@ that uses it.
 ### Class Diagram – Relationship
 
 ![](media/image63.png)
+![](media/sdmx_mapping-structure_map.svg)
 /// figure-caption | 37
 Relationship Class diagram of the Structure Map
 ///
@@ -67,6 +68,7 @@ by multiple `ComponentMap`s.
 ### Class Diagram – Epoch Mapping and Date Pattern Mapping
 
 ![](media/image64.png)
+![](media/sdmx_mapping-date_map.svg)
 /// figure-caption
 Relationship Class diagram of the `EpochMap` and `DatePatternMap`
 ///

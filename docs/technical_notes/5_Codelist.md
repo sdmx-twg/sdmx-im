@@ -5,11 +5,12 @@ properties, inheritance and extension. Moreover, hierarchies (used to
 build complex hierarchies of one or more Codelists) are now linked to
 other Artefacts in order to facilitate the formers' usage in
 dissemination or other scenarios. For all geospatial related features,
-as well as the new Geographical Codelist, please refer to section 7.
+as well as the new Geographical Codelist, please refer to [section "Geospatial information support"](6_Geospatial_information_support.md).
 
 ## Codelist extension and discriminated unions
 
-A `Codelist` can extend one or more Codelists. `Codelist` extensions are
+A `Codelist`, except `GeoGridCodelist`s, can extend one or more Codelists 
+of the same `Codelist` type. `Codelist` extensions are
 defined as a list of references to parent Codelists. The order of the
 references is important when it comes to conflict resolution on Code
 Ids. When two Codelists have the same Code Id, the `Codelist` referenced

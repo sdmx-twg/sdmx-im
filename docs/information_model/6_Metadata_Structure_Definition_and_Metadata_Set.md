@@ -58,6 +58,7 @@ notation used to depict this).
 ### Class Diagram - Inheritance
 
 ![](media/image58.png)
+![](media/sdmx_metadatastructure-metadatastructure_inheritance.svg)
 /// figure-caption | 32
 Inheritance class diagram of the Metadata Structure
 Definition
@@ -103,6 +104,7 @@ target objects are contained in `Metadataflow` and
 ### Class Diagram – Relationship
 
 ![](media/image59.png)
+![](media/sdmx_metadatastructure-metadatastructure_relationship.svg)
 /// figure-caption
 Relationship class diagram of the Metadata Structure
 Definition
@@ -192,6 +194,7 @@ to be used for specifying the proper targets for reference metadata.
 ### Class Diagram
 
 ![](media/image60.png)
+![](media/sdmx_metadataset_relationship.svg)
 /// figure-caption
 Relationship Class Diagram of the Metadata Set
 ///
