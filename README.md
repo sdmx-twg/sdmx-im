@@ -22,8 +22,13 @@ site.
 
 ## Version Branches
 
-Each release of this component is maintained on a dedicated branch following the
-pattern `X.Y.x` (e.g., `3.1.x`). The branch tracked by the
+Each minor release of this component is maintained on a dedicated documentation
+branch following the naming convention `docs_vMAJOR.MINOR` (e.g., `docs_v3.2`).
+These branches exist solely to support the documentation website and are not
+used for regular development. They preserve an old minor documentation version
+and accept only small MkDocs, formatting, and equivalent presentation
+corrections; changes to the specification continue through the normal
+development and release process. The branch tracked by the
 [`sdmx-docs`](https://github.com/sdmx-twg/sdmx-docs) parent repository is
 declared in `.gitmodules` at the root of that repo. Switching the tracked branch
 in the parent repository is how a new version of this component is published on
