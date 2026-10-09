@@ -441,13 +441,12 @@ Changed Maintainable Artefacts
         through their URN or an abbreviation of their URN are deprecated:
         the SDMX artefacts are referenced through the aliases of the VTL
         mappings
-    - deprecated: `VtlDataflowMapping`, `VtlConceptMapping` (although its
-        removal was recorded in version 3.0, it was still part of the
-        model and of the transmission formats), the attributes
-        `dataflowAlias`, `codelistAlias` and `conceptAlias`, the mapping
-        methods (`toVtlMappingMethod`, `fromVtlMappingMethod`) and the
-        subspace and superspace classes (`ToVtlSubspace`,
-        `ToVtlSpaceKey`, `FromVtlSuperspace`, `FromVtlSpaceKey`)
+    - deprecated: `VtlDataflowMapping`, `VtlConceptMapping`, the
+        attributes `dataflowAlias`, `codelistAlias` and `conceptAlias`,
+        the mapping methods (`toVtlMappingMethod`,
+        `fromVtlMappingMethod`) and the subspace and superspace classes
+        (`ToVtlSubspace`, `ToVtlSpaceKey`, `FromVtlSuperspace`,
+        `FromVtlSpaceKey`)
 - Transformation Scheme, Ruleset Scheme, User Defined Operator Scheme –
     `vtlVersion` mandatory; the associations of the Transformation Scheme
     to the Name Personalisation Scheme and to the Custom Type Scheme are
@@ -462,3 +461,7 @@ Deprecated Maintainable Artefacts
     types apply, unless overridden by the representation defined in the
     Data Structure Definition; explicit conversions use the VTL `cast`
     operator
+
+The conversion of the existing VTL definitions based on the deprecated
+constructs is described in the Section
+[“Conversion of definitions based on deprecated constructs” in the SDMX Technical Notes](../../technical_notes/technical_notes/11_Validation_and_Transformation_Language__VTL_.md#conversion-of-definitions-based-on-deprecated-constructs).

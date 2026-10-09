@@ -57,7 +57,7 @@ The following sections are obsolete:
     artefacts. For 3.2, the interconnection between VTL and SDMX has been
     simplified, deprecating the constructs no longer needed, and the
     retrieval of the input data of VTL programs can be specified. Section 2
-    (Information Model) sets out details of the 'Validation and
-    Transformation Language' package for defining and managing VTL
-    programs and Section 6 (Technical Notes) provides detailed guidance
+    (Information Model) sets out details of the 'Transformations and
+    Expressions' package for defining and managing VTL programs and
+    Section 6 (Technical Notes) provides detailed guidance
     on implementing and using VTL with SDMX.

@@ -362,7 +362,8 @@ located in the Registry.
 
 The table below lists all of the packages in the SDMX-IM together with
 the concrete classes that are in these packages and whose objects have a
-URN.
+URN. The classes marked as “(deprecated)” have been deprecated in SDMX
+3.2.
 
 | Package | URN class name (model class name where this is different) |
 | :--- | :--- |
