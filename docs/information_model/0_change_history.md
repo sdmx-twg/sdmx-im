@@ -432,15 +432,14 @@ Changed Maintainable Artefacts
 - VTL Mapping Scheme – simplified and aligned with the SDMX 3 model:
     - all the VTL mappings have the VTL alias (`vtlAlias`) and the URN
         of the mapped SDMX artefact (`sdmxUrn`)
-    - the `VtlDatasetMapping` has the mandatory `isInput` attribute; the
-        Basic mapping is the only mapping method
+    - the `VtlDatasetMapping` has the mandatory `isInput` attribute
+    - the Basic mapping is the only mapping method
     - an input `VtlDatasetMapping` can contain a VTL data extraction
         (`QueryExtraction` or `UrlExtraction`, with `QueryParameter`s),
         which specifies how the data of the VTL Data Set are retrieved
     - the references to SDMX artefacts written in the VTL statements
-        through their URN or an abbreviation of their URN are deprecated:
-        the SDMX artefacts are referenced through the aliases of the VTL
-        mappings
+        through their URN or an abbreviation of their URN are deprecated
+        in favour of the aliases of the VTL mappings
     - deprecated: `VtlDataflowMapping`, `VtlConceptMapping`, the
         attributes `dataflowAlias`, `codelistAlias` and `conceptAlias`,
         the mapping methods (`toVtlMappingMethod`,
@@ -448,9 +447,9 @@ Changed Maintainable Artefacts
         (`ToVtlSubspace`, `ToVtlSpaceKey`, `FromVtlSuperspace`,
         `FromVtlSpaceKey`)
 - Transformation Scheme, Ruleset Scheme, User Defined Operator Scheme –
-    `vtlVersion` mandatory; the associations of the Transformation Scheme
-    to the Name Personalisation Scheme and to the Custom Type Scheme are
-    deprecated
+    `vtlVersion` mandatory
+- Transformation Scheme – associations to the Name Personalisation
+    Scheme and to the Custom Type Scheme deprecated
 
 Deprecated Maintainable Artefacts
 

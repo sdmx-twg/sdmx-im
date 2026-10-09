@@ -27,18 +27,18 @@ April and July 2018 (see the SDMX website).
 The implementation of the VTL 2.0 in SDMX started in late 2018 and was
 published as an incremental revision to the SDMX 2.1 standards in July
 2020. It allows users to write VTL 2.0 programs for validating and
-transforming SDMX data, to store these programs in a SDMX metadata
+transforming SDMX data, to store these programs in an SDMX metadata
 registry and to exchange them through SDMX messages, also together the
 definition of the data structures of the involved data.
 
 In version 3.2, the interconnection between VTL and SDMX was simplified
-and aligned with the SDMX 3 information model: VTL data sets can be
+and aligned with the SDMX 3 information model. VTL data sets can be
 mapped to data structure definitions, dataflows and provision
-agreements, the basic mapping is the only method for converting the data
-structures between SDMX and VTL, and the constructs made redundant by
-these changes have been deprecated. Moreover, the retrieval of the data
-of the input data sets can be specified, so that VTL programs can be
-executed on the basis of their definitions in SDMX.
+agreements, and the basic mapping is the only method for converting the
+data structures between SDMX and VTL. The constructs made redundant by
+these changes were deprecated. The retrieval of the data of the input
+data sets can also be specified, so that VTL programs can be executed on
+the basis of their definitions in SDMX.
 
 The Transformations and Expressions package for modelling VTL programs
 in the SDMX information model is explained in
