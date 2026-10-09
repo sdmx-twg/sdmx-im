@@ -16,8 +16,8 @@ inherit from `ItemScheme`. These concrete classes are:
 - `TransformationScheme`
 - `RulesetScheme`
 - `UserDefinedOperatorScheme`
-- `NamePersonalisationScheme`
-- `CustomTypeScheme`
+- `NamePersonalisationScheme` (deprecated)
+- `CustomTypeScheme` (deprecated)
 - `VtlMappingScheme`
 
 Note that the VTL related schemes (the last 6 of the above list) are

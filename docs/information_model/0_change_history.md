@@ -418,3 +418,47 @@ Changed Maintainable Artefacts
     - Attachment: removed data source attachments
 - Data Structure new property: Evolving Structure
 - Dataflow new property: Dimension Constraint 
+
+## Version 3.2 - release December 2026
+
+New Identifiable Artefacts
+
+- `VtlDatasetMapping` – maps a VTL Data Set to a Data Structure
+    Definition, Dataflow or Provision Agreement; it replaces the
+    `VtlDataflowMapping`
+
+Changed Maintainable Artefacts
+
+- VTL Mapping Scheme – simplified and aligned with the SDMX 3 model:
+    - all the VTL mappings have the VTL alias (`vtlAlias`) and the URN
+        of the mapped SDMX artefact (`sdmxUrn`)
+    - the `VtlDatasetMapping` has the mandatory `isInput` attribute; the
+        Basic mapping is the only mapping method
+    - an input `VtlDatasetMapping` can contain a VTL data extraction
+        (`QueryExtraction` or `UrlExtraction`, with `QueryParameter`s),
+        which specifies how the data of the VTL Data Set are retrieved
+    - the references to SDMX artefacts written in the VTL statements
+        through their URN or an abbreviation of their URN are deprecated:
+        the SDMX artefacts are referenced through the aliases of the VTL
+        mappings
+    - deprecated: `VtlDataflowMapping`, `VtlConceptMapping` (although its
+        removal was recorded in version 3.0, it was still part of the
+        model and of the transmission formats), the attributes
+        `dataflowAlias`, `codelistAlias` and `conceptAlias`, the mapping
+        methods (`toVtlMappingMethod`, `fromVtlMappingMethod`) and the
+        subspace and superspace classes (`ToVtlSubspace`,
+        `ToVtlSpaceKey`, `FromVtlSuperspace`, `FromVtlSpaceKey`)
+- Transformation Scheme, Ruleset Scheme, User Defined Operator Scheme –
+    `vtlVersion` mandatory; the associations of the Transformation Scheme
+    to the Name Personalisation Scheme and to the Custom Type Scheme are
+    deprecated
+
+Deprecated Maintainable Artefacts
+
+- Name Personalisation Scheme – the names assigned by default by the VTL
+    operators can be changed in the VTL program (e.g. with the `rename`
+    clause)
+- Custom Type Scheme – the default conversions between VTL and SDMX data
+    types apply, unless overridden by the representation defined in the
+    Data Structure Definition; explicit conversions use the VTL `cast`
+    operator
