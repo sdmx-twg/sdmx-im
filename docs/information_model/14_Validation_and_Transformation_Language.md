@@ -509,7 +509,8 @@ The `VtlDataExtraction` and the `QueryParameter` are not identifiable:
 they are part of the `VtlDatasetMapping` to which they belong.[^16]
 
 [^16]: For guidance on the use of the VTL data extraction and for some
-    examples, see the [SDMX Technical Notes](../../technical_notes/technical_notes/11_Validation_and_Transformation_Language__VTL_.md).
+    examples, see the Section
+    [“Retrieving the data of the input VTL Data Sets” in the SDMX Technical Notes](../../technical_notes/technical_notes/11_Validation_and_Transformation_Language__VTL_.md#retrieving-the-data-of-the-input-vtl-data-sets).
 
 ##### `ToVtlSubspace`, `ToVtlSpaceKey`, `FromVtlSuperspace`, `FromVtlSpaceKey`
 
