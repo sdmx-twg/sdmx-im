@@ -435,6 +435,9 @@ includes:
     meant to be executed together (in the same run) and may contain any
     number of transformations in order to produce any number of results.
     Thus, a transformation scheme can be considered as a VTL 'program'.
+    The data sets and value domains used by the transformations are
+    mapped to SDMX artefacts (data structure definitions, dataflows,
+    provision agreements and codelists) through a VTL mapping scheme.
 
 ## SDMX Registry Services
 

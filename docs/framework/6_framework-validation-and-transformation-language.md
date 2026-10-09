@@ -31,7 +31,17 @@ transforming SDMX data, to store these programs in a SDMX metadata
 registry and to exchange them through SDMX messages, also together the
 definition of the data structures of the involved data.
 
-The Transformations and Expressions package for modelling VTL programs
-in the SDMX information model is explained in Section 2 of the Technical
-Specifications with further detailed usage and implementation guidance
-given in Section 6.
+In version 3.2, the interconnection between VTL and SDMX was simplified
+and aligned with the SDMX 3 information model: VTL data sets can be
+mapped to data structure definitions, dataflows and provision
+agreements, the basic mapping is the only method for converting the data
+structures between SDMX and VTL, and the constructs made redundant by
+these changes have been deprecated. Moreover, the retrieval of the data
+of the input data sets can be specified, so that VTL programs can be
+executed on the basis of their definitions in SDMX.
+
+The Validation and Transformation Language package for modelling VTL
+programs in the SDMX information model is explained in
+[Section 2 of the Technical Specifications](../../information_model/information_model/14_Validation_and_Transformation_Language.md)
+with further detailed usage and implementation guidance given in
+[Section 6](../../technical_notes/technical_notes/11_Validation_and_Transformation_Language__VTL_.md).
