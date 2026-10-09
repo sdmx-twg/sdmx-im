@@ -626,7 +626,7 @@ The following rules apply to the `VtlDatasetMapping`:
     below).
 
 For example, the `TransformationScheme` `OECD:TS_DIFF(1.0)`, whose
-`vtlVersion` is “2.1”, calculates the difference between two VTL Data
+`vtlVersion` is “2.2”, calculates the difference between two VTL Data
 Sets and stores the result persistently:
 
 ```text
@@ -651,7 +651,7 @@ engine (assuming that `DF_A` and `DF_B` have the same `Dimensions` and
 of the result.
 
 As a second example, the `TransformationScheme` `ESTAT:TS_AREACHK(1.0)`,
-whose `vtlVersion` is “2.1”, selects the data points of a VTL Data Set
+whose `vtlVersion` is “2.2”, selects the data points of a VTL Data Set
 whose reference area is not a valid code of a SDMX `Codelist`:
 
 ```text
@@ -2160,7 +2160,7 @@ stores the result as data of the `Dataflow` `OECD.SDD.NAD:DF_DIFF(1.0)`.
 #### Example 2: two VTL Data Sets mapped to the same Data Structure Definition
 
 The following `TransformationScheme` `ESTAT:TS_POPRATIO(1.0)`, whose
-`vtlVersion` is “2.1”, calculates the ratio between the male and the
+`vtlVersion` is “2.2”, calculates the ratio between the male and the
 female population:
 
 ```text

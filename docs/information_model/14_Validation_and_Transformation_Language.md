@@ -36,7 +36,7 @@ the SDMX classes and attributes that allow defining VTL transformations
 applied to SDMX artefacts.
 
 The SDMX model represented below is consistent with the VTL 2.0
-specification and its subsequent revisions (e.g. VTL 2.1). However, the
+specification and its subsequent revisions (e.g. VTL 2.1 and 2.2). However, the
 former uses the SDMX terminology and is a
 model at technical level (from which the SDMX implementation artefacts
 for defining VTL transformations are built), whereas the latter uses the
@@ -141,7 +141,7 @@ to produce any number of results. Therefore, a `TransformationScheme` can
 be considered as a VTL program.
 
 The `TransformationScheme` must include the attribute `vtlVersion` expressed
-as a string (e.g. “2.1”), as the version of the VTL determines which
+as a string (e.g. “2.2”), as the version of the VTL determines which
 syntax is used in defining the transformations of the scheme.
 
 A `Transformation` consists of a statement which assigns the outcome of
