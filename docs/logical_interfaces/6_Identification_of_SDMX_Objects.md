@@ -428,10 +428,10 @@ URN.
 | `conceptscheme` | `Concept` |
 |  | `ConceptScheme` |
 |  |  |
-| `transformation` | `CustomType` |
-|  | `CustomTypeScheme` |
-|  | `NamePersonalisation` |
-|  | `NamePersonalisationScheme` |
+| `transformation` | `CustomType` (deprecated) |
+|  | `CustomTypeScheme` (deprecated) |
+|  | `NamePersonalisation` (deprecated) |
+|  | `NamePersonalisationScheme` (deprecated) |
 |  | `Ruleset` |
 |  | `RulesetScheme` |
 |  | `Transformation` |
@@ -439,8 +439,9 @@ URN.
 |  | `UserDefinedOperator` |
 |  | `UserDefinedOperatorScheme` |
 |  | `VtlCodelistMapping` |
-|  | `VtlConceptMapping` |
-|  | `VtlDataflowMapping` |
+|  | `VtlConceptMapping` (deprecated) |
+|  | `VtlDataflowMapping` (deprecated) |
+|  | `VtlDatasetMapping` |
 |  | `VtlMappingScheme` |
 |  |  |
 
@@ -477,8 +478,8 @@ urn:sdmx.org.sdmx.infomodel.{package}.{classname}=
 | `Concept` | `conceptSchemeAgencyId:conceptSchemeId(version).conceptId` | `SDMX:CROSS_DOMAIN_CONCEPTS(1.0.0).FREQ` |
 | `ConceptScheme` | `conceptSchemeAgencyId:conceptSchemeId(version)` | `SDMX:CROSS_DOMAIN_CONCEPTS(1.0.0)` |
 | `ConceptSchemeMap` | `conceptSchemeMapAgencyId:conceptSchemeMapId(version)` | `SDMX:CONCEPT_MAP(1.0.0)` |
-| `CustomType` | `customTypeSchemeAgencyId:customTypeSchemeId(version).customTypeId` | `ECB:CUSTOM_TYPE_SCHEME(1.0.0).CUSTOM_TYPE_1` |
-| `CustomTypeScheme` | `customTypeSchemeAgencyId:customTypeSchemeId(version)` | `ECB:CUSTOM_TYPE_SCHEME(1.0.0)` |
+| `CustomType` (deprecated) | `customTypeSchemeAgencyId:customTypeSchemeId(version).customTypeId` | `ECB:CUSTOM_TYPE_SCHEME(1.0.0).CUSTOM_TYPE_1` |
+| `CustomTypeScheme` (deprecated) | `customTypeSchemeAgencyId:customTypeSchemeId(version)` | `ECB:CUSTOM_TYPE_SCHEME(1.0.0)` |
 | `DataAttribute` | `dataStructureDefinitionAgencyId:dataStructureDefinitionId(version).dataAttributeId` | `TFFS:EXT_DEBT(1.0.0).OBS_STATUS` |
 | `DataConstraint` | `dataConstraintAgencyId:dataConstraintId(version)` | `TFFS:CREDITOR_DATA_CONTENT(1.0.0)` |
 | `DataConsumer` | `dataConsumerSchemeAgencyId:DATA_CONSUMERS(1.0).dataConsumerId` | `SDMX:DATA_CONSUMERS(1.0).CONSUMER_1` |
@@ -504,8 +505,8 @@ urn:sdmx.org.sdmx.infomodel.{package}.{classname}=
 | `MetadataProvisionAgreement` | `metadataProvisionAgreementAgencyId:metadataProvisionAgreementId(version)` | `IMF:SDDS_MDF_AB(1.0.0)` |
 | `MetadataSet` | `metadataProviderId:metadataSetId(version)` | `MD_PROVIDER:METADATASET(1.0.0)` |
 | `MetadataStructure` | `msdAgencyId:msdId(version)` | `IMF:SDDS_MSD(1.0.0)` |
-| `NamePersonalisation` | `namePersonalisationSchemeAgencyId:namePersonalisationSchemeId(version).namePersonalisationId` | `ECB:PSN_SCHEME(1.0.0).PSN1234` |
-| `NamePersonalisationScheme` | `namePersonalisationSchemeAgencyId:namePersonalisationSchemeId(version)` | `ECB:PSN_SCHEME(1.0.0)` |
+| `NamePersonalisation` (deprecated) | `namePersonalisationSchemeAgencyId:namePersonalisationSchemeId(version).namePersonalisationId` | `ECB:PSN_SCHEME(1.0.0).PSN1234` |
+| `NamePersonalisationScheme` (deprecated) | `namePersonalisationSchemeAgencyId:namePersonalisationSchemeId(version)` | `ECB:PSN_SCHEME(1.0.0)` |
 | `OrganisationSchemeMap` | `orgSchemeMapAgencyId:orgSchemeMapId(version)` | `SDMX:AGENCIES_PROVIDERS(1.0.0)` |
 | `OrganisationUnit` | `organisationUnitSchemeAgencyId:organisationUnitSchemeId(version).organisationUnitId` | `ECB:ORGANISATIONS(1.0.0).1F` |
 | `OrganisationUnitScheme` | `organisationUnitSchemeAgencyId:organisationUnitSchemeId(version)` | `ECB:ORGANISATIONS(1.0.0)` |
@@ -528,8 +529,9 @@ urn:sdmx.org.sdmx.infomodel.{package}.{classname}=
 | `UserDefinedOperatorScheme` | `userDefinedOperatorSchemeAgencyId:userDefinedOperatorSchemeId(version)` | `ECB:OS_CALC(1.2.0)` |
 | `ValueList` | `valuelistAgencyId:valuelistId(version)` | `SDMX:VLIST(1.0.0)` |
 | `VtlCodelistMapping` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlCodelistMappingId` | `ECB:CLIST_MP(2.0.0).ABZ` |
-| `VtlConceptMapping` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlConceptMappingId` | `ECB:CLIST_MP(1.0.0).XYA` |
-| `VtlDataflowMapping` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlDataflowMappingId` | `ECB:CLIST_MP(1.0.0).MOQ` |
+| `VtlConceptMapping` (deprecated) | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlConceptMappingId` | `ECB:CLIST_MP(1.0.0).XYA` |
+| `VtlDataflowMapping` (deprecated) | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlDataflowMappingId` | `ECB:CLIST_MP(1.0.0).MOQ` |
+| `VtlDatasetMapping` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlDatasetMappingId` | `ECB:CLIST_MP(2.0.0).DS1` |
 | `VtlMappingScheme` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version)` | `ECB:CLIST_MP(2.0.0)` |
 ///table-caption
 Table of identification components for SDMX Identifiable
