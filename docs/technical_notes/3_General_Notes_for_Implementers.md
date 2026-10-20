@@ -764,15 +764,6 @@ whereby an artefact may reference:
 - the **latest available** version of another artefact
 - the **latest backward compatible** version of another artefact, or the **latest backward and forward** **compatible** version of another artefact.
 
-References not representing a strict artefact dependency, such as the
-target artefacts defined in a `MetadataProvisionAgreement` allow for
-linking to **all currently available** versions of another artefact.
-Another illustrative case for such loose referencing is that of
-Constraints and flows. A Constraint may reference many Dataflows or
-Metadataflows, the addition of more references to flow objects does not
-version the Constraint. This is because the Constraints are not
-properties of the flows – they merely make references to them.
-
 Semantically versioned artefacts must only reference other semantically
 versioned artefacts, which may include extended versions. Non-versioned
 and legacy-versioned artefacts can reference any other non-versioned or
