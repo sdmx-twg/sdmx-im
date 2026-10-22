@@ -423,6 +423,6 @@ Changed Maintainable Artefacts
 
 - Annotation's `url`(s) are replaced by `+links`, which aligns with the HATEOS principles. This was already available in SDMX-JSON.
 - IdentifiableArtefact's property `uri` is replaced by `+links`, which aligns with the HATEOS principles. This was already available in SDMX-JSON and partially in SDMX-XML.
-- VersionableArtefact properties `validFrom` and `validTo` only apply to artefacts that are not semantically versioned.
+- VersionableArtefact properties `validFrom` and `validTo` only apply to artefacts that are non-semantically versioned artefacts unless `validFrom` is used to indicate the publication date-time.
 - A `Codelist`, may extend other `Codelist`s *only* of the same `Codelist` type. However, extending is not supported for `GeoGridCodelist`s. Unique URN classes are introduced for each Codelist type.
 - Added `validFrom` and `validTo` properties to `Code`s
