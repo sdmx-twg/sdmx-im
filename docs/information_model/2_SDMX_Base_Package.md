@@ -65,7 +65,7 @@ description in one locale.
 
 `VersionableArtefact` is an abstract class which inherits from
 `NameableArtefact` and adds a version number to all classes derived
-from it, as explained in the SDMX versioning rules in the Section [“Versioning” of the SDMX Technical Notes](../../technical_notes/technical_notes/3_General_Notes_for_Implementers.md#versioning), as well as an optional validity period, for which the meaning is not pre-defined, for non-semantically versioned artefacts.
+from it, as explained in the SDMX versioning rules in the Section [“Versioning” of the SDMX Technical Notes](../../technical_notes/technical_notes/3_General_Notes_for_Implementers.md#versioning), as well as an optional validity period for non-semantically versioned artefacts unless `validFrom` is used to indicate the publication date-time.
 
 `MaintainableArtefact` further adds the ability for derived classes to
 be maintained via its association to an `Organisation`, and adds
@@ -109,7 +109,7 @@ and maintenance.
 |  | `locale` | The geographic locale of the string e.g French, Canadian French. |
 | `VersionableArtefact` | Superclass is `NameableArtefact`. Base inheritance sub classes are: `MaintainableArtefact` | Provides versioning information for all derived objects. |
 |  | `version` | A version string following SDMX versioning rules. |
-|  | `validFrom` | Date-time from which the version is valid. Only for artefacts that are not semantically versioned. |
+|  | `validFrom` | Date-time from which the version is valid. Only for artefacts that are not semantically versioned unless it is used to indicate the publication date-time. |
 |  | `validTo` | Date-time from which the version ceases to be valid. Only for artefacts that are not semantically versioned. |
 | `MaintainableArtefact` | Inherits from `VersionableArtefact` | An abstract class to group together primary structural metadata artefacts that are maintained by an Agency. |
 |  | `isExternalReference` | If set to `true` it indicates that the content of the object is held externally. The actual reference is given in the `structureURL`, which must return a valid SDMX structure message. |
