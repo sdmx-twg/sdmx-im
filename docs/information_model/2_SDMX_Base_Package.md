@@ -43,25 +43,21 @@ etc.
 All classes derived from the abstract class `AnnotableArtefact` may have
 Annotations (or notes): this supports the need to add notes to all
 SDMX-ML elements. The Annotation is used to convey extra information to
-describe any SDMX construct. This information may be in the form of a
-`+link` and/or a multilingual text (represented by the association
-to `InternationalString`).
+describe any SDMX construct. This information is provided either in the non-localised string `value`, multilingual `+text`s via `LocalisedString`s or localised `+link`s via `Link`s. Furthermore, it may have an `id` used to disambiguate one Annotation from another, a `title` used to identify the annotation and a `type` that specifies how the annotation is to be processed.
+
+The `LocalisedString` supports the representation of a  text string (`label`) in one `locale` based on the IETF BCP 47 language tag ([RFC 4647](https://datatracker.ietf.org/doc/rfc4647/)).
+
+The `Link` allows relating to additional resources, including external resources. The type of relationship of the current artefact to the linked resource is conveyed in the required link's `rel` property, according to the semantics defined by SDMX artefact types (dataStructure, metadataStructure, …), the [RFC 8288](https://datatracker.ietf.org/doc/html/rfc8288) (alternate, copyright, glossary, help, index, self, …), miscellaneous types (calendar: link to a release calendar, source: information about the source of data), [SKOS relationships](https://www.w3.org/TR/skos-reference/#vocab) (skos:definition, skos:exactMatch, …) and [XKOS relationships](https://rdf-vocabulary.ddialliance.org/xkos.html#nsvoc) (xkos:generalizes, xkos:precedes, …). In addition, a `Link` must contain either an `href` property with the actual web address of the related resource or a `urn` property, which holds any valid SDMX Registry URN (see SDMX Registry Specification for details). Furthermore, links may define a `+title` (a human-friendly multilingual title of the target link based on  `LocalisedString`s), a `uri` (containing another link to additional information about the linked resource, such as a web page, but not representing an SDMX resource) and a `type` (a hint about the type of representation returned by the `Link`). Please refer to the [list of Media Types and Subtypes](http://www.iana.org/assignments/media-types/media-types.xhtml) assigned and listed by the IANA for additional information about expected values for the `type` property. The natural language of the external link can be indicated using the `locale` property based on the IETF BCP 47 language tag ([RFC 4647](https://datatracker.ietf.org/doc/rfc4647/)).
 
 The `IdentifiableArtefact` is an abstract class that comprises the basic
-attributes needed for identification and `+link`s to additional resources. Concrete classes based on 
+attributes needed for identification and `+link`s to additional resources via `Link`(s). Concrete classes based on 
 `IdentifiableArtefact` all inherit the ability to be uniquely 
 identified.
-
-The `Link` allows relating to additional resources, including external resources. The type of `Relationship` of the current artefact to the linked resource is conveyed in the required link's `rel` property, according to the semantics defined by SDMX artefact types (dataStructure, metadataStructure, …), the [RFC 8288](https://datatracker.ietf.org/doc/html/rfc8288) (alternate, copyright, glossary, help, index, self, …), miscellaneous types (calendar, source, request), [SKOS relationships](https://www.w3.org/TR/skos-reference/#vocab) (skos:definition, skos:exactMatch, …) and [XKOS relationships](https://rdf-vocabulary.ddialliance.org/xkos.html#nsvoc) (xkos:generalizes, xkos:precedes, …). In addition, a link must contain either an `href` property with the actual web address of the related resource or a `urn` property, which holds any valid SDMX Registry URN (see SDMX Registry Specification for details).
 
 The `NamableArtefact` is an abstract class that inherits from
 `IdentifiableArtefact` and in addition the `+description` and `+name` roles
 support multilingual descriptions and names for all objects based on
-`NameableArtefact`. The `InternationalString` supports the representation
-of a description in multiple locales (locale is similar to language but
-includes geographic variations such as Canadian French, US English
-etc.). The `LocalisedString` supports the representation of a
-description in one locale.
+`LocalisedString`s.
 
 `VersionableArtefact` is an abstract class which inherits from
 `NameableArtefact` and adds a version number to all classes derived
@@ -86,27 +82,26 @@ and maintenance.
 |  | `title` | A title used to identify an annotation. |
 |  | `type` | Specifies how the annotation is to be processed. |
 |  | `value` | A non-localised version of the Annotation content. |
-|  | `+text` | An International String provides the multilingual text content of the annotation via this role. |
-|  | `+link` | Optionally localised link(s) based on a URI or a URN to related information, including external resources. |
+|  | `+text` | Multilingual text content of the annotation as `LocalisedString`s. |
+|  | `+link` | Optionally localised `Link`(s) based on a URI or a URN to related information, including external resources. |
+| `LocalisedString` |  | The Localised String supports the representation of text in one locale (locale is similar to language but includes geographic variations such as Canadian French, US English etc.). |
+|  | `label` | Label of the string. |
+|  | `locale` | The geographic locale of the string based on the IETF BCP 47 language tag ([RFC 4647](https://datatracker.ietf.org/doc/rfc4647/)). |
 | `Link` |  | A link to additional resources, including external resources. |
 |  | `href` | The href holds a URL (Uniform Resource Locator) with the actual web address of the related resource. Either href or urn are required. |
 |  | `rel` | Relationship of the object to the resource. See semantics above. |
 |  | `urn` | The urn holds any valid SDMX Registry URN (see SDMX Registry Specification for details). Either href or urn are required. |
 |  | `uri` | The uri attribute holds a URI that contains a link to additional information about the resource, such as a web page. This uri is not an SDMX resource. |
-|  | `+title` | An International String provides the title for the link. |
+|  | `+title` | A multilingual title for the link via `LocalisedString`s. |
 |  | `type` | A hint about the type of representation returned by the link. |
-|  | `hreflang` | The natural language of the external link, the same as used in the HTTP Accept-Language request header. |
+|  | `locale` | The geographic locale of the link based on the IETF BCP 47 language tag ([RFC 4647](https://datatracker.ietf.org/doc/rfc4647/)). |
 | `IdentifiableArtefact` | Superclass is `AnnotableArtefact`. Base inheritance sub classes are: `NameableArtefact` | Provides identity to all derived classes. It also provides annotations to derived classes because it is a subclass of `AnnotableArtefact`. |
 |  | `id` | The unique identifier of the object. |
 |  | `urn` | Universal resource name – this is for use in registries: all registered objects have a urn. |
-|  | `+link` | Optionally localised link(s) based on a URI or a URN to related information, including external resources. |
+|  | `+link` | Optionally localised `Link`(s) based on a URI or a URN to related information, including external resources. |
 | `NameableArtefact` | Superclass is `IdentifiableArtefact`. Base inheritance sub classes are: `VersionableArtefact` | Provides a Name and Description to all derived classes in addition to identification and annotations. |
-|  | `+description` | A multi-lingual description is provided by this role via the International String class. |
-|  | `+name` | A multi-lingual name is provided by this role via the International String class. |
-| `InternationalString` |  | The International String is a collection of Localised Strings and supports the representation of text in multiple locales. |
-| `LocalisedString` |  | The Localised String supports the representation of text in one locale (locale is similar to language but includes geographic variations such as Canadian French, US English etc.). |
-|  | `label` | Label of the string. |
-|  | `locale` | The geographic locale of the string e.g French, Canadian French. |
+|  | `+description` | A multilingual description for this artefact via `LocalisedString`s. |
+|  | `+name` | A multilingual name for this artefact via `LocalisedString`s. |
 | `VersionableArtefact` | Superclass is `NameableArtefact`. Base inheritance sub classes are: `MaintainableArtefact` | Provides versioning information for all derived objects. |
 |  | `version` | A version string following SDMX versioning rules. |
 |  | `validFrom` | Date-time from which the version is valid. Only for artefacts that are not semantically versioned unless it is used to indicate the publication date-time. |
@@ -114,7 +109,6 @@ and maintenance.
 | `MaintainableArtefact` | Inherits from `VersionableArtefact` | An abstract class to group together primary structural metadata artefacts that are maintained by an Agency. |
 |  | `isExternalReference` | If set to `true` it indicates that the content of the object is held externally. The actual reference is given in the `structureURL`, which must return a valid SDMX structure message. |
 |  | `structureURL` | The full URL at which the resource can be retrieved. |
-|  | `serviceURL` | The URL root of an SDMX-compliant web service that can be queried for this resource. |
 |  | `agencyID` | The `Id` of the Maintenance Agency responsible for maintaining the artefact. |
 | `Agency` |  | See section on “Organisations” |
 
