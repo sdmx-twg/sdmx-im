@@ -96,7 +96,7 @@ If `hasFormalLevels="false"` the `Hierarchy` is “value based” comprising a
 hierarchy of codes with no formal Levels. If `hasFormalLevels="true"` then
 the hierarchy is “level based” where each Level is a formal Level in the
 `Hierarchy`, such as those present in statistical classifications. In a
-“level based” hierarchy each `HierarchicalCode` is linked to the Level in
+“level-based” hierarchy each `HierarchicalCode` is linked to the Level in
 which it resides. It is expected that all `HierarchicalCodes` at the same
 hierarchic level defined by the `+parent`/`+child` association will be
 linked to the same Level. Note that the `+level` association need only be
@@ -112,6 +112,8 @@ starting with level 1 at the highest Level\].
 
 The `Level` may have `CodingFormat` information defined (e.g. coding type at
 that level).
+
+The usage of a `HierarchicalCode` can be restricted over time according to business validity.
 
 A `HierarchyAssociation` links an `IdentifiableArtefact` (`+linkedObject`),
 that needs a `Hierarchy`, with the latter (`+linkedHierarchy`). The
@@ -131,8 +133,8 @@ Dimension in the context of a Dataflow.
 |  | `+child` | Association to a child `Level` of `Level`. |
 | `CodingFormat` |  | Specifies format information for the codes at this level in the hierarchy such as whether the codes at the level are alphabetic, numeric or alphanumeric and the code length. |
 | `HierarchicalCode` |  | A hierarchic structure of code references. |
-|  | `validFrom` | An `ObservationalTimePeriod`. Date-time (start of the given time period) from which the construct is valid. |
-|  | `validTo` | An `ObservationalTimePeriod`. Date-time (end of the given time period) from which the construct ceases to be valid. |
+|  | `validFrom` | A `StandardTimePeriodType`. Optionally used for business validity: Values are only valid for this `HierarchicalCode` if their Time Periods start earliest at the start of the time period defined in this property. |
+|  | `validTo` | A `StandardTimePeriodType`. Optionally used for business validity: Values are only valid for this `HierarchicalCode` if their Time Periods end latest at the end of the time period defined in this property. |
 |  | `+code` | Association to the `Code` that is used at the specific point in the hierarchy. |
 |  | `+child` | Association to a child `Code` in the hierarchy. |
 |  | `+level` | Association to a `Level` where levels have been defined for the `Hierarchy`. |

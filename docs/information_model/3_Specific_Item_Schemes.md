@@ -71,7 +71,7 @@ Through the inheritance the `Codelist` comprise one or more `Code`s, and the
 `Code` itself can have one or more child `Code`s in the (inherited)
 hierarchy association. Note that a child `Code` can have only one parent
 `Code` in this association. A more complex Hierarchy, which allows
-multiple parents is described later.
+multiple parents is described later. The usage of a `Code` can be restricted over time according to business validity.
 
 A partial `Codelist` (where `isPartial` is set to `true`) is identical to a
 `Codelist` and contains the `Code` and associated names and descriptions,
@@ -85,8 +85,8 @@ paragraph "Explanation of the Diagram" - "Narrative".
 | :---     | :---      | :--- |
 | `Codelist` | Inherits from: `ItemScheme` | A list from which some statistical concepts (coded concepts) take their values. |
 | `Code`   | Inherits from: `Item` | A language independent set of letters, numbers or symbols that represent a concept whose meaning is described in a natural language. |
-|          | `validFrom` | An `ObservationalTimePeriod`. Used for business validity: Values can only be provided for this Code if their Time Periods start earliest at the start of the time period defined in this property. |
-|          | `validTo` | An `ObservationalTimePeriod`. Used for business validity: Values can only be provided for this Code if their Time Periods end latest at the end of the time period defined in this property. |
+|          | `validFrom` | A `StandardTimePeriodType`. Optionally used for business validity: Values are only valid for this `Code` if their Time Periods start earliest at the start of the time period defined in this property. |
+|          | `validTo` | A `StandardTimePeriodType`. Optionally used for business validity: Values are only valid for this `Code` if their Time Periods end latest at the end of the time period defined in this property. |
 |          | hierarchy  | Associates the parent and the child codes. |
 |          | extends    | Associates a `Codelist` with any `Codelist`s (of the same `Codelist` type) that it may extend. Not applicable to `GeoGridCodelist`s. |
 
