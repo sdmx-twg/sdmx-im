@@ -2,10 +2,7 @@
 
 ## Introduction
 
-The `DataStructureDefiniton` is the class name for a structure definition
-for data. Some organisations know this type of definition as a “Key
-Family” and so the two names are synonymous. The term Data Structure
-Definition (also referred to as DSD) is used in this specification.
+The `DataStructureDefiniton` (also referred to as DSD) is the class name for a structure definition for data, previously known as “Key Family”.
 
 Many of the constructs in this layer of the model inherit from the SDMX
 Base Layer. Therefore, it is necessary to study both the inheritance and
@@ -146,21 +143,17 @@ Relationship class diagram of the Data Structure Definition excluding representa
 
 A `DataStructureDefinition` defines the `Dimension`s, `TimeDimension`,
 `DataAttributes`, and `Measure`s, and associated `Representation`s, that
-comprise the valid structure of data and related attributes that are
-contained in a `DataSet`, which is defined by a `Dataflow`. In addition, a
+comprise the valid structure of data and related attributes that may be
+contained in a `DataSet`. In addition, a
 `DataStructureDefinition` may be extended by one or more
 `MetadataStructureDefinition`s, in order to use their
 `MetadataAttributes`, by relating them to other `Components` within the
-DSD, as explained below.
+DSD, as explained below. In case of a conflict (duplicated identifier or concept), 
+only the first occurrence of the `MetadataAttribute` is taken into account for the extension.
 
-The `Dataflow` may also have additional metadata attached that define
-qualitative information and Constraints on the use of the
-`DataStructureDefinition` such as the subset of `Code`s used in a `Dimension`
-(this is covered later in this document – see sections [Constraints](./11_Constraints.md)
+The `Dataflow` can be used too to define the content of a `DataSet`. It inherits the underlying data structure from one referenced `DataStructureDefinition`, which can be further constrained to a subset of `Code`s used in its `Dimension`s by the means of `Constraint`s (this is covered later in this document – see sections [Constraints](./11_Constraints.md)
 and 
-[Data Provisioning](./12_Data_Provisioning.md)). Each `Dataflow` has a maximum of one
-`DataStructureDefinition` specified which defines the structure of any
-`DataSets` to be reported/disseminated.
+[Data Provisioning](./12_Data_Provisioning.md)).  
 A `Dataflow` may optionally define which `Dimensions` it uses, by defining a
 `DimensionConstraint` (this is a mandatory requirement if the
 `DataStructureDefinition` sets its `evolvingStructure` property to `‘true’` and 

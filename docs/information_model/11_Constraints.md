@@ -203,7 +203,7 @@ or value is constrained.
 
 | Class | Feature | Description |
 | :--- | :--- | :--- |
-| `ConstrainableArtefact` | Abstract Class Sub classes are: `Dataflow` `DataProvider` `DataStructureDefinition` `Metadataflow` `MetadataProvisionAgreement` `MetadataSet` `MetadataStructureDefinition` `ProvisionAgreement` `QueryDatasource` `SimpleDatasource` | An artefact that can have Constraints specified. |
+| `ConstrainableArtefact` | Abstract Class Sub classes are: `Dataflow` `DataProvider` `DataStructureDefinition` `Metadataflow` `MetadataProvisionAgreement` `MetadataSet` `MetadataStructureDefinition` `ProvisionAgreement` | An artefact that can have Constraints specified. |
 |  | `content` | Associates the metadata that constrains the content to be found in a data or metadata source linked to the Constrainable Artefact. |
 | `Constraint` | Inherits from `MaintainableArtefact` Abstract class Sub classes are: `DataConstraint` `MetadataConstraint` | Specifies a subset of the definition of the allowable or actual content of a data or metadata source that can be derived from the Structure that defines code lists and other valid content. |
 |  | `+dataContentKeys` | Association to a subset of Data Key Sets (i.e., value combinations) that can be derived from the definition of the structure to which the Constrainable Artefact is linked. |
