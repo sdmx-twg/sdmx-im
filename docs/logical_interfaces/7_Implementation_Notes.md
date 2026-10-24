@@ -402,7 +402,7 @@ The `RegistrationResponse` returns set of registration status (one for
 each registration submitted) in terms of a `StatusMessage` (this is common
 to all Registry responses) that indicates success or failure. In the
 event of registration failure, a set of `MessageText` are returned, giving
-the error messages that occurred during registration. It is entirely
+the error code and the multilingual error messages that occurred during registration. It is entirely
 possible when registering a batch of datasets, that the response will
 contain some successful and some failed statuses. The logical model for
 the `RegistrationResponse` is shown below:
