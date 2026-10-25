@@ -14,7 +14,7 @@ All major classes of the SDMX Information model inherit from one of:
     a version number, according to the SDMX versioning rules in SDMX
     Standards Section 6 “Technical Notes”, paragraph “4.3 Versioning”,
     as well as a validity period, for which the meaning is not pre-defined, 
-    for non-semantically versioned artefacts.
+    for non-semantically versioned artefacts, except when the validity start is used to indicate the publication date-time.
 - `MaintainableArtefact` – this has all of the above features,
     plus SDMX web service and structure URIs, and an association to the
     maintenance organisation of the object.
@@ -55,6 +55,7 @@ be stored in a registry for objects that are one of:
 | | `isExternalReference` | Optional | boolean | Value of `true` indicates that the actual resource is held outside of this registry. The actual reference is given in the `structureURL`, which must return a valid SDMX structure message. |
 | | `structureURL` | Optional | string | The full URL at which the resource can be retrieved. |
 | | (Maintenance) `agencyID`  | Mandatory | `NestedNCNameID` | The id of a maintenance organisation, i.e., agency or metadata provider. |
+
 /// table-caption
 Table: Common Attributes of Object Types
 Common Attributes of Object Types
