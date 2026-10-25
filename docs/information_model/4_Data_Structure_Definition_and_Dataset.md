@@ -217,17 +217,25 @@ occurrences), as well as a `minOccurs` attribute, indicating the minimum
 required number of values, when the `Measure` is reported. If `minOccurs` or
 `maxOccurs` are omitted (they both default to ‘1’), the `Measure` is
 considered to take a single value; otherwise, it is an array. Moreover,
-the usage attribute indicates whether a `Measure` must be reported or not,
-by the corresponding values: mandatory or optional.
+the `usage` attribute indicates whether a `Measure`must be present or not in 
+situations where full consistence is required, e.g., in a data store,
+by the corresponding values: mandatory or optional. Note that `DataSet`s do 
+not need to contain mandatory measure values when used for [efficient data 
+exchanges](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/data.md#efficient-data-exchanges) and in [data replication scenarios](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/data.md#data-replication), where data already contained 
+in a data store are updated or revised.
 
 The `AttributeDescriptor` may contain one or more `Attribute`s, i.e., at
 least one `DataAttribute` definition or one `MetadataAttribute` reference.
 
-The `DataAttribute` defines a characteristic of data that are collected or
-disseminated and is grouped in the `DataStructureDefinition` by a single
-`AttributeDescriptor`. The `DataAttribute` can be indicated if it must be
-reported or not, by the corresponding value of the usage attribute:
-i.e., mandatory or optional. The property `minOccurs` specifies the
+The `DataAttribute` defines a characteristic of the underlying data and is 
+grouped in the `DataStructureDefinition` by a single `AttributeDescriptor`. 
+The `DataAttribute` can be indicated if it must be present or not in 
+situations where full consistence is required, e.g., in a data store, 
+by the corresponding value of the `usage` attribute: i.e., mandatory or 
+optional. Note that `DataSet`s do not need to contain mandatory attribute 
+values when used for [efficient data 
+exchanges](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/data.md#efficient-data-exchanges) and in [data replication scenarios](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/data.md#data-replication), where data already contained in a data store are updated or revised. 
+The property `minOccurs` specifies the
 minimum number of array values to be included when the `DataAttribute` is
 reported. Moreover, a `maxOccurs` attribute indicates whether the
 `DataAttribute` may need to report more than one values, i.e., an array of
@@ -329,14 +337,14 @@ A `DataStructureDefinition` can be extended to form a derived
 |  | `/role` | Association to the `Concept` that specifies the role that the `DataAttribute` plays in the `DataStructureDefinition`. |
 |  | `minOccurs` | Defines the minimum required occurrences for the attribute. When equal to zero, the attribute is conditional. |
 |  | `maxOccurs` | Defines the maximum allowed occurrences for the attribute. |
-|  | `Usage` | Defines whether a `DataAttribute` must be reported or not. |
+|  | `usage` | Defines whether a `DataAttribute` must be present or not in situations where full consistence is required, e.g., in a data store. |
 |  | `+relatedTo` | Association to an `AttributeRelationship`. |
 |  | `/conceptIdentity` | An association to the `Concept` which defines the semantic of the component. |
 | `Measure` | Inherits from `Component` | The metadata concept that is the phenomenon to be measured in a data set. In a data set the instance of the measure is often called the observation. |
 |  | `/conceptIdentity` | An association to the `Concept` which carries the values of the measures. |
 |  | `minOccurs` | Defines the minimum required occurrences for the `Measure`. When equal to zero, the `Measure` is conditional. |
 |  | `maxOccurs` | Defines the maximum allowed occurrences for the `Measure`. |
-|  | `Usage` | Defines whether a `Measure` must be reported or not. |
+|  | `usage` | Defines whether a `Measure` must be present or not in situations where full consistence is required, e.g., in a data store. |
 | `AttributeRelationship` | Abstract class<br>Sub classes: `ObservationRelationship`, `GroupRelationship`, `DimensionRelationship` | Specifies the type of artefact to which a `DataAttribute` can be attached in a data set. |
 | `ObservationRelationship` |  | The `DataAttribute` is related to the observations of the data set. |
 | `GroupRelationship` |  | The `DataAttribute` is related to a `GroupDimensionDescriptor` construct. |
