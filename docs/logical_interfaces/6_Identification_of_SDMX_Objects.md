@@ -540,6 +540,7 @@ urn:sdmx.org.sdmx.infomodel.{package}.{classname}=
 | `VtlConceptMapping` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlConceptMappingId` | `ECB:CLIST_MP(1.0.0).XYA` |
 | `VtlDataflowMapping` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlDataflowMappingId` | `ECB:CLIST_MP(1.0.0).MOQ` |
 | `VtlMappingScheme` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version)` | `ECB:CLIST_MP(2.0.0)` |
+
 ///table-caption
 Table of identification components for SDMX Identifiable
 Artefacts
