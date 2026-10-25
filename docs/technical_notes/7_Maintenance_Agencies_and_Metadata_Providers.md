@@ -24,7 +24,7 @@ rules:
 6. There can be only one `AgencyScheme` maintained by any one Agency. It
     has a fixed Id of 'AGENCIES'. Similarly, only one
     `MetadataProvideScheme` is maintained by one Agency and has a fixed id
-    of `'METADATA_PROVIDERS'`.
+    of 'METADATA_PROVIDERS'.
 7. The format of the agency identifier is `agencyId.agencyID` etc. The
     top-level agency in this identification mechanism is the agency
     registered in the SDMX agency scheme. In other words, SDMX is not a

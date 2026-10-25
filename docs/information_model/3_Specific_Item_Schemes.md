@@ -448,11 +448,13 @@ The `OrganisationScheme` can be one of five types:
 1. `AgencyScheme` – contains `Agency` which is restricted to a flat list of
     agencies (i.e., there is no hierarchy). Note that the SDMX system of
     (Maintenance) `Agency` can be hierarchic and this is explained in more
-    detail in the SDMX Standards Section 6 “Technical Notes”.
+    detail in the SDMX Standards Section 6 “Technical Notes”. It has a fixed 
+    id ('AGENCIES') and version (‘1.0’).
 2. `DataProviderScheme` – contains `DataProvider` which is restricted to a
     flat list of agencies (i.e., there is no hierarchy).
 3. `MetadataProviderScheme` – contains `MetadataProvider` which is
-    restricted to a flat list of agencies (i.e., there is no hierarchy).
+    restricted to a flat list of agencies (i.e., there is no hierarchy). 
+    It has a fixed id of 'METADATA_PROVIDERS'.
 4. `DataConsumerScheme` – contains `DataConsumer` which is restricted to a
     flat list of agencies (i.e., there is no hierarchy).
 5. `OrganisationUnitScheme` – contains `OrganisationUnit` which does
@@ -490,7 +492,7 @@ paragraph "Explanation of the Diagram" - "Narrative".
 |  | `email` | The Internet e-mail address of the contact. |
 |  | `X400` | The X400 address of the contact. |
 |  | `uri` | The URL address of the contact. |
-| `AgencyScheme` |  | A maintained collection of Maintenance Agencies. |
+| `AgencyScheme` |  | A maintained collection of Maintenance Agencies with a fixed id ('AGENCIES') and version (‘1.0’). |
 |  | `/items` | Association to the Maintenance Agency in the scheme. |
 | `DataProviderScheme` |  | A maintained collection of Data Providers. |
 |  | `/items` | Association to the Data Providers in the scheme. |
