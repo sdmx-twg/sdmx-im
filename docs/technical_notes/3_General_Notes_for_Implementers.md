@@ -735,7 +735,8 @@ used in production.
 
 The `validFrom` and `validTo` properties of versionable artefacts do not
 apply to semantically versioned artefacts as those are immutable and 
-permanently valid.
+permanently valid, except when `validFrom` is used to indicate the 
+publication date-time.
 
 ### Legacy-versioned artefacts
 
