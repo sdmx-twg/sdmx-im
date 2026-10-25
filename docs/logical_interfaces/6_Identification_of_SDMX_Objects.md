@@ -54,7 +54,6 @@ be stored in a registry for objects that are one of:
 | `Maintainable` | All content as for `Versionable` plus |  |  |  |
 | | `isExternalReference` | Optional | boolean | Value of `true` indicates that the actual resource is held outside of this registry. The actual reference is given in the `structureURL`, which must return a valid SDMX structure message. |
 | | `structureURL` | Optional | string | The full URL at which the resource can be retrieved. |
-| | `serviceURL` | Optional | string | The URL root of the SDMX-compliant web service that can be queried for this resource. |
 | | (Maintenance) `agencyID`  | Mandatory | `NestedNCNameID` | The id of a maintenance organisation, i.e., agency or metadata provider. |
 /// table-caption
 Table: Common Attributes of Object Types
