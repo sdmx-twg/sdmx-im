@@ -20,8 +20,7 @@ rules:
     a single `AgencyScheme` and a single `MetadataProviderScheme`. SDMX is
     an agency in the SDMX `AgencyScheme`. Agencies in any `AgencyScheme` can
     themselves maintain a single `AgencyScheme` and so on.
-5. The `AgencyScheme` and `MetadataProvideScheme` cannot be versioned and
-    thus have a fixed version set to ‘1.0’.
+5. The `AgencyScheme` cannot be versioned and thus has a fixed version set to ‘1.0’.
 6. There can be only one `AgencyScheme` maintained by any one Agency. It
     has a fixed Id of 'AGENCIES'. Similarly, only one
     `MetadataProvideScheme` is maintained by one Agency and has a fixed id

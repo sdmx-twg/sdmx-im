@@ -1,11 +1,10 @@
 # General Notes for Implementers
 
 This section discusses a number of topics other than the exchange of
-data sets in SDMX formats. Supported only in SDMX-ML (and some in
-SDMX-JSON), these topics include the use of the reference metadata
+data sets in SDMX formats. These topics include the use of the reference metadata
 mechanism in SDMX, the use of Structure Sets and Reporting Taxonomies,
 the use of Processes, a discussion of time and data-typing, and the
-conventional mechanisms within the SDMX-ML Structure message regarding
+conventional mechanisms within the structure message regarding
 versioning and referencing.
 
 ## Representations
@@ -665,15 +664,11 @@ version ‘1.0’.
 
 ### Non-versioned artefacts
 
-Indeed, some use cases do not need or are incompatible with versioning
-for some or all their structural artefacts, such as the Agency, Data
-Providers, Metadata Providers and Data Consumer Schemes. These artefacts
-follow the legacy versioning, with a fixed version set to ‘1.0’.
-
-Many existing organisation’s data management systems work with
+Outside the `AgencyScheme`, which always has a fixed version, i.e., ‘1.0’, 
+some existing organisation’s data management systems work with
 version-less structures and apply ad-hoc structural metadata governance
 processes. The new non-versioned artefacts will allow supporting those
-numerous situations, where organisations do not manage version numbers.
+situations, where organisations do not manage version numbers.
 
 ### Semantically versioned artefacts
 

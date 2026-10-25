@@ -79,7 +79,7 @@ The Agency in SDMX is extremely important. The Agency Id system used in
 SDMX is an n-level structure. The top level of this structure is
 maintained by SDMX. Any Agency in this top level can declare sub
 agencies and any sub agency can also declare sub agencies. The Agency
-Scheme has a fixed id and version (version ‘1.0’) and is never declared
+Scheme has a fixed id ('AGENCIES') and version (‘1.0’) and is never declared
 explicitly in the SDMX object identification mechanism.
 
 In order to achieve this SDMX adopts the following rules:
@@ -96,7 +96,7 @@ In order to achieve this SDMX adopts the following rules:
 - The `AgencyScheme` has a fixed version, i.e., ‘1.0’, hence it is an
     exception from the Semantic Versioning that other Artefacts follow.
 - There can be only one `AgencyScheme` maintained by any one Agency. It
-    has a fixed id of AGENCIES.
+    has a fixed id of 'AGENCIES'.
 - The /hierarchy of Organisation is not inherited by Maintenance
     Agency – thus each Agency Scheme is a flat list of Maintenance
     Agencies.
