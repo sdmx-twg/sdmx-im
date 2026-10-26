@@ -448,6 +448,9 @@ Changed Maintainable Artefacts
         `FromVtlSpaceKey`)
 - Transformation Scheme, Ruleset Scheme, User Defined Operator Scheme –
     `vtlVersion` mandatory
+- Ruleset Scheme – a Ruleset can also define a VTL 2.2 viral
+    propagation (`rulesetType` “viral”), which makes viral the Attributes
+    it applies to
 - Transformation Scheme – associations to the Name Personalisation
     Scheme and to the Custom Type Scheme deprecated
 

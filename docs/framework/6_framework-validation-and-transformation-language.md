@@ -38,7 +38,9 @@ agreements, and the basic mapping is the only method for converting the
 data structures between SDMX and VTL. The constructs made redundant by
 these changes were deprecated. The retrieval of the data of the input
 data sets can also be specified, so that VTL programs can be executed on
-the basis of their definitions in SDMX.
+the basis of their definitions in SDMX. From VTL 2.2, the rulesets can
+also define which attributes are viral and how their values are
+propagated.
 
 The Transformations and Expressions package for modelling VTL programs
 in the SDMX information model is explained in

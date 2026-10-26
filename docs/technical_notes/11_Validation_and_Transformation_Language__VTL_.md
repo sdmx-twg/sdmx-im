@@ -463,6 +463,19 @@ belonging to some Value Domains or taken by some Variables, for example:
 (i) when the Country is USA then the Currency is USD; (ii) the Benelux
 is composed by Belgium, Luxembourg, Netherlands.
 
+From VTL 2.2, a Ruleset can also define a viral propagation, i.e. the
+algorithm for combining the values of a viral Attribute.[^41] A viral
+propagation is not invoked explicitly, as it is applied by all the VTL
+operators that propagate the viral Attributes. In SDMX, it is a
+`Ruleset` whose `rulesetType` is “viral”, and it also determines which
+Attributes obtained from SDMX are viral (see the paragraph
+“[Mapping from SDMX to VTL data structures](#mapping-from-sdmx-to-vtl-data-structures)”
+below).
+
+[^41]: See also the section "define viral propagation" in the VTL
+    Reference Manual and the section "The Attribute propagation rule" in
+    the VTL User Manual.
+
 The VTL Rulesets have a signature, in which the Value Domains or the
 Variables on which the Ruleset is defined are declared, and a body,
 which contains the Rules.
@@ -488,11 +501,12 @@ has a different representation.
 In general, for referencing SDMX `Codelists` and `Concepts`, the conventions
 described in the previous paragraphs apply. In the Ruleset syntax, the
 elements that reference SDMX artefacts are called `"valueDomain"` and
-`"variable"` for the Datapoint Rulesets and `"ruleValueDomain"`,
-`"ruleVariable"`, `"condValueDomain"`, `"condVariable"` for the Hierarchical
-Rulesets). The syntax of the Ruleset signature allows also to define
-aliases of the elements above, these aliases are valid only within the
-specific Ruleset definition statement and cannot be mapped to SDMX.[^16]
+`"variable"` for the Datapoint Rulesets and the viral propagations, and
+`"ruleValueDomain"`, `"ruleVariable"`, `"condValueDomain"`,
+`"condVariable"` for the Hierarchical Rulesets. The syntax of the Ruleset
+signature allows also to define aliases of the elements above, these
+aliases are valid only within the specific Ruleset definition statement
+and cannot be mapped to SDMX.[^16]
 
 [^16]: See also the section "VTL-DL Rulesets" in the VTL Reference Manual.
 
@@ -500,6 +514,23 @@ In the body of the Rulesets, the Codes and in general all the Values can
 be written without any other specification, because the artefact, which
 the Values are referred (`Codelist`, `Concept`) to can be deduced from the
 Ruleset signature.
+
+For example, if `CL_CONF` is the alias of a `VtlCodelistMapping` that
+references a `Codelist` having the Codes “C”, “N” and “F”, the following
+viral propagation gives priority to “C” over “N” and to “N” over “F”:
+
+```text
+define viral propagation CONF_PRIORITY (valuedomain CL_CONF) is
+    when "C" then "C";
+    when "N" then "N";
+    else "F"
+end viral propagation
+```
+
+This definition is stored in a `Ruleset` whose `rulesetType` is “viral”
+and whose `rulesetScope` is “valuedomain”. The `DataAttributes` whose
+representation is the `Codelist` mapped to `CL_CONF` become viral VTL
+Attributes.
 
 ## Mapping between SDMX and VTL artefacts
 
@@ -754,6 +785,25 @@ VTL does not have the SDMX `AttributeRelationships`, which defines the
 construct to which the `DataAttribute` is related (e.g. observation,
 dimension or set or group of dimensions, whole data set).
 
+As SDMX does not define the virality of the `DataAttributes`, it is
+derived from the viral propagations (see the paragraph
+“[References to SDMX artefacts from VTL Rulesets](#references-to-sdmx-artefacts-from-vtl-rulesets)”
+above). A `DataAttribute` becomes a viral VTL Attribute when a
+`RulesetScheme` linked to the `TransformationScheme` contains a viral
+propagation defined on the Variable named after its id or on the Value
+Domain mapped to the `Codelist` of its representation. The other
+`DataAttributes` become non-viral VTL Attributes, which the VTL
+operators do not propagate by default. For example, if a viral
+propagation is defined on the Variable `OBS_STATUS`, the
+`DataAttributes` `OBS_STATUS` of all the input VTL Data Sets are viral.
+
+A VTL engine that does not support the viral Attributes raises an error
+instead of executing a `TransformationScheme` that uses viral
+propagations. The correspondence between the Value Domain of a viral
+propagation and the representations of the `DataAttributes` (e.g. when
+they use another version of the `Codelist`) is validated in the
+semantic analysis of the `TransformationScheme`.
+
 With the Basic mapping, one SDMX observation[^21] generates one VTL data
 point.
 
@@ -951,7 +1001,13 @@ and `TimeDimension` exists only in SDMX, as declared in the relevant
 Regarding the Attributes, because VTL considers all of them "at
 observation level", the corresponding SDMX `DataAttributes` should be put
 "at observation level" as well, unless some different information about
-their `AttributeRelationship` is otherwise available.
+their `AttributeRelationship` is otherwise available. Both the viral and
+the non-viral VTL Attributes become `DataAttributes`, as SDMX does not
+represent the virality. As the viral Attributes are propagated
+automatically, the result of a `Transformation` mapped to an output can
+contain viral Attributes that the VTL program does not mention. They
+must belong to the data structure of the output SDMX artefact, unless
+the VTL program drops them (e.g. through the `drop` clause).
 
 Note that the basic mappings in the two directions (from SDMX to VTL and
 vice-versa) are (almost completely) reversible. In fact, if an SDMX
@@ -961,7 +1017,8 @@ back to SDMX, the resulting data structure is like the original one
 original SDMX structure contains `DataAttributes` that are not at
 observation level). In reverse order, if a VTL structure is mapped to
 SDMX and then the latter is mapped back to VTL, the original data
-structure is obtained.
+structure is obtained, apart from the virality of the Attributes, which
+depends on the viral propagations of the `TransformationScheme`.
 
 As said, the resulting SDMX definitions must be compliant with the SDMX
 consistency rules. For example, the SDMX DSD must have the
@@ -1536,7 +1593,9 @@ Domain) is identifiable, while the SDMX non-enumerated `Representation`
 identifiable. As a consequence, the definition of the VTL Rulesets,
 which in VTL can refer either to enumerated or non-enumerated value
 domains, in SDMX can refer only to enumerated Value Domains (i.e. to
-SDMX `Codelists`).
+SDMX `Codelists`). For example, a viral propagation based on an
+aggregate function, which is meant for a non-enumerated Value Domain
+(e.g. of dates), can be defined in SDMX only on a Variable.
 
 As for the mapping between VTL variables and SDMX `Concepts`, it should be
 noted that these artefacts do not coincide perfectly. In fact, the VTL

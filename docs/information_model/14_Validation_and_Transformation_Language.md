@@ -242,7 +242,8 @@ container for one or more Ruleset.
 The Ruleset model artefact contains the following attributes:
 
 1. `rulesetType` – the type of the ruleset according to VTL (VTL 2.0
-    allows two types: “datapoint” and “hierarchical” ruleset);
+    allows two types: “datapoint” and “hierarchical” ruleset; VTL 2.2
+    adds the “viral” type for the viral propagation, see below);
 2. `rulesetScope` – the VTL artefact on which the ruleset is defined; VTL
     2.0 allows rulesets defined on Value Domains, which correspond to
     SDMX `Codelists`, and rulesets defined on Variables, which correspond
@@ -250,6 +251,30 @@ The Ruleset model artefact contains the following attributes:
     rulesets are applied (see below);
 3. `rulesetDefinition` – the VTL statement that defines the ruleset
     according to the syntax of the VTL definition language.
+
+From VTL 2.2, a Ruleset can also define a viral propagation, i.e. the
+algorithm for combining the values of a viral Attribute. Its
+`rulesetType` is “viral” and its `rulesetDefinition` is a
+`define viral propagation` statement. Like the other rulesets, it is
+defined on a Value Domain or on a Variable (`rulesetScope`).
+
+The viral propagations also determine which VTL Attributes are viral.
+An SDMX `DataAttribute` is mapped to a viral VTL Attribute when a
+`RulesetScheme` linked to the `TransformationScheme` contains a viral
+propagation for it. The viral propagation can be defined on its
+Variable, named after its id, or on its Value Domain, i.e. the
+`Codelist` of its representation. The other `DataAttributes` are mapped
+to non-viral VTL Attributes.[^17]
+
+[^17]: See the Section
+    [“Mapping from SDMX to VTL data structures” in the SDMX Technical Notes](../../technical_notes/technical_notes/11_Validation_and_Transformation_Language__VTL_.md#mapping-from-sdmx-to-vtl-data-structures).
+
+A viral propagation is not invoked by the operators. Once defined, it
+is applied by all the operators that propagate the viral Attributes.
+Therefore, a `TransformationScheme` that uses viral propagations is
+complete only together with the `RulesetScheme`s that contain them.
+These `RulesetScheme`s cannot contain more than one viral propagation
+for the same Value Domain or Variable.
 
 The `RulesetScheme` can have an association with zero or one
 `VtlMappingScheme`, which contains the mappings between the aliases used
@@ -350,8 +375,9 @@ rules apply:
     `ProvisionAgreement`) correspond to one another according to the
     Basic mapping method[^15]. This method maps the SDMX `Dimensions` and
     `TimeDimension` to VTL Identifiers, the SDMX `Measures` to VTL
-    Measures and the SDMX `DataAttributes` to VTL Attributes, and
-    vice-versa. For an input, the data structure of the VTL Data Set is
+    Measures and the SDMX `DataAttributes` to VTL Attributes (viral or
+    non-viral, see the [Ruleset Scheme Section](#ruleset-scheme) above),
+    and vice-versa. For an input, the data structure of the VTL Data Set is
     obtained from the SDMX one; for an output, the data structure of the
     result of the `Transformation` must correspond to that of the
     referenced SDMX artefact.
@@ -647,9 +673,9 @@ basic scalar type).
 |  | expression | The right-hand side of the VTL statement that is the expression to be evaluated, which includes the references to the operands of the Transformation. |
 | `RulesetScheme` | Inherits from `ItemScheme` | Container of rulesets. |
 |  | `vtlVersion` | The version of the VTL language used for defining the rulesets (mandatory). |
-| Ruleset | Inherits from `Item` | A persistent set of rules which can be invoked by means of appropriate VTL operators. |
+| Ruleset | Inherits from `Item` | A persistent set of rules which can be invoked by means of appropriate VTL operators, or a viral propagation, which determines the viral Attributes and is applied by the VTL operators that propagate them. |
 |  | `rulesetDefinition` | A VTL statement for the definition of a ruleset (according to the syntax of the VTL definition language) |
-|  | `rulesetType` | The VTL type of the ruleset (e.g., in VTL 2.0, datapoint or hierarchical) |
+|  | `rulesetType` | The VTL type of the ruleset (e.g., in VTL 2.0, datapoint or hierarchical; VTL 2.2 adds viral, for the viral propagation) |
 |  | `rulesetScope` | The model artefact on which the ruleset is defined (e.g., in VTL 2.0, valuedomain or variable) |
 | `UserDefinedOperatorScheme` | Inherits from `ItemScheme` | Container of user defined operators |
 |  | `vtlVersion` | The version of the VTL language used for defining the user defined operators (mandatory). |
