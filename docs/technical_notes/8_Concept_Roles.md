@@ -16,6 +16,7 @@ specified. For instance, the following roles are some examples:
 The Information Model for this is shown below:
 
 ![](media/image13.png)
+![](media/sdmx_datastructure-datastructure_component_roles.svg)
 /// figure-caption | 19
 Information Model Extract for Concept Role
 ///

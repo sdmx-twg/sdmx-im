@@ -1,11 +1,10 @@
 # General Notes for Implementers
 
 This section discusses a number of topics other than the exchange of
-data sets in SDMX formats. Supported only in SDMX-ML (and some in
-SDMX-JSON), these topics include the use of the reference metadata
+data sets in SDMX formats. These topics include the use of the reference metadata
 mechanism in SDMX, the use of Structure Sets and Reporting Taxonomies,
 the use of Processes, a discussion of time and data-typing, and the
-conventional mechanisms within the SDMX-ML Structure message regarding
+conventional mechanisms within the structure message regarding
 versioning and referencing.
 
 ## Representations
@@ -665,15 +664,11 @@ version ‘1.0’.
 
 ### Non-versioned artefacts
 
-Indeed, some use cases do not need or are incompatible with versioning
-for some or all their structural artefacts, such as the Agency, Data
-Providers, Metadata Providers and Data Consumer Schemes. These artefacts
-follow the legacy versioning, with a fixed version set to ‘1.0’.
-
-Many existing organisation’s data management systems work with
+Outside the `AgencyScheme`, which always has a fixed version, i.e., ‘1.0’, 
+some existing organisation’s data management systems work with
 version-less structures and apply ad-hoc structural metadata governance
 processes. The new non-versioned artefacts will allow supporting those
-numerous situations, where organisations do not manage version numbers.
+situations, where organisations do not manage version numbers.
 
 ### Semantically versioned artefacts
 
@@ -717,10 +712,9 @@ otherwise, the above version increment rules apply. `EXTENSION`s can be
 used e.g., for drafting or a pre-release.
 
 Semantically versioned SDMX artefacts will thus be safe to use. Specific
-version patterns allow them to become either immutable, i.e., the
-maintainer commits to never change their content, or changeable only
-within a well-defined scope. If any further change is required, a new
-version must be created first. Furthermore, the impact of the further
+version patterns allow them to become immutable, i.e., the maintainer 
+commits to never change their content. If any further change is required, 
+a new version must be created first. Furthermore, the impact of the
 change is communicated using a clear version increment. The built-in
 version extension facility allows for eased drafting of new SDMX
 artefact versions.
@@ -733,6 +727,11 @@ version must indicate this by including an `EXTENSION`. Draft artefacts
 should not be used outside of a specific system designed to accommodate
 them. For most purposes, all artefacts should become stable before being
 used in production.
+
+The `validFrom` and `validTo` properties of versionable artefacts do not
+apply to semantically versioned artefacts as those are immutable and 
+permanently valid, except when `validFrom` is used to indicate the 
+publication date-time.
 
 ### Legacy-versioned artefacts
 
@@ -748,6 +747,8 @@ implementations were varying.
 In order to make artefacts immutable or changes truly predictable, a
 move to the new semantic versioning syntax is required.
 
+The `validFrom` and `validTo` properties can be used for non-versioned artefacts.
+
 ### Dependency management and references
 
 New flexible dependency specifications with wildcarding allow for easier
@@ -758,15 +759,6 @@ whereby an artefact may reference:
 - a fixed version of another artefact
 - the **latest available** version of another artefact
 - the **latest backward compatible** version of another artefact, or the **latest backward and forward** **compatible** version of another artefact.
-
-References not representing a strict artefact dependency, such as the
-target artefacts defined in a `MetadataProvisionAgreement` allow for
-linking to **all currently available** versions of another artefact.
-Another illustrative case for such loose referencing is that of
-Constraints and flows. A Constraint may reference many Dataflows or
-Metadataflows, the addition of more references to flow objects does not
-version the Constraint. This is because the Constraints are not
-properties of the flows – they merely make references to them.
 
 Semantically versioned artefacts must only reference other semantically
 versioned artefacts, which may include extended versions. Non-versioned
@@ -786,11 +778,9 @@ various structural objects in SDMX, it is useful to have a scheme for
 external referencing. This is done at the level of maintainable objects
 (DSDs, Codelists, Concept Schemes, etc.) In an SDMX Structure Message,
 whenever an `"isExternalReference"` attribute is set to true, then the
-application must resolve the address provided in the associated `"uri"`
-attribute and use the SDMX Structure Message stored at that location for
-the full definition of the object in question. Alternately, if a
-registry `"urn"` attribute has been provided, the registry can be used to
-supply the full details of the object.
+application must resolve the address provided in the associated `"serviceURL"`
+attribute and use the SDMX Structure Message available at that location for
+the full definition of the object in question.
 
 The detailed rules for dependency management and references are listed
 in chapter 14 in the annex for “Semantic Versioning”.

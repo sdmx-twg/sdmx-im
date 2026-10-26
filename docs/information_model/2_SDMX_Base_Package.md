@@ -25,6 +25,7 @@ and relationships amongst classes.
 ### Class Diagram
 
 ![](media/image36.png){ width="550" }
+![sdmx_base - base_inheritance](media/sdmx_base-base_inheritance.svg){ width="550" }
 /// figure-caption | 10
 SDMX Identification, Maintenance and Versioning
 ///
@@ -42,27 +43,25 @@ etc.
 All classes derived from the abstract class `AnnotableArtefact` may have
 Annotations (or notes): this supports the need to add notes to all
 SDMX-ML elements. The Annotation is used to convey extra information to
-describe any SDMX construct. This information may be in the form of a
-URL reference and/or a multilingual text (represented by the association
-to `InternationalString`).
+describe any SDMX construct. This information is provided either in the non-localised string `value`, multilingual `+text`s via `LocalisedString`s or localised `+link`s via `Link`s. Furthermore, it may have an `id` used to disambiguate one Annotation from another, a `title` used to identify the annotation and a `type` that specifies how the annotation is to be processed.
+
+The `LocalisedString` supports the representation of a  text string (`label`) in one `locale` based on the IETF BCP 47 language tag ([RFC 4647](https://datatracker.ietf.org/doc/rfc4647/)).
+
+The `Link` allows relating to additional resources, including external resources. The type of relationship of the current artefact to the linked resource is conveyed in the required link's `rel` property, according to the semantics defined by SDMX artefact types (`sdmx:dataStructure`, `sdmx:metadataStructure`, …), the [RFC 8288](https://datatracker.ietf.org/doc/html/rfc8288) (`rfc:alternate`, `rfc:copyright`, `rfc:glossary`, `rfc:help`, `rfc:index`, …), miscellaneous types (`misc:calendar`: link to a release calendar, `misc:source`: information about the source of data), [SKOS relationships](https://www.w3.org/TR/skos-reference/#vocabrfc) (`skos:definition`, `skos:exactMatch`, …), [XKOS relationships](https://rdf-vocabulary.ddialliance.org/xkos.html#nsvoc) (`xkos:generalizes`, `xkos:precedes`, …), or custom semantics (e.g., `x:catalog`) using the corresponding prefix (sdmx, rfc, misc, skos, xkos and x for custom extensions). Note that the relationship `rfc:self` should not be used for SDMX artefacts because this is already expressed in its `urn` propety. In addition, a `Link` must contain either an `href` property with the actual web address of the related resource or a `urn` property, which holds any valid SDMX Registry URN (see SDMX Registry Specification for details) or any other URN. Furthermore, links may define a unique `+title` (a human-friendly multilingual title of the target link based on `LocalisedString`s), and a `type` (a hint about the media type of representation returned by the `Link`). Please refer to the [list of Media Types and Subtypes](http://www.iana.org/assignments/media-types/media-types.xhtml) assigned and listed by the IANA for additional information about expected values for the `type` property. The natural language of the external link can be indicated using the `locale` property based on the IETF BCP 47 language tag ([RFC 4647](https://datatracker.ietf.org/doc/rfc4647/)).
 
 The `IdentifiableArtefact` is an abstract class that comprises the basic
-attributes needed for identification. Concrete classes based on
-`IdentifiableArtefact` all inherit the ability to be uniquely
+attributes needed for identification and `+link`s to additional resources via `Link`(s). Concrete classes based on 
+`IdentifiableArtefact` all inherit the ability to be uniquely 
 identified.
 
 The `NamableArtefact` is an abstract class that inherits from
 `IdentifiableArtefact` and in addition the `+description` and `+name` roles
 support multilingual descriptions and names for all objects based on
-`NameableArtefact`. The `InternationalString` supports the representation
-of a description in multiple locales (locale is similar to language but
-includes geographic variations such as Canadian French, US English
-etc.). The `LocalisedString` supports the representation of a
-description in one locale.
+`LocalisedString`s.
 
 `VersionableArtefact` is an abstract class which inherits from
-`NameableArtefact` and adds versioning ability to all classes derived
-from it, as explained in the SDMX versioning rules in the Section [“Versioning” of the SDMX Technical Notes](../../technical_notes/technical_notes/3_General_Notes_for_Implementers.md#versioning).
+`NameableArtefact` and adds a version number to all classes derived
+from it, as explained in the SDMX versioning rules in the Section [“Versioning” of the SDMX Technical Notes](../../technical_notes/technical_notes/3_General_Notes_for_Implementers.md#versioning), as well as an optional validity period for non-semantically versioned artefacts unless `validFrom` is used to indicate the publication date-time.
 
 `MaintainableArtefact` further adds the ability for derived classes to
 be maintained via its association to an `Organisation`, and adds
@@ -82,32 +81,34 @@ and maintenance.
 |  | `id` | Identifier for the Annotation. It can be used to disambiguate one Annotation from another where there are several Annotations for the same annotated object. |
 |  | `title` | A title used to identify an annotation. |
 |  | `type` | Specifies how the annotation is to be processed. |
-|  | `url` | A link to external descriptive text. |
 |  | `value` | A non-localised version of the Annotation content. |
-|  | `+url` | An International URI provides a set of links that are language specific, via this role. |
-|  | `+text` | An International String provides the multilingual text content of the annotation via this role. |
-| `InternationalUri` |  | The International Uri is a collection of Localised URIs and supports linking to external descriptions in multiple locales. |
-| `LocalisedUri` |  | The Localised URI supports the link to an external description in one locale (locale is similar to language but includes geographic variations such as Canadian French, US English etc.). |
-| `IdentifiableArtefact` | Superclass is `AnnotableArtefact`. Base inheritance sub classes are: `NameableArtefact` | Provides identity to all derived classes. It also provides annotations to derived classes because it is a subclass of `AnnotableArtefact`. |
-|  | `id` | The unique identifier of the object. |
-|  | `uri` | Universal resource identifier that may or may not be resolvable. |
-|  | `urn` | Universal resource name – this is for use in registries: all registered objects have a urn. |
-| `NameableArtefact` | Superclass is `IdentifiableArtefact`. Base inheritance sub classes are: `VersionableArtefact` | Provides a Name and Description to all derived classes in addition to identification and annotations. |
-|  | `+description` | A multi-lingual description is provided by this role via the International String class. |
-|  | `+name` | A multi-lingual name is provided by this role via the International String class. |
-| `InternationalString` |  | The International String is a collection of Localised Strings and supports the representation of text in multiple locales. |
+|  | `+text` | Multilingual text content of the annotation as `LocalisedString`s. |
+|  | `+link` | Optionally localised `Link`(s) based on a URI or a URN to related information, including external resources. |
 | `LocalisedString` |  | The Localised String supports the representation of text in one locale (locale is similar to language but includes geographic variations such as Canadian French, US English etc.). |
 |  | `label` | Label of the string. |
-|  | `locale` | The geographic locale of the string e.g French, Canadian French. |
+|  | `locale` | The geographic locale of the string based on the IETF BCP 47 language tag ([RFC 4647](https://datatracker.ietf.org/doc/rfc4647/)). |
+| `Link` |  | A link to additional resources, including external resources. |
+|  | `href` | The href holds a URL (Uniform Resource Locator) with the actual web address of the related resource. Either href or urn are required. |
+|  | `rel` | Relationship of the object to the resource. See semantics above. |
+|  | `urn` | The urn holds any valid SDMX Registry URN (see SDMX Registry Specification for details) or any other URN. Either href or urn are required. |
+|  | `+title` | A unique multilingual title for the link via `LocalisedString`s. |
+|  | `type` | A hint about the media type of representation returned by the link. See semantics above. |
+|  | `locale` | The geographic locale of the link based on the IETF BCP 47 language tag ([RFC 4647](https://datatracker.ietf.org/doc/rfc4647/)). |
+| `IdentifiableArtefact` | Superclass is `AnnotableArtefact`. Base inheritance sub classes are: `NameableArtefact` | Provides identity to all derived classes. It also provides annotations to derived classes because it is a subclass of `AnnotableArtefact`. |
+|  | `id` | The unique identifier of the object. |
+|  | `urn` | Universal resource name – this is for use in registries: all registered objects have a urn. |
+|  | `+link` | Optionally localised `Link`(s) based on a URI or a URN to related information, including external resources. |
+| `NameableArtefact` | Superclass is `IdentifiableArtefact`. Base inheritance sub classes are: `VersionableArtefact` | Provides a Name and Description to all derived classes in addition to identification and annotations. |
+|  | `+description` | A multilingual description for this artefact via `LocalisedString`s. |
+|  | `+name` | A multilingual name for this artefact via `LocalisedString`s. |
 | `VersionableArtefact` | Superclass is `NameableArtefact`. Base inheritance sub classes are: `MaintainableArtefact` | Provides versioning information for all derived objects. |
 |  | `version` | A version string following SDMX versioning rules. |
-|  | `validFrom` | Date from which the version is valid. |
-|  | `validTo` | Date from which version is superseded. |
+|  | `validFrom` | Date-time from which the version is valid. Only for artefacts that are not semantically versioned unless it is used to indicate the publication date-time. |
+|  | `validTo` | Date-time from which the version ceases to be valid. Only for artefacts that are not semantically versioned. |
 | `MaintainableArtefact` | Inherits from `VersionableArtefact` | An abstract class to group together primary structural metadata artefacts that are maintained by an Agency. |
-|  | `isExternalReference` | If set to "true" it indicates that the content of the object is held externally. |
-|  | `structureURL` | The URL of an SDMX-ML document containing the external object. |
-|  | `serviceURL` | The URL of an SDMX-compliant web service from which the external object can be retrieved. |
-|  | `+maintainer` | Association to the Maintenance Agency responsible for maintaining the artefact. |
+|  | `isExternalReference` | If set to `true` it indicates that the content of the object is held externally. The actual reference is given in the `structureURL`, which must return a valid SDMX structure message. |
+|  | `structureURL` | The full URL at which the resource can be retrieved. |
+|  | `agencyID` | The `Id` of the Maintenance Agency responsible for maintaining the artefact. |
 | `Agency` |  | See section on “Organisations” |
 
 
@@ -116,6 +117,7 @@ and maintenance.
 ### Class Diagram – Basic Inheritance from the Base Inheritance Classes
 
 ![](media/image37.png){ width="550" }
+![](media/sdmx_base-basic_inheritance.svg){ width="550" }
 /// figure-caption
 Basic Inheritance from the Base Structures
 ///
@@ -133,6 +135,7 @@ which they relate.
 ### Class Diagram
 
 ![](media/image38.png){ width="550" }
+![](media/sdmx_base-data_types.svg){ width="550" }
 /// figure-caption
 Class Diagram of Basic Data Types
 ///
@@ -152,16 +155,11 @@ The `ActionType` enumeration is used to specify the action that a
 receiving system should take when processing the content that is the
 object of the action. It is enumerated as follows:
 
-- `Append`: Data or metadata is an incremental update for an existing
-    data/metadata set or the provision of new data or documentation
-    (attribute values) formerly absent. If any of the supplied data or
-    metadata is already present, it will not replace that data or
-    metadata. This corresponds to the "Update" value found in version
-    1.0 of the SDMX Technical Standards.
-- `Replace`: Data/metadata is to be replaced and may also include
-    additional data/metadata to be appended.
-- `Delete`: Data/Metadata is to be deleted.
-- `Information`: Data and metadata are for information purposes.
+- `Merge`: Data or data-related reference metadata is to be merged, through either update or insertion depending on already existing information. This operation does not allow deleting any component values. Updating individual values in multi-valued measure, attribute or data-related reference metadata values is not supported either. The complete multi-valued value is to be provided.  Only non-dimensional components (measure, attribute or data-related reference metadata values) can be **omitted** as long as at least one of those components is present. Bulk merges are thus not supported. Only the provided values are merged.  Dimension values for higher-level (data-related reference metadata) attributes can be **switched-off** (see the format specifications) when those are not attached to these dimensions.  All observations as well as the sets of data-related reference metadata attributes at specific dimension combinations impacted by the `Merge` action change their time stamp when used to update an SDMX storage system.
+- `Replace`: Data or data-related reference metadata is to be replaced, through either update, insert or delete depending on already existing information. A full replacement is hereby assumed to take place at specific "replacement levels": for entire observations and for any specific dimension combination for data-related reference metadata attributes. Within these "replacement levels" the provided values are inserted or updated, and omitted values are deleted. Values provided for the other attributes (those above the observation level) are merged (see `Merge` action).  Only non-dimensional components (measure, attribute or reference metadata values) can be **omitted**. Bulk replacing is thus not supported.  Dimension values for higher-level (data-related reference metadata) attributes can be **switched-off** (see the format specifications) when those are not attached to these dimensions.  Replacing non-existing elements is not resulting in an error.  All observations as well as the sets of data-related reference metadata attributes at specific dimension combinations impacted by the `Replace` action change their time stamp when used to update an SDMX storage system.  Because the `Replace` action always takes place at specific levels, it cannot be used to replace a whole dataset or a whole series. However, a "*replace all*" effect can be achieved by combining a `Delete` dataset containing a completely wildcarded key (where all dimension values are omitted) with a `Merge` or `Replace` dataset within the same data message. Similarly, to replace a whole series, a message can combine a `Delete` dataset containing only the partial key of the series (where the not used dimension values are omitted) with a `Merge` or `Replace` dataset for that series.
+- `Delete`: Data or data-related reference metadata is to be deleted. Deletion is hereby assumed to take place at the lowest level of detail provided in the message.  Any component (including dimensions) can be **omitted**, which allows for bulk deletions. Partially omitting non-dimension component values allows restricting the deletion of measure, attribute or data-related reference metadata values to the ones being present. Instead of real values for non-dimensional components, it is sufficient to use any valid value.  With this, all dataflow data, any slices of observations for dimension groups such as time series, observations or individual measure, attribute and data-related reference metadata attributes values can be deleted.  Dimension values for higher-level (data-related reference metadata) attributes can be **switched-off** (see the format specifications) when those are not attached to these dimensions.  Deleting non-existing elements or values is not resulting in an error.  All observations as well as the sets of attributes and data-related reference metadata at higher partial keys impacted by the *Delete* action change their time stamp when used to update an SDMX storage system.
+- `Append`: Deprecated. When used to update an SDMX storage system, the `Merge` action is assumed.
+- `Information`: Deprecated. When used to update an SDMX storage system, the `Merge` action is assumed.
 
 The `ToValueType` data type contains the attributes to support
 transformations defined in the `StructureMap` (see Section 0).
@@ -196,6 +194,7 @@ The `ItemScheme` is the basis for `CategoryScheme`, `Codelist`,
 ### Class Diagram
 
 ![](media/image39.png)
+![](media/sdmx_base-item_scheme_pattern.svg)
 /// figure-caption
 The Item Scheme pattern
 ///
@@ -274,11 +273,13 @@ common software and common syntax structures.
 ### Class Diagrams
 
 ![](media/image40.png){ width="450" }
+![](media/sdmx_base-structure_pattern.svg){ width="450" }
 /// figure-caption
 The Structure Pattern
 ///
 
 ![](media/image41.png){ height="550" }
+![](media/sdmx_base-structure_pattern_representation.svg){ height="550" }
 /// figure-caption
 Representation within the Structure Pattern
 ///

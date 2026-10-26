@@ -23,7 +23,7 @@ site.
 ## Version Branches
 
 Each minor release of this component is maintained on a dedicated documentation
-branch following the naming convention `docs_vMAJOR.MINOR` (e.g., `docs_v3.1`).
+branch following the naming convention `docs_vMAJOR.MINOR` (e.g., `docs_v3.2`).
 These branches exist solely to support the documentation website and are not
 used for regular development. They preserve an old minor documentation version
 and accept only small MkDocs, formatting, and equivalent presentation

@@ -17,6 +17,7 @@ used.
 ### Class Diagram
 
 ![](media/image72.png)
+![](media/sdmx_process-process_inheritance.svg)
 /// figure-caption | 46
 Inheritance and Relationship class diagram of Process and
 Transitions
@@ -57,6 +58,6 @@ variants.
 |  | `+description` | Text describing or giving additional information about the computation. This can be in multiple language variants. |
 | `Transition` | Inherits from `IdentifiableArtefact` | An expression in a textual or formalised way of the transformation of data between two specific operations (processes) performed on the data. |
 |  | `+target` | Associates the process step that is the target of the transition. |
-|  | `+condition` | Associates a textual description of the transition. |
+|  | `+condition` | Associates a textual description of the transition. This can be in multiple language variants. |
 | `ProcessArtefact` |  | Identification of an object that is an input to or an output from a process step. |
 |  | `+artefact` | Association to an identifiable artefact that is the input to or the output from the process step. |

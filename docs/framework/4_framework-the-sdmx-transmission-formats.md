@@ -4,8 +4,8 @@
 
 SDMX-ML is the XML transmission format specification for exchanging
 structural metadata, data and reference metadata, and interacting with
-SDMX registry services. It is designed as a general-purpose format for
-all automation and data / metadata exchange tasks, and provides the most
+SDMX registry services based on XML messages. It is designed as a general-purpose format for
+all automation and data / metadata exchange tasks, and provides 
 complete coverage.
 
 There are four distinct types of message:
@@ -59,8 +59,8 @@ XML Structure-specific Data format by contrast carries only code IDs
 thus requiring applications obtain and hold structural metadata about
 the data set in order to display the content in human-readable form.
 
-SDMX-JSON does not include messages for subscription / notification or
-registration registry services - SDMX-ML must be used for those
+SDMX-JSON does yet not include messages for subscription / notification or
+registration registry services - SDMX-ML must still be used for those
 purposes.
 
 There are three distinct message types:

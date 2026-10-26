@@ -473,11 +473,11 @@ the version string. So, if the version of your artefact is currently
 `1.10`, use `1.10.0-notfinal` instead. Indeed, other extensions can be used
 depending on your use case.
 
-**I have adopted SDMX 3.0 with the semantic versioning conventions for
-the version strings of all my artefacts, regardless of whether these are
+**I have adopted SDMX 3.0 with the semantic versioning conventions for 
+the version strings of all my artefacts, regardless of whether these are 
 stable (e.g. `1.0.0`) or unstable (e.g. `1.0.0-notfinal`, `1.0.0-draft`,
-etc.). However, I still receive artefacts from organizations that have
-not yet adopted SemVer conventions for the version strings. How should I
+etc.). However, I still receive artefacts from organizations that have 
+not yet adopted SemVer conventions for the version strings. How should I 
 treat these?**
 
 The only artefacts that are safe to use, are those that are semantically
@@ -499,3 +499,10 @@ version to SDMX 3.0 and while doing so to apply the appropriate new
 semantic version string. From that point onwards, you can enjoy the
 advantages of the new SDMX versioning features for all those artefacts
 that require appropriate versioning.
+
+**What happens to the `validFrom` and `validTo` properties for 
+semantically-versioned artefacts?**
+
+The `validFrom` and `validTo` properties of versionable artefacts do not
+apply to semantically versioned artefacts as those are immutable and 
+permanently valid. However, they can still be used for non-versioned artefacts.

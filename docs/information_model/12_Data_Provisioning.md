@@ -3,6 +3,7 @@
 ## Class Diagram
 
 ![](media/image70.png){ width="550" }
+![](media/sdmx_registry-dataprovisioning.svg){ width="550" }
 /// figure-caption | 44
 Relationship and inheritance class diagram of data/metadata
 provisioning

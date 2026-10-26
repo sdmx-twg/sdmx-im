@@ -26,6 +26,7 @@ for the given source value(s)’.
 ### Class Diagram – Relationship
 
 ![](media/image65.png)
+![](media/sdmx_mapping-representationmap.svg)
 /// figure-caption | 39
 Representation Map
 ///
@@ -37,15 +38,16 @@ Representation Map
 The `RepresentationMap` is a `MaintainableArtefact`. It maps one or more
 source values to one or more target values, where values that are being
 mapped are defined by the `ValueRepresentation`. A `ValueRepresentation`
-is an abstract container which is either a Codelist, `ValueList` or a
+is an abstract container which is either a `Codelist`, `ValueList` or a
 `FacetValueType`. Source and target values are in a list where the list
 order is important as the `RepresentationMapping` `sourceValues` and
 `targetValues` must match the order. It is permissible to mix types for
-both source and target values, allowing for example a Codelist to map to
+both source and target values, allowing for example a `Codelist` to map to
 an Integer (which is a `FacetValueType`). The list of source or targets
-can also be mixed, for example a Codelist in conjunction with a
+can also be mixed, for example a `Codelist` in conjunction with a
 `FacetValueType` and `ValueList` and can be defined as the source of a
-mapping, thus allowing rules such as `When CL_AREA=UK AND AGE=26 CURRENCY=$`.
+mapping, thus allowing rules such as `When CL_AREA=UK AND AGE=26 CURRENCY=$`. 
+The usage of a `RepresentationMapping` can be restricted over time according to business validity.
 
 #### Definitions
 
@@ -55,8 +57,8 @@ mapping, thus allowing rules such as `When CL_AREA=UK AND AGE=26 CURRENCY=$`.
 |  | `source` | Association to one or more `Codelist`, `ValueList`, or `FacetValue` — mixed types are permissible |
 |  | `target` | Association to one or more `Codelist`, `ValueList`, or `FacetValue` — mixed types are permissible |
 | `RepresentationMapping` | Inherits from `AnnotableArtefact` | Describes how the source value(s) map to the target value(s) |
-|  | `validFrom` | Optional period describing when the mapping is applicable |
-|  | `validTo` | Optional period describing when the mapping is no longer applicable |
+|  | `validFrom` | A `StandardTimePeriodType`. Optionally used for business validity: The mapping is only applicable to values those Time Periods start earliest at the start of the time period defined in this property. |
+|  | `validTo` | A `StandardTimePeriodType`. Optionally used for business validity: The mapping is only applicable to values those Time Periods end latest at the end of the time period defined in this property.  |
 |  | `sourceValues` | Input value for source in the `RepresentationMap` |
 |  | `targetValues` | Output value for each mapped target in the `RepresentationMap` |
 | `MappedValue` |  | Describes an input value that is part of the `sourceValues` in a `RepresentationMapping` |

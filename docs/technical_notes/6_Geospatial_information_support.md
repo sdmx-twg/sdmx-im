@@ -239,14 +239,14 @@ of the specification according to the proposed syntax.
 Geography is represented by geospatial information. Within SDMX,
 geospatial information is conceptually represented by the
 `"GEO_FEATURE_SET"` role/specification. This approach uses a specialized
-form of SDMX Codelist, named `"GeoCodelist"`, which is a Codelist
+abstract form of SDMX Codelist, named `"GeoCodelist"`, which is a Codelist
 containing the Geography used to demarcate the geographic extent. This
 is implemented in two ways:
 
 1. `Geographic`. It is a regular codelist that has been extended to add a
     geographical feature set to each of its items, typically, this would
     include all types of administrative geographies;
-2. `Grid`. As a codelist that has defined a geographical grid composed of
+2. `GeoGrid`. As a codelist that has defined a geographical grid composed of
     cells representing regular squared portions of the Earth.
 
 A `GeoCodelist` is a Codelist as defined in the SDMX Information Model
@@ -259,9 +259,9 @@ When the `GeoCodelist` includes a `GeoType="Geographic"` property, a
 implement a Geographic `GeoCodelist`.
 
 On the other hand, when `GeoType="GeoGrid"` it is defining a gridded
-`GeoCodelist`, and it is necessary to add a grid definition to the
-Codelist identifier using the `gridDefinition` property. The components
-needed to define a geographical grid are the following:
+`GeoCodelist`, and it is necessary to add a grid definition using the 
+`gridDefinition` property. The components needed to define a geographical 
+grid are the following:
 
 - `CRS`: The code of the Coordinate Reference System is used to
     reference the coordinates in the flow, optional. The code of the CRS

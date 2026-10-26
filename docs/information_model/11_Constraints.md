@@ -28,6 +28,7 @@ These specifications are called `Constraint` in this model.
 ### Class Diagram of Constrainable Artefacts - Inheritance
 
 ![](media/image67.png)
+![](media/sdmx_registry-constrainable_inheritance.svg)
 /// figure-caption | 41
 Inheritance class diagram of constrainable and provisioning
 artefacts
@@ -67,6 +68,7 @@ applicable only to the DSDs / MSDs which contain the Components being restricted
 ### Relationship Class Diagram – high level view
 
 ![](media/image68.png)
+![](media/sdmx_registry-constraint_relationship_high_level.svg)
 ///  figure-caption
 Relationship class diagram showing constraint metadata
 ///
@@ -115,6 +117,7 @@ the DSD that it is attached to.
 ### Relationship Class Diagram – Detail
 
 ![](media/image69.png){ width="550" }
+![](media/sdmx_registry-constraint_relationship.svg){ width="550" }
 ///  figure-caption
 Constraints – Key Set, Cube Region and Metadata Target Region
 ///
@@ -200,7 +203,7 @@ or value is constrained.
 
 | Class | Feature | Description |
 | :--- | :--- | :--- |
-| `ConstrainableArtefact` | Abstract Class Sub classes are: `Dataflow` `DataProvider` `DataStructureDefinition` `Metadataflow` `MetadataProvisionAgreement` `MetadataSet` `MetadataStructureDefinition` `ProvisionAgreement` `QueryDatasource` `SimpleDatasource` | An artefact that can have Constraints specified. |
+| `ConstrainableArtefact` | Abstract Class Sub classes are: `Dataflow` `DataProvider` `DataStructureDefinition` `Metadataflow` `MetadataProvisionAgreement` `MetadataSet` `MetadataStructureDefinition` `ProvisionAgreement` | An artefact that can have Constraints specified. |
 |  | `content` | Associates the metadata that constrains the content to be found in a data or metadata source linked to the Constrainable Artefact. |
 | `Constraint` | Inherits from `MaintainableArtefact` Abstract class Sub classes are: `DataConstraint` `MetadataConstraint` | Specifies a subset of the definition of the allowable or actual content of a data or metadata source that can be derived from the Structure that defines code lists and other valid content. |
 |  | `+dataContentKeys` | Association to a subset of Data Key Sets (i.e., value combinations) that can be derived from the definition of the structure to which the Constrainable Artefact is linked. |

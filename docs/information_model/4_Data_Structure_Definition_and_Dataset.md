@@ -2,10 +2,7 @@
 
 ## Introduction
 
-The `DataStructureDefiniton` is the class name for a structure definition
-for data. Some organisations know this type of definition as a “Key
-Family” and so the two names are synonymous. The term Data Structure
-Definition (also referred to as DSD) is used in this specification.
+The `DataStructureDefiniton` (also referred to as DSD) is the class name for a structure definition for data, previously known as “Key Family”.
 
 Many of the constructs in this layer of the model inherit from the SDMX
 Base Layer. Therefore, it is necessary to study both the inheritance and
@@ -38,6 +35,7 @@ depends upon the requirements of the class for:
 ### Class Diagram
 
 ![](media/image53.png){ width="550" }
+![](media/sdmx_datastructure-datastructuredefinition_inheritance.svg){ width="550" }
 /// figure-caption | 27
 Class inheritance in the Data Structure Definition and
 Data Set Packages
@@ -133,6 +131,7 @@ required.
 ### Class Diagram 
 
 ![](media/image54.png)
+![](media/sdmx_datastructure-datastructuredefinition_relationship.svg)
 /// figure-caption
 Relationship class diagram of the Data Structure Definition excluding representation
 ///
@@ -144,21 +143,17 @@ Relationship class diagram of the Data Structure Definition excluding representa
 
 A `DataStructureDefinition` defines the `Dimension`s, `TimeDimension`,
 `DataAttributes`, and `Measure`s, and associated `Representation`s, that
-comprise the valid structure of data and related attributes that are
-contained in a `DataSet`, which is defined by a `Dataflow`. In addition, a
-`DataStructureDefinition` may be related to one
-`MetadataStructureDefinition`, in order to use the latter’s
+comprise the valid structure of data and related attributes that may be
+contained in a `DataSet`. In addition, a
+`DataStructureDefinition` may be extended by one or more
+`MetadataStructureDefinition`s, in order to use their
 `MetadataAttributes`, by relating them to other `Components` within the
-DSD, as explained below.
+DSD, as explained below. In case of a conflict (duplicated identifier or concept), 
+only the first occurrence of the `MetadataAttribute` is taken into account for the extension.
 
-The `Dataflow` may also have additional metadata attached that define
-qualitative information and Constraints on the use of the
-`DataStructureDefinition` such as the subset of `Code`s used in a `Dimension`
-(this is covered later in this document – see sections [Constraints](./11_Constraints.md)
+The `Dataflow` can be used too to define the content of a `DataSet`. It inherits the underlying data structure from one referenced `DataStructureDefinition`, which can be further constrained to a subset of `Code`s used in its `Dimension`s by the means of `Constraint`s (this is covered later in this document – see sections [Constraints](./11_Constraints.md)
 and 
-[Data Provisioning](./12_Data_Provisioning.md)). Each `Dataflow` has a maximum of one
-`DataStructureDefinition` specified which defines the structure of any
-`DataSets` to be reported/disseminated.
+[Data Provisioning](./12_Data_Provisioning.md)).  
 A `Dataflow` may optionally define which `Dimensions` it uses, by defining a
 `DimensionConstraint` (this is a mandatory requirement if the
 `DataStructureDefinition` sets its `evolvingStructure` property to `‘true’` and 
@@ -194,7 +189,7 @@ defined by the `Representation`. This `Representation` is taken from the
 `DataStructureDefinition` (`localRepresentation`) – see Figure 28. Note also
 that `TimeDimension` is constrained to specific `FacetValueTypes`. Moreover,
 the `Representation`s of `MetadataAttributes` are specified in the
-corresponding `MetadataStructureDefinition`, linked by the
+corresponding `MetadataStructureDefinition`s, referenced by the
 `DataStructureDefinition`.
 
 There will always be a `DimensionDescriptor` grouping that identifies all
@@ -222,17 +217,25 @@ occurrences), as well as a `minOccurs` attribute, indicating the minimum
 required number of values, when the `Measure` is reported. If `minOccurs` or
 `maxOccurs` are omitted (they both default to ‘1’), the `Measure` is
 considered to take a single value; otherwise, it is an array. Moreover,
-the usage attribute indicates whether a `Measure` must be reported or not,
-by the corresponding values: mandatory or optional.
+the `usage` attribute indicates whether a `Measure`must be present or not in 
+situations where full consistence is required, e.g., in a data store,
+by the corresponding values: mandatory or optional. Note that `DataSet`s do 
+not need to contain mandatory measure values when used for [efficient data 
+exchanges](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/data.md#efficient-data-exchanges) and in [data replication scenarios](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/data.md#data-replication), where data already contained 
+in a data store are updated or revised.
 
 The `AttributeDescriptor` may contain one or more `Attribute`s, i.e., at
 least one `DataAttribute` definition or one `MetadataAttribute` reference.
 
-The `DataAttribute` defines a characteristic of data that are collected or
-disseminated and is grouped in the `DataStructureDefinition` by a single
-`AttributeDescriptor`. The `DataAttribute` can be indicated if it must be
-reported or not, by the corresponding value of the usage attribute:
-i.e., mandatory or optional. The property `minOccurs` specifies the
+The `DataAttribute` defines a characteristic of the underlying data and is 
+grouped in the `DataStructureDefinition` by a single `AttributeDescriptor`. 
+The `DataAttribute` can be indicated if it must be present or not in 
+situations where full consistence is required, e.g., in a data store, 
+by the corresponding value of the `usage` attribute: i.e., mandatory or 
+optional. Note that `DataSet`s do not need to contain mandatory attribute 
+values when used for [efficient data 
+exchanges](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/data.md#efficient-data-exchanges) and in [data replication scenarios](https://github.com/sdmx-twg/sdmx-rest/blob/master/doc/data.md#data-replication), where data already contained in a data store are updated or revised. 
+The property `minOccurs` specifies the
 minimum number of array values to be included when the `DataAttribute` is
 reported. Moreover, a `maxOccurs` attribute indicates whether the
 `DataAttribute` may need to report more than one values, i.e., an array of
@@ -269,6 +272,7 @@ related to one of the following artefacts:
     `Measure`s.
 
 ![](media/image55.png)
+![](media/sdmx_datastructure-attribute_relationship.svg)
 /// figure-caption
 Attribute Attachment Defined in the Data Structure Definition
 ///
@@ -286,6 +290,7 @@ therefore only one of the following is possible.
 
 
 ![](media/image56.png)
+![](media/sdmx_datastructure-datastructuredefinition_representation.svg)
 /// figure-caption
 Representation of DSD Components
 ///
@@ -297,7 +302,7 @@ Each of `Dimension`, `TimeDimension`, `Measure`, `DataAttribute` and
 (`coreRepresentation`) is used. `Measure`, and `DataAttribute` may be also
 represented by multilingual text (as seen in the `DataSet` diagram further
 down). An exception is the `MetadataAttribute`, where its `Representation`
-is specified in the `MetadataStructureDefinition`.
+is specified in the `MetadataStructureDefinition`s.
 
 A `DataStructureDefinition` can be extended to form a derived
 `DataStructureDefinition`. This is supported in the `StructureMap`.
@@ -311,7 +316,8 @@ A `DataStructureDefinition` can be extended to form a derived
 |  | `/structure` | Associates a `Dataflow` to the `DataStructureDefinition`. |
 |  | `dimensionConstraint` | A list of Dimensions which the `Dataflow` uses. This is only required when the referenced `DataStructureDefinition` has the `evolvingStructure` property set to `true` and when the association to the `DataStructureDefinition` is on the latest minor version.[^1] |
 | `DataStructureDefinition` |  | A collection of metadata concepts, their structure and usage when used to collect or disseminate data. |
-|  | `/grouping` | An association to a set of metadata concepts that have an identified structural role in a `DataStructureDefinition`. |
+|  | `/grouping` | An association to a set of metadata concepts `GroupDimensionDescriptor`, `DimensionDescriptor`, `AttributeDescriptor`, `MeasureDescriptor`) that have an identified structural role in a `DataStructureDefinition`. |
+|  | `/metadata` | An association to one or more `MetadataStructureDefinition`s that extend the `DataStructureDefinition` in order to use their `MetadataAttribute` components. |
 |  | `evolvingStructure` | An optional boolean property, defaulting to `false`. When `true` the DataStructureDefinition may have new Dimensions added without having to change its major version number.  |
 | `GroupDimensionDescriptor` | Inherits from `ComponentList` | A set of metadata concepts that define a partial key derived from the `DimensionDescriptor` in a `DataStructureDefinition`. |
 |  | `/components` | An association to the `Dimension` components that comprise the group. |
@@ -331,14 +337,14 @@ A `DataStructureDefinition` can be extended to form a derived
 |  | `/role` | Association to the `Concept` that specifies the role that the `DataAttribute` plays in the `DataStructureDefinition`. |
 |  | `minOccurs` | Defines the minimum required occurrences for the attribute. When equal to zero, the attribute is conditional. |
 |  | `maxOccurs` | Defines the maximum allowed occurrences for the attribute. |
-|  | `Usage` | Defines whether a `DataAttribute` must be reported or not. |
+|  | `usage` | Defines whether a `DataAttribute` must be present or not in situations where full consistence is required, e.g., in a data store. |
 |  | `+relatedTo` | Association to an `AttributeRelationship`. |
 |  | `/conceptIdentity` | An association to the `Concept` which defines the semantic of the component. |
 | `Measure` | Inherits from `Component` | The metadata concept that is the phenomenon to be measured in a data set. In a data set the instance of the measure is often called the observation. |
 |  | `/conceptIdentity` | An association to the `Concept` which carries the values of the measures. |
 |  | `minOccurs` | Defines the minimum required occurrences for the `Measure`. When equal to zero, the `Measure` is conditional. |
 |  | `maxOccurs` | Defines the maximum allowed occurrences for the `Measure`. |
-|  | `Usage` | Defines whether a `Measure` must be reported or not. |
+|  | `usage` | Defines whether a `Measure` must be present or not in situations where full consistence is required, e.g., in a data store. |
 | `AttributeRelationship` | Abstract class<br>Sub classes: `ObservationRelationship`, `GroupRelationship`, `DimensionRelationship` | Specifies the type of artefact to which a `DataAttribute` can be attached in a data set. |
 | `ObservationRelationship` |  | The `DataAttribute` is related to the observations of the data set. |
 | `GroupRelationship` |  | The `DataAttribute` is related to a `GroupDimensionDescriptor` construct. |
@@ -372,6 +378,7 @@ metadata that are collected or disseminated according to a known
 ### Class Diagram
 
 ![](media/image57.png){ width="550" }
+![](media/sdmx_dataset.svg){ width="550" }
 /// figure-caption
 Class Diagram of the Data Set
 ///
@@ -451,9 +458,9 @@ or more `AttributeValue`s that define some metadata about the object to
 which it is associated. The `AttributeValue` may be either a
 `DataAttributeValue` or a `MetadataAttributeValue`, representing values
 of `DataAttributes` defined in the DSD or `MetadataAttributes` of the linked
-MSD, respectively. The allowable `Concept`s and the objects to which these
+MSDs, respectively. The allowable `Concept`s and the objects to which these
 metadata can be associated (attached) are defined in the
-`DataStructureDefinition` and the linked `MetadataStructureDefinition`.
+`DataStructureDefinition` and the linked `MetadataStructureDefinition`s.
 
 The `AttributeValue` links to the object type (`SeriesKey`, `GroupKey`,
 Observation) to which it is associated.
@@ -507,7 +514,7 @@ Observation) to which it is associated.
 | `AttributeValue` | Abstract class. Subclasses: `DataAttributeValue`, `MetadataAttributeValue` | Represents the value for any Attribute reported in the Dataset, i.e., Data or Metadata Attribute. |
 | `DataAttributeValue` | Abstract class. Inherits from `AttributeValue`. Subclasses: `UncodedAttributeValue`, `CodedAttributeValue` | The value of a Data Attribute, such as the instance of a Coded Attribute or of an Uncoded Attribute in a structure such as a Data Structure Definition. |
 |  | `valueFor` | Association to the Data Attribute defined in the Data Structure Definition. Note that this is conceptual association as the `Concept` is identified explicitly in the data set. The source multiplicity (1..*) indicates the possibility to provide more than one value for a Data Attribute, if the latter allows it. |
-| `MetadataAttributeValue` | (explained further in section "Metadata Set") | The value of a Metadata Attribute, as specified in the Metadata Structure Definition, which is linked in the Data Structure Definition. |
+| `MetadataAttributeValue` | (explained further in section "Metadata Set") | The value of a Metadata Attribute, as specified in the Metadata Structure Definitions, which are linked in the Data Structure Definition. |
 | `UncodedAttributeValue` | Abstract class. Inherits from `AttributeValue`. Subclasses: `OtherUncodedAttributeValue`, `TextAttributeValue` |  |
 | `OtherUncodedAttributeValue` | Inherits from `UncodedAttributeValue` | An attribute value that has a text value. |
 |  | `value` | The value of the Uncoded attribute. |

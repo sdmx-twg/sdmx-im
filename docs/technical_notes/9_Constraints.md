@@ -2,13 +2,13 @@
 
 ## Introduction
 
-Constraints are used as a way to restrict what data can be reported, or to
-report what data exists in a given context.  There are three types of Constraint,
+Constraints are used as a way to restrict what data can be transmitted and stored, or to
+communicate what data exists in a given context.  There are three types of Constraint,
 which serve different purposes
 
 - Availability Constraint
 - Dimension Constraint
-- Reporting Constraints
+- Content Constraints
 
 An Availability Constraint defines the data that exists in the context of a data
 query. They form part of the response message from the Availability REST API.
@@ -21,8 +21,8 @@ Dimensions that they use in the Data Structure Definition which they use.
 Dimension Constraints enable Data Structure Definitions to evolve over time by
 having new Dimensions added, without having to undergo a major version change.  
 
-A Reporting Constraint is used to define the set of allowed and/or disallowed
-values that can be reported in a data or metadata set.
+A Content Constraint is used to define the set of allowed and/or disallowed
+values that can be transmitted in a data or metadata set and that can be stored.
 
 ## Availability Constraint
 
@@ -109,13 +109,13 @@ the series related to DF_POP.
 | DF_POP   | A    | FR       | ~   | ~   | 50        | 2022        | 6    |
 | DF_POP_SA| A    | UK       | M   | 1   | 1.2       | 2022        | 6    |
 
-## Reporting Constraints
+## Content Constraints
 
-A Reporting Constraint is a Maintainable Artefact which restricts the values
-that can be reported in a dataset or metadata set based on one or more inclusion
-or exclusion rules.  
+A Content Constraint is a Maintainable Artefact which restricts the values
+that can be transmitted in a dataset or metadata set or that can be stored 
+based on one or more inclusion or exclusion rules.  
 
-A reporting constraint is one of the following concrete types:
+A content constraint is one of the following concrete types:
 
 - Data Constraint
 - Metadata Constraint
@@ -123,7 +123,7 @@ A reporting constraint is one of the following concrete types:
 ### Data Constraint
 
 A Data Constraint is used to add additional restrictions to the allowable values
-reported in a dataset.  Data Constraints can be applied to the follow structures
+transmitted in a dataset and stored. Data Constraints can be applied to the follow structures
 which are collectively known as Constrainable structures:
 
 - Data Structure Definition
@@ -138,7 +138,7 @@ object relates.
 ### Metadata Constraint
 
 A Metadata Constraint is used to add additional restrictions to the allowable
-values reported in a metadataset.  Metadata Constraints can be applied to the
+values transmitted in a metadataset and stored.  Metadata Constraints can be applied to the
 follow structures which are collectively known as Constrainable structures:
 
 - Metadata Structure Definition
@@ -146,7 +146,7 @@ follow structures which are collectively known as Constrainable structures:
 - Metadata Provision Agreement
 - Metadata Provider
 
-Note regardless of the Constrainable structure,  the restricted values relate to
+Note regardless of the Constrainable structure, the restricted values relate to
 the allowable content for the Component of the MSD to which the constrained
 object relates.  
 
@@ -247,7 +247,7 @@ Finally, a validity period may be specified per Key.
 ### Versioning
 
 When Data and Metadata Constraints are versioned, the latest version of the
-Constraint is used to generate the reporting restriction rules; all previous
+Constraint is used to generate the content restriction rules; all previous
 versions are for historical information only.
 
 If restrictions are applicable to certain periods in time, the validFrom and
@@ -272,7 +272,7 @@ able to maintain a complete set of reporting restrictions for current and past d
     |           | DE          |            |          |
 
 When both versions of the Data Constraint are in a system, an observation value
-reported against COUNTRY FR for time period 2013 would be deemed invalid as the
+for COUNTRY FR and for time period 2013 would be deemed invalid as the
 1.1.0 rule would be applied.
 
 ### Inheritance

@@ -264,11 +264,7 @@ Static properties.
 
 - Upon creation of a series the sender has to provide to the receiver
     values for all mandatory attributes. In case they are available,
-    values for conditional attributes should also be provided. Whereas
-    initially this information may be provided by means other than
-    SDMX-ML/JSON/CSV messages (e.g., paper, telephone) it is expected
-    that partner institutions will be in a position to provide this
-    information in the available formats over time.
+    values for conditional attributes should also be provided.
 - A centre may agree with its data exchange partners special
     procedures for authorising the setting of attributes' initial
     values.
@@ -276,46 +272,17 @@ Static properties.
 Communication of changes to the centre.
 
 - Following the creation of a series, the attribute values do not have
-    to be reported again by senders, as long as they do not change.
-- Whenever changes in attribute values for a series (or group) occur,
-    the reporting institutions should report either all attribute values
-    again (this is the recommended option) or only the attribute values
-    which have changed. This applies both to the mandatory and the
-    conditional attributes. For example, if a previously reported value
+    to be reported again by senders, as long as they do not change. This 
+    applies both to the mandatory and the conditional attributes. 
+    However, if a previously reported value
     for a conditional attribute is no longer valid, this has to be
     reported to the centre.
 - A centre may agree with its data exchange partners special
     procedures for authorising modifications in the attribute values.
-- Communication of observation level attributes "observation status",
-    "observation confidentiality", "observation pre-break" is
-    recommended.
-- Whenever an observation is exchanged, the corresponding observation
-    status is recommended to also be exchanged attached to the
-    observation, regardless of whether it has changed or not since the
-    previous data exchange.
-- If the "observation status" changes and the observation remains
-    unchanged, both components would have to be reported (unless the
-    observation is deleted).
 
-    For Data Structure Definitions having also the observation level
-    attributes "observation confidentiality" and "observation pre-break"
-    defined, this rule applies to these attributes as well: if an
-    institution receives from another institution an observation with an
-    observation status attribute only attached, this means that the
-    associated observation confidentiality and pre-break observation
-    attributes either never existed or from now they do not have a value for
-    this observation.
+#### "Frequency" related issues
 
-### Best Practices for Batch Data Exchange
-
-#### Introduction
-
-Batch data exchange is the exchange and maintenance of entire databases
-between counterparties. It is an activity that often employs SDMX-CSV
-format, and might also use the SDMX-ML dataset. The following points
-apply equally to both formats.
-
-#### Positioning of the Dimension "Frequency"
+##### Positioning of the Dimension "Frequency"
 
 In SDMX 3.0, the "frequency" dimension is not special in the data
 structure definition. Many central institutions devising structural
@@ -325,48 +292,7 @@ in the key structure. Nevertheless, a standard role (i.e., that of
 This is necessary to frequency's crucial role in several database
 systems and in attaching attributes at the "sibling" group level.
 
-#### Identification of Data Structure Definitions (DSDs)
-
-In order to facilitate the easy and immediate recognition of the
-structural definition maintenance agency that defined a data structure
-definition, some central institutions devising structural definitions
-use the first characters of the data structure definition identifiers to
-identify their institution: e.g., BIS\_EER, EUROSTAT\_BOP\_01,
-ECB\_BOP1, etc. Nevertheless, using the `AgencyId` may disambiguate any
-Artefact in a more efficient and machine readable way.
-
-#### Identification of the Dataflows
-
-In order to facilitate the easy and immediate recognition of the
-institution administrating a Dataflow, some central institutions prefer
-to use the first characters of the Dataflow identifiers to identify
-their institution: e.g. `BIS_EER`, `ECB_BOP1`, `ECB_BOP1`, etc.
-Nevertheless, using the `AgencyId` may disambiguate any Artefact in a more
-efficient and machine readable way.
-
-The statistical information in SDMX is broken down into two fundamental
-parts – structural metadata (comprising the `DataStructureDefinition`, and
-associated `Concepts` and `Codelists`) – see Framework for Standards – and
-observational data (the `DataSet`). This is an important distinction, with
-specific terminology associated with each part. Data, which is typically
-a set of numeric observations at specific points in time, is organised
-into data sets (`DataSet`). These data sets are structured according to a
-specific `DataStructureDefinition` and are described in the `Dataflow` (via
-`Constraints`). The `DataStructureDefinition` describes the metadata that
-allows an understanding of what is expressed in the `DataSet`, whilst the
-`Dataflow` provides the identifier and other important information (such
-as the periodicity of reporting) that is common to all its Components.
-
-Note that the role of the `Dataflow` and `DataSet` is very specific in the
-model, and the terminology used may not be the same as used in all
-organisations, and specifically the term `DataSet` is used differently in
-SDMX than in GESMES/TS. Essentially the GESMES/TS term "Data Set" is, in
-SDMX, the "Dataflow" whilst the term "Data Set" in SDMX is used to
-describe the "container" for an instance of the data.
-
-#### Special Issues
-
-##### "Frequency" related issues
+##### Other Issues
 
 - **Special frequencies.** The issue of data collected at special
     (regular or irregular) intervals at a lower than daily frequency

@@ -33,6 +33,7 @@ diagrams in the specific sections below.
 ### Class Diagram
 
 ![](media/image42.png){ width="450" }
+![](media/sdmx_codelist-codelist.svg){ width="450" }
 /// figure-caption | 16
 Class diagram of the `Codelist`
 ///
@@ -45,8 +46,9 @@ The `Codelist` inherits from the `ItemScheme` and therefore has the
 following attributes:
 
 - `id`
-- `uri`
+- `agencyID`
 - `urn`
+- `+link`
 - `version`
 - `validFrom`
 - `validTo`
@@ -58,8 +60,8 @@ following attributes:
 The `Code` inherits from `Item` and has the following attributes:
 
 - `id`
-- `uri`
 - `urn`
+- `+link`
 
 Both `Codelist` and `Code` have the association to `InternationalString` to
 support a multi-lingual name, an optional multi-lingual description, and
@@ -69,7 +71,7 @@ Through the inheritance the `Codelist` comprise one or more `Code`s, and the
 `Code` itself can have one or more child `Code`s in the (inherited)
 hierarchy association. Note that a child `Code` can have only one parent
 `Code` in this association. A more complex Hierarchy, which allows
-multiple parents is described later.
+multiple parents is described later. The usage of a `Code` can be restricted over time according to business validity.
 
 A partial `Codelist` (where `isPartial` is set to `true`) is identical to a
 `Codelist` and contains the `Code` and associated names and descriptions,
@@ -82,20 +84,24 @@ paragraph "Explanation of the Diagram" - "Narrative".
 | Class    | Feature   | Description |
 | :---     | :---      | :--- |
 | `Codelist` | Inherits from: `ItemScheme` | A list from which some statistical concepts (coded concepts) take their values. |
-| `Code`     | Inherits from: `Item` | A language independent set of letters, numbers or symbols that represent a concept whose meaning is described in a natural language. |
+| `Code`   | Inherits from: `Item` | A language independent set of letters, numbers or symbols that represent a concept whose meaning is described in a natural language. |
+|          | `validFrom` | A `StandardTimePeriodType`. Optionally used for business validity: Values are only valid for this `Code` if their Time Periods start earliest at the start of the time period defined in this property. |
+|          | `validTo` | A `StandardTimePeriodType`. Optionally used for business validity: Values are only valid for this `Code` if their Time Periods end latest at the end of the time period defined in this property. |
 |          | hierarchy  | Associates the parent and the child codes. |
-|          | extends    | Associates a `Codelist` with any `Codelist`s that it may extend. |
+|          | extends    | Associates a `Codelist` with any `Codelist`s (of the same `Codelist` type) that it may extend. Not applicable to `GeoGridCodelist`s. |
 
 ### Class Diagram – `Codelist` Extension
 
 ![](media/image43.png){ width="450" }
+![](media/sdmx_codelist-codelist_extension.svg){ width="450" }
 /// figure-caption
 Class diagram for `Codelist` Extension
 ///
 
 #### Narrative
 
-A `Codelist` may extend other `Codelist`s via the `CodelistExtension` class.
+A `Codelist`, except `GeoGridCodelist`s, may extend other `Codelist`s 
+(of the same `Codelist` type) via the `CodelistExtension` class. 
 The latter, via the sequence, indicates the order of precedence of the
 extended `Codelist`s for conflict resolution of `Code`s. Besides that, the
 prefix property is used to ensure uniqueness of inherited `Code`s in the
@@ -119,7 +125,7 @@ to a set of `Code`s with common parts in their identifiers.
 
 | Class                  | Feature      | Description                                                                                                   |
 | :---                   | :---         | :---                                                                                                         |
-| `CodelistExtension`    |              | The association between `Codelist`s that may extend other `Codelist`s.                                           |
+| `CodelistExtension`    |              | The association between `Codelist`s that may extend other `Codelist`s (of the same `Codelist` type). Not applicable to `GeoGridCodelist`s. |
 |                        | `prefix`     | A prefix to be used for a `Codelist` used in an extension, in order to avoid `Code` Conflicts.                   |
 |                        | `sequence`   | The order that will be used when extending a `Codelist`, for resolving `Code` conflicts. The latest `Codelist` used overrides any previous `Codelist`. |
 | `Inclusive`Code`Selection` |             | The subset of `Code`s to be included when extending a `Codelist`.                                                |
@@ -133,12 +139,14 @@ to a set of `Code`s with common parts in their identifiers.
 The geospatial support is implemented via an extension of the normal
 `Codelist`. This is illustrated in the following diagrams.
 
-![](media/image44.png){ width="350" }
+![](media/image44.png){ width="450" }
+![](media/sdmx_geospatial-geospatial_inheritance.svg){ width="450" }
 /// figure-caption
 Inheritance for the `GeoCodelist`
 ///
 
-![](media/image45.png)
+![](media/image45.png){ width="450" }
+![](media/sdmx_geospatial-geospatial_relationship.svg){ width="450" }
 /// figure-caption
 Class diagram for Geospatial `Codelist`
 ///
@@ -180,6 +188,7 @@ are related to the `gridDefinition` specified in the `GeoGridCodelist`.
 ### Class Diagram
 
 ![](media/image46.png){ width="550" }
+![](media/sdmx_codelist-valuelist.svg){ width="550" }
 /// figure-caption
 Class diagram of the `ValueList`
 ///
@@ -192,8 +201,9 @@ A `ValueList` inherits from `EnumeratedList` (and hence the
 `MaintenableArtefact`) and thus has the following attributes:
 
 - `id`
-- `uri`
+- `agencyID`
 - `urn`
+- `+link`
 - `version`
 - `validFrom`
 - `validTo`
@@ -223,6 +233,7 @@ The `ValueList` can have one or more `ValueItems`.
 ### Class Diagram - Inheritance
 
 ![](media/image47.png){ width="550" }
+![](media/sdmx_conceptscheme-conceptscheme_inheritance.svg){ width="550" }
 /// figure-caption
 Class diagram of the Concept Scheme
 ///
@@ -233,8 +244,9 @@ The `ConceptScheme` inherits from the `ItemScheme` and therefore has the
 following attributes:
 
 - `id`
-- `uri`
+- `agencyID`
 - `urn`
+- `+link`
 - `version`
 - `validFrom`
 - `validTo`
@@ -246,9 +258,9 @@ following attributes:
 
 Concept inherits from Item and has the following attributes:
 
-- id
-- uri
-- urn
+- `id`
+- `urn`
+- `+link`
 
 Through the inheritance from `NameableArtefact` both `ConceptScheme` and
 Concept have the association to `InternationalString` to support a
@@ -269,7 +281,8 @@ paragraph "Explanation of the Diagram" - "Narrative".
 
 ### Class Diagram - Relationship
 
-![](media/image48.png)
+![](media/image48.png){ width="550" }
+![](media/sdmx_conceptscheme-conceptschemerelationship.svg){ width="550" }
 /// figure-caption
 Relationship class diagram of the Concept Scheme
 ///
@@ -332,6 +345,7 @@ to any set of `IdentiableArtefacts` in a Categorisation.
 ### Class diagram - Inheritance
 
 ![](media/image49.png){ width="350" }
+![](media/sdmx_categoryscheme-categoryscheme_inheritance.svg){ width="350" }
 /// figure-caption
 Inheritance Class diagram of the `Category` Scheme
 ///
@@ -345,8 +359,9 @@ The categories are modelled as a hierarchical `ItemScheme`. The
 attributes:
 
 - `id`
-- `uri`
+- `agencyID`
 - `urn`
+- `+link`
 - `version`
 - `validFrom`
 - `validTo`
@@ -358,8 +373,8 @@ attributes:
 `Category` inherits from `Item` and has the following attributes:
 
 - `id`
-- `uri`
 - `urn`
+- `+link`
 
 Both `CategoryScheme` and `Category` have the association to
 `InternationalString` to support a multi-lingual name, an optional
@@ -380,7 +395,8 @@ paragraph "Explanation of the Diagram" - "Narrative".
 
 ### Class diagram - Relationship
 
-![](media/image50.png)
+![](media/image50.png){ width="450" }
+![](media/sdmx_categoryscheme-categoryscheme_relationship.svg){ width="450" }
 /// figure-caption
 Relationship Class diagram of the `Category` Scheme
 ///
@@ -415,6 +431,7 @@ effect on the versioning of either the `CategoryScheme` or the
 ### Class Diagram
 
 ![](media/image51.png)
+![](media/sdmx_base-organisation_scheme.svg)
 /// figure-caption
 The Organisation Scheme class diagram
 ///
@@ -431,11 +448,13 @@ The `OrganisationScheme` can be one of five types:
 1. `AgencyScheme` – contains `Agency` which is restricted to a flat list of
     agencies (i.e., there is no hierarchy). Note that the SDMX system of
     (Maintenance) `Agency` can be hierarchic and this is explained in more
-    detail in the SDMX Standards Section 6 “Technical Notes”.
+    detail in the SDMX Standards Section 6 “Technical Notes”. It has a fixed 
+    id ('AGENCIES') and version (‘1.0’).
 2. `DataProviderScheme` – contains `DataProvider` which is restricted to a
     flat list of agencies (i.e., there is no hierarchy).
 3. `MetadataProviderScheme` – contains `MetadataProvider` which is
-    restricted to a flat list of agencies (i.e., there is no hierarchy).
+    restricted to a flat list of agencies (i.e., there is no hierarchy). 
+    It has a fixed id of 'METADATA_PROVIDERS'.
 4. `DataConsumerScheme` – contains `DataConsumer` which is restricted to a
     flat list of agencies (i.e., there is no hierarchy).
 5. `OrganisationUnitScheme` – contains `OrganisationUnit` which does
@@ -473,7 +492,7 @@ paragraph "Explanation of the Diagram" - "Narrative".
 |  | `email` | The Internet e-mail address of the contact. |
 |  | `X400` | The X400 address of the contact. |
 |  | `uri` | The URL address of the contact. |
-| `AgencyScheme` |  | A maintained collection of Maintenance Agencies. |
+| `AgencyScheme` |  | A maintained collection of Maintenance Agencies with a fixed id ('AGENCIES') and version (‘1.0’). |
 |  | `/items` | Association to the Maintenance Agency in the scheme. |
 | `DataProviderScheme` |  | A maintained collection of Data Providers. |
 |  | `/items` | Association to the Data Providers in the scheme. |
@@ -495,6 +514,7 @@ paragraph "Explanation of the Diagram" - "Narrative".
 ### Class Diagram
 
 ![](media/image52.png){ width="550" }
+![](media/sdmx_categoryscheme-reporting_taxonomy.svg){ width="550" }
 /// figure-caption
 Class diagram of the Reporting Taxonomy
 ///

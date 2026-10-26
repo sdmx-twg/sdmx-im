@@ -23,6 +23,7 @@ The absence of an output for an input is interpreted as ‘no output value
 for the given source value(s)’.
 
 ![](media/image66.png)
+![](media/sdmx_mapping-item_scheme_map.svg)
 /// figure-caption | 40
 Item Scheme Map
 ///
@@ -66,8 +67,8 @@ the source/target schemes.
 |  | `source` | Association to a source `ItemScheme` |
 |  | `target` | Association to a target `ItemScheme` |
 | `ItemMap` | Inherits from `AnnotableArtefact` | Describes how the source value maps to the target value |
-|  | `validFrom` | Optional period describing when the mapping is applicable |
-|  | `validTo` | Optional period describing when the mapping is no longer applicable |
+|  | `validFrom` | An `ObservationalTimePeriod`. Optional date-time (start of the given time period) from which the mapping is applicable. |
+|  | `validTo` | An `ObservationalTimePeriod`. Optional date-time (end of the given time period) from which the mapping ceases to be applicable. |
 |  | `sourceValue` | Input value for source |
 |  | `targetValue` | Output value for each mapped target |
 |  | `isRegEx` | If true, the `sourceValue` field should be treated as a regular expression when comparing with the source data |

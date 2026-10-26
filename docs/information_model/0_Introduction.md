@@ -21,6 +21,10 @@ Information Model. The complete set of documents is:
     interfaces, including subscription/notification,
     registration/submission of data and metadata, and querying.
 
+## Current version
+
+This document defines the Information Model for SDMX 3.2.
+
 ## Modelling Technique and Diagrammatic Notes
 
 The modelling technique used for the SDMX Information Model (SDMX-IM) is

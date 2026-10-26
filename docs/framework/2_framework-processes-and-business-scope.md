@@ -193,7 +193,7 @@ The formal objects in the information model are presented schematically
 in Figure 1, and are discussed in more detail elsewhere in this
 document.
 
-![](./media/image2.png){ height="850" }
+![](./media/sdmx_framework.svg){ height="850" }
 /// figure-caption
 High Level Schematic of Major Artefacts in the SDMX 3.0
 Information Model
@@ -515,7 +515,7 @@ package exchanged data; for describing web services to one another, to
 allow for easy integration into applications that use other web services
 as data resources.
 
-Version 3.1 has standardized on RESTful web services with a OpenAPI
+Since version 3.0, SDMX has standardized on RESTful web services with a OpenAPI
 specification published on the [SDMX Technical Working Group's GitHub
 repository](https://github.com/sdmx-twg). There are five 'resources':
 
