@@ -102,7 +102,7 @@ of its `TransformationScheme`.
 
 The correspondence between aliases and SDMX artefacts is defined within
 a `VtlMappingScheme`. An alias identifies one and just one SDMX artefact,
-i.e. different `VtlMapping`s of the same `VtlMappingScheme` cannot have
+i.e. two VTL mappings of the same `VtlMappingScheme` cannot have
 the same alias, while the same SDMX artefact can be referenced through
 different aliases (for example, when distinct VTL Data Sets are fed with
 different parts of the data of the same SDMX artefact, see the section
@@ -113,7 +113,7 @@ different parts of the data of the same SDMX artefact, see the section
     abbreviation of their URN have been deprecated in SDMX 3.2; thus, the
     SDMX artefacts are referenced through user-defined aliases (see the
     paragraph “User-defined alias” below), which are mapped to the URNs
-    of the artefacts by the `VtlMapping`s.
+    of the artefacts by the VTL mappings.
 
 The references through the URN and the abbreviated URN are described in
 the following paragraphs.
@@ -124,7 +124,7 @@ the following paragraphs.
     The references to SDMX artefacts through their URN, written directly
     in the VTL statements, have been deprecated in SDMX 3.2; thus, the
     SDMX artefacts are referenced through user-defined aliases, mapped to
-    their URN by the `VtlMapping`s (see the paragraph “User-defined alias”
+    their URN by the VTL mappings (see the paragraph “User-defined alias”
     below).
 
 This approach has the advantage that in the VTL code the URN of the
@@ -239,7 +239,7 @@ of the three `Dataflows`, that their version is 1.0.0 and their Agency is
     The references to SDMX artefacts through an abbreviation of their
     URN, written directly in the VTL statements, have been deprecated in
     SDMX 3.2; thus, the SDMX artefacts are referenced through user-defined
-    aliases, mapped to their URN by the `VtlMapping`s (see the paragraph
+    aliases, mapped to their URN by the VTL mappings (see the paragraph
     “User-defined alias” below). The components of the VTL Data Sets are
     still referenced through their names, which under the Basic mapping
     are the ids of the SDMX `Components`.
@@ -627,8 +627,8 @@ The following rules apply to the `VtlDatasetMapping`:
 
 1. `isInput` is mandatory. An alias identifies a VTL Data Set, which is
     either read or written by the VTL program; therefore, if the same
-    SDMX artefact is both read and written, it is mapped by two
-    `VtlDatasetMapping`s having distinct aliases.
+    SDMX artefact is both read and written, it is mapped twice, with
+    distinct aliases.
 2. The outputs must be persistent, i.e. a `VtlDatasetMapping` having
     `isInput` equal to `false` must correspond to a `Transformation`
     whose `result` is the `vtlAlias` and whose `isPersistent` is `true`.
@@ -642,7 +642,7 @@ The following rules apply to the `VtlDatasetMapping`:
     method for the `VtlDatasetMapping`.
 4. The mapping is many-to-many, i.e. a `TransformationScheme` can use any
     number of VTL Data Sets, and the same SDMX artefact can be
-    referenced by different `VtlDatasetMapping`s (with distinct aliases),
+    referenced by several VTL dataset mappings (with distinct aliases),
     within the same `VtlMappingScheme` or in different ones. For
     example, two VTL Data Sets can be mapped to the same SDMX `Dataflow`
     or `DataStructureDefinition` and be fed with different parts of its
@@ -658,8 +658,8 @@ Sets and stores the result persistently:
 diff <- ds_a - ds_b;
 ```
 
-Its `VtlMappingScheme` `OECD:VTL_MAP(1.0)` contains the following
-`VtlDatasetMapping`s:
+Its `VtlMappingScheme` `OECD:VTL_MAP(1.0)` contains the following VTL
+dataset mappings:
 
 | `vtlAlias` | `sdmxUrn` | `isInput` |
 | :--- | :--- | :--- |
@@ -682,7 +682,7 @@ whose reference area is not a valid code of an SDMX `Codelist`:
 ds_invalid <- ds_x [ filter not ( REF_AREA in cl_area ) ];
 ```
 
-Its `VtlMappingScheme` contains the following `VtlMapping`s:
+Its `VtlMappingScheme` contains the following VTL mappings:
 
 | Class | `vtlAlias` | `sdmxUrn` | `isInput` |
 | :--- | :--- | :--- | :--- |
@@ -759,7 +759,7 @@ following sections.
 #### Basic Mapping
 
 The mapping method from SDMX to VTL is called **Basic** mapping. It is
-the only mapping method applicable to the `VtlDatasetMapping`s, as the
+the only mapping method applicable to a `VtlDatasetMapping`, as the
 alternative methods described in the following paragraphs can be
 declared only for the deprecated `VtlDataflowMapping`.
 
@@ -982,7 +982,7 @@ The mapping method **from VTL to SDMX** is called **Basic** mapping
 as well.
 
 As in the opposite direction, it is the only mapping method applicable
-to the `VtlDatasetMapping`s.
+to a `VtlDatasetMapping`.
 
 The method consists in leaving the components unchanged and maintaining
 their names and roles in SDMX, according to the following mapping table,
@@ -1585,9 +1585,9 @@ have only a basic scalar type (see the paragraph
 “[Mapping SDMX data types to VTL basic scalar types](#mapping-sdmx-data-types-to-vtl-basic-scalar-types)”
 below). The correspondence between the representations of the
 `Components` and the Value Domains (e.g. when a `Codelist` is
-referenced by several `VtlCodelistMapping`s, or when a representation
-uses another version of the `Codelist`) is validated in the semantic
-analysis of the `TransformationScheme`.
+referenced by more than one `VtlCodelistMapping`, or when a
+representation uses another version of the `Codelist`) is validated in
+the semantic analysis of the `TransformationScheme`.
 
 !!! note
     The mapping of the VTL Represented Variables to SDMX `Concepts`
@@ -2040,8 +2040,8 @@ of the other non-fixed parameters can still be overridden. Therefore, a
 Sets have a `VtlDataExtraction` can be executed by providing the VTL
 engine only with the reference to the `TransformationScheme` and,
 possibly, with the values of some parameters. The VTL engine obtains the
-data structures from the SDMX artefacts referenced by the `VtlMapping`s
-and the data from the `VtlDataExtraction`s.
+data structures from the SDMX artefacts referenced by the VTL mappings
+and the data from the data extractions.
 
 While the mappings between VTL and SDMX are part of the public
 definition of a VTL program, the `VtlDataExtraction` is an execution
@@ -2052,7 +2052,7 @@ its `VtlDatasetMapping`, the `VtlDataExtraction` is part of the
 `VtlMappingScheme`, which can also be published without the extractions.
 
 The `VtlDataExtraction` applies only to the input VTL Data Sets, i.e. to
-the `VtlDatasetMapping`s having `isInput` equal to `true`: the outputs are
+a `VtlDatasetMapping` having `isInput` equal to `true`: the outputs are
 produced by the VTL program and the storage of the persistent results is
 up to the VTL engine. The Value Domains mapped through the
 `VtlCodelistMapping` are structural metadata, whose values are obtained
@@ -2072,9 +2072,9 @@ above).
 ### Query and URL extractions
 
 A `VtlDataExtraction` belongs to one input `VtlDatasetMapping` and
-contains zero or more `QueryParameter`s. It can take two forms, which can
-be chosen for each input VTL Data Set depending on the source of its
-data:
+contains zero or more query parameters (`QueryParameter`). It can take
+two forms, which can be chosen for each input VTL Data Set depending on
+the source of its data:
 
 - The `QueryExtraction` is meant for web services compliant with the
     SDMX REST API. It specifies the entry point of the web service
@@ -2087,7 +2087,7 @@ data:
     `sdmxApiVersion` is recommended.
     The VTL engine builds the data query for the SDMX artefact referenced
     by the `sdmxUrn` of the `VtlDatasetMapping`, according to the syntax
-    of the version of the SDMX REST API, by using the `QueryParameter`s.
+    of the version of the SDMX REST API, by using the query parameters.
     The parameter named `key`, if present, provides the key of the data
     query (i.e. the combination of the values of the `Dimensions`,
     possibly with wildcards), while the other parameters are added as
@@ -2102,7 +2102,7 @@ data:
     compliant with the SDMX REST API, or for proxies. It specifies the
     complete URL of the query through a template (`urlTemplate`), whose
     tokens enclosed in curly braces (e.g. `{startPeriod}`) are replaced
-    by the values of the `QueryParameter`s having the same names. Curly
+    by the values of the query parameters having the same names. Curly
     braces are used because they cannot be confused with the square
     brackets of the component filters of the SDMX REST API (e.g.
     `c[TIME_PERIOD]`), which can appear in the URL as well. Any part of
@@ -2127,13 +2127,13 @@ The names of the parameters are not predefined, as they are the ones
 expected by the web service (e.g. `key`, `startPeriod`, `c[TIME_PERIOD]`
 or `updatedAfter`), and they are unique within a `VtlDataExtraction`.
 The credentials needed to access protected web services are managed by
-the VTL engine and should not be put in the `QueryParameter`s or in the
+the VTL engine and should not be put in the query parameters or in the
 `urlTemplate`, which are part of the SDMX structural metadata.
 
 The values of the parameters are resolved as follows:
 
 1. The `VtlDataExtraction` of each input VTL Data Set lists
-    its `QueryParameter`s, with their fixed values or defaults.
+    its query parameters, with their fixed values or defaults.
 2. The VTL engine executes the `TransformationScheme`,
     possibly receiving at run time the values of some non-fixed
     parameters. These values are assigned to the input VTL Data Sets
@@ -2179,7 +2179,7 @@ service implementing version 1.5 of the SDMX REST API:
 
 - `entryPoint`: `https://sdmx.example.org/rest`
 - `sdmxApiVersion`: `1.5`
-- `QueryParameter`s:
+- query parameters:
 
 | `name` | `value` | `isFixed` |
 | :--- | :--- | :--- |
@@ -2199,7 +2199,7 @@ As a `UrlExtraction`:
 
 - `urlTemplate`:
     `https://sdmx.example.org/rest/data/OECD.SDD.NAD,DF_A,1.0/A.USA.?startPeriod={startPeriod}&endPeriod={endPeriod}`
-- `QueryParameter`s: `startPeriod` (non-fixed, with default `2015`) and
+- query parameters: `startPeriod` (non-fixed, with default `2015`) and
     `endPeriod` (non-fixed, without default), which provide the values of
     the tokens having the same names; the key is already part of the URL.
 
@@ -2299,15 +2299,15 @@ constructs of SDMX 3.0 and 3.1 is represented in SDMX 3.2:
 | :--- | :--- |
 | `VtlDataflowMapping` | A `VtlDatasetMapping` whose `vtlAlias` is the `dataflowAlias` and whose `sdmxUrn` is the URN of the `Dataflow`. The class of the mapping changes, and so does its URN. |
 | `VtlCodelistMapping` having the `codelistAlias` | The same `VtlCodelistMapping`, whose `vtlAlias` is the `codelistAlias` and whose `sdmxUrn` is the URN of the `Codelist`. |
-| Direction of the `VtlDataflowMapping` | The `isInput` attribute of the `VtlDatasetMapping`: `false` if the alias is the result of a persistent `Transformation` (`<-`), as indicated by a `fromVtlMappingMethod` if specified, `true` if it is only used as an operand, as indicated by a `toVtlMappingMethod` if specified. An alias used in both ways (e.g. by different `TransformationScheme`s sharing the same `VtlMappingScheme`) becomes two `VtlDatasetMapping`s with distinct aliases, and the VTL programs are adapted accordingly. |
+| Direction of the `VtlDataflowMapping` | The `isInput` attribute of the `VtlDatasetMapping`: `false` if the alias is the result of a persistent `Transformation` (`<-`), as indicated by a `fromVtlMappingMethod` if specified, `true` if it is only used as an operand, as indicated by a `toVtlMappingMethod` if specified. An alias used in both ways (e.g. by two transformation schemes sharing the same `VtlMappingScheme`) is mapped twice, with distinct aliases, and the VTL programs are adapted accordingly. |
 | A `VtlDataflowMapping` whose alias is the result of a non-persistent `Transformation` (`:=`) | No `VtlDatasetMapping`, as only the persistent results can be mapped as outputs: the result remains internal to the VTL program or, if it has to be stored as SDMX data, its `Transformation` becomes persistent (`<-`) and it is mapped through a `VtlDatasetMapping` having `isInput` equal to `false`. |
 | `toVtlMappingMethod`, `fromVtlMappingMethod` and the conventional "generic_dataflow" | No attribute: the Basic mapping always applies, and the `VtlDataflowMapping` of the conventional "generic_dataflow" is dropped. Where a different method was specified, the corresponding restructuring is performed in the VTL program (e.g. through the `pivot`, `unpivot` or `calc` clauses). |
-| `ToVtlSubspace` and `ToVtlSpaceKey` (ordered concatenation notation from SDMX to VTL) | The VTL program selects each part of the `Dataflow` from a VTL Data Set mapped to the `Dataflow` through an input `VtlDatasetMapping` with a user-defined alias, by means of the `sub` clause, which also drops the mapping `Dimensions`. The retrieval of the data can be restricted to the same part through the `QueryParameter`s of the `VtlDataExtraction` (e.g. a fixed `key` with the values of the mapping `Dimensions` and wildcards for the others). Distinct parts can also be mapped to distinct VTL Data Sets. |
+| `ToVtlSubspace` and `ToVtlSpaceKey` (ordered concatenation notation from SDMX to VTL) | The VTL program selects each part of the `Dataflow` from a VTL Data Set mapped to the `Dataflow` through an input `VtlDatasetMapping` with a user-defined alias, by means of the `sub` clause, which also drops the mapping `Dimensions`. The retrieval of the data can be restricted to the same part through the query parameters of the `VtlDataExtraction` (e.g. a fixed `key` with the values of the mapping `Dimensions` and wildcards for the others). Distinct parts can also be mapped to distinct VTL Data Sets. |
 | `FromVtlSuperspace` and `FromVtlSpaceKey` (ordered concatenation notation from VTL to SDMX) | The VTL program adds the mapping `Dimensions` to the VTL Data Sets through the `calc` clause and combines them through the `union` operator. The result is mapped to the `Dataflow` through a `VtlDatasetMapping` having `isInput` equal to `false`. |
 | `VtlConceptMapping` | No mapping: the VTL Variables correspond to the components having the same names in the VTL Data Sets. |
 | `NamePersonalisationScheme` and `NamePersonalisation` | The desired names are assigned in the VTL program (e.g. through the `rename` clause). |
 | `CustomTypeScheme` and `CustomType` | The representation of an output is the one defined in the `DataStructureDefinition` of the referenced SDMX artefact, and explicit conversions are expressed in the VTL program through the `cast` operator. The default rules apply to the NULLs and to the format of the literals. |
-| Association of a `RulesetScheme` or of a `UserDefinedOperatorScheme` with a `VtlMappingScheme` | The `VtlMapping`s are included in the `VtlMappingScheme` of each `TransformationScheme` that uses the Rulesets or the User Defined Operators, without repeating the aliases already mapped to the same SDMX artefact. An alias that identifies different SDMX artefacts in the two schemes is renamed in the VTL statements of the Rulesets or User Defined Operators. |
+| Association of a `RulesetScheme` or of a `UserDefinedOperatorScheme` with a `VtlMappingScheme` | The VTL mappings are included in the `VtlMappingScheme` of each `TransformationScheme` that uses the Rulesets or the User Defined Operators, without repeating the aliases already mapped to the same SDMX artefact. An alias that identifies different SDMX artefacts in the two schemes is renamed in the VTL statements of the Rulesets or User Defined Operators. |
 | Association of a `UserDefinedOperatorScheme` with a `RulesetScheme` | The `RulesetScheme` is referenced by each `TransformationScheme` that uses the User Defined Operators. |
 | A VTL scheme without `vtlVersion` | The `vtlVersion` is set to the version of the VTL in which its definitions are written. |
-| References to SDMX artefacts through their URN or abbreviated URN in the VTL statements | User-defined aliases, mapped to the URNs of the SDMX artefacts through the `VtlMapping`s of the `VtlMappingScheme` of the `TransformationScheme`. |
+| References to SDMX artefacts through their URN or abbreviated URN in the VTL statements | User-defined aliases, mapped to the URNs of the SDMX artefacts through the VTL mappings of the `VtlMappingScheme` of the `TransformationScheme`. |

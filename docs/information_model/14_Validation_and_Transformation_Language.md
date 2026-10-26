@@ -212,11 +212,10 @@ The `TransformationScheme` has an association to zero or more
 `VtlMappingScheme`, zero or one `NamePersonalisationScheme` and zero or
 one `CustomTypeScheme` (the last two associations are deprecated, like
 the related schemes). These schemes provide all the definitions used by
-the VTL program. Therefore, the `RulesetScheme`s and the
-`UserDefinedOperatorScheme`s of a `TransformationScheme` must contain
-all the rulesets and user defined operators used by its
-`Transformation`s, also indirectly (e.g. the rulesets invoked by a user
-defined operator).
+the VTL program. Therefore, the ruleset schemes and the user defined
+operator schemes of a `TransformationScheme` must contain all the
+rulesets and user defined operators used by its transformations, also
+indirectly (e.g. the rulesets invoked by a user defined operator).
 
 Like the `TransformationScheme`, the `RulesetScheme` and the
 `UserDefinedOperatorScheme` must include the attribute `vtlVersion`,
@@ -228,8 +227,8 @@ with the same VTL version.
 The `VtlMappingScheme` associated to a `TransformationScheme` must
 contain the mappings between the aliases used for referencing SDMX
 artefacts and the URNs of these artefacts. These aliases can be used in
-the `Transformation`s, as well as in the rulesets and user defined
-operators of the `TransformationScheme`. As the VTL is strongly typed and
+the transformations, rulesets and user defined operators of the
+`TransformationScheme`. As the VTL is strongly typed and
 has no declarations of variables, these mappings provide the definitions
 of the VTL Data Sets and Value Domains used in the
 `TransformationScheme`: therefore, a
@@ -282,9 +281,9 @@ to non-viral VTL Attributes.[^17]
 A viral propagation is not invoked by the operators. Once defined, it
 is applied by all the operators that propagate the viral Attributes.
 Therefore, a `TransformationScheme` that uses viral propagations is
-complete only together with the `RulesetScheme`s that contain them.
-These `RulesetScheme`s cannot contain more than one viral propagation
-for the same Value Domain or Variable.
+complete only together with the ruleset schemes that contain them.
+Across these schemes, there can be only one viral propagation for the
+same Value Domain or Variable.
 
 The rulesets defined on Value Domains reference `Codelists`, which are
 mapped to the VTL Value Domains through the `VtlCodelistMapping`. The
@@ -320,7 +319,7 @@ by the `VtlMappingScheme` of the `TransformationScheme` (see the
 [VTL Mapping Section](#vtl-mapping) below).
 
 The definition of a `UserDefinedOperator` can also make use of VTL
-rulesets, which are contained in the `RulesetScheme`s of the
+rulesets, which are contained in the ruleset schemes of the
 `TransformationScheme` (see also the [Ruleset Scheme Section](#ruleset-scheme) above).
 
 !!! note
@@ -378,8 +377,8 @@ rules apply:
 
 1. The `isInput` attribute is mandatory. A VTL alias identifies a VTL
     Data Set that is either read or written by the VTL program;
-    therefore, an SDMX artefact used both as input and as output is mapped by two
-    `VtlDatasetMapping`s having distinct aliases.
+    therefore, an SDMX artefact used both as input and as output is
+    mapped twice, with distinct aliases.
 2. The outputs must be persistent, i.e. the `vtlAlias` of a
     `VtlDatasetMapping` having `isInput` equal to `false` must be the
     `result` of a `Transformation` whose `isPersistent` is `true`.
@@ -397,7 +396,7 @@ rules apply:
     referenced SDMX artefact.
 4. The mapping is many-to-many, i.e. a `TransformationScheme` can use any
     number of VTL Data Sets, and the same SDMX artefact can be
-    referenced by different `VtlDatasetMapping`s, within the same
+    referenced by several VTL dataset mappings, within the same
     `VtlMappingScheme` or in different ones. For example, two VTL Data
     Sets can be mapped to the same `DataStructureDefinition` and be fed
     with different parts of its data (see the
@@ -414,16 +413,16 @@ As the VTL programs do not produce Value Domains, the
 `isInput` attribute.
 
 As the VTL is strongly typed and does not include declarations of
-variables, the `VtlMapping`s act as the definitions of the VTL Data Sets
+variables, the VTL mappings act as the definitions of the VTL Data Sets
 and Value Domains referenced by a VTL program, whose data structures and
 values are derived from the referenced SDMX artefacts. Therefore, the
-`VtlMappingScheme` is part of the definition of the
-`TransformationScheme`s that reference SDMX artefacts, also through
-their rulesets and user defined operators.
+`VtlMappingScheme` is part of the definition of any
+`TransformationScheme` that references SDMX artefacts, also through its
+rulesets and user defined operators.
 
 ##### VTL Data Extraction
 
-The `VtlMapping`s define the VTL Data Sets and Value Domains used by a
+The VTL mappings define the VTL Data Sets and Value Domains used by a
 VTL program. In order to execute the program, the data of the input VTL
 Data Sets also need to be retrieved. The `VtlDataExtraction` specifies
 where and how the data of an input VTL Data Set can be obtained,
@@ -442,8 +441,7 @@ for doing so is not part of this specification). When it is defined,
 the VTL engine can retrieve the data directly, so that the
 `TransformationScheme` can be executed on the basis of its SDMX
 definition: the data structures are obtained from the SDMX artefacts
-referenced by the `VtlMapping`s and the data from the
-`VtlDataExtraction`s.
+referenced by the VTL mappings and the data from the data extractions.
 
 A `VtlDatasetMapping` having `isInput` equal to `true` can contain zero
 or one `VtlDataExtraction`, while a `VtlDatasetMapping` having `isInput`
@@ -453,7 +451,7 @@ the VTL engine). The Value Domains do not need any `VtlDataExtraction`,
 as their values are obtained from the referenced `Codelists`.
 
 The `VtlDataExtraction` is an abstract class, which contains zero or
-more `QueryParameter`s and has two subclasses:
+more query parameters (`QueryParameter`) and has two subclasses:
 
 - `QueryExtraction`, meant for web services compliant with the SDMX
     REST API. It specifies the entry point of the web service
@@ -462,13 +460,13 @@ more `QueryParameter`s and has two subclasses:
     the syntax of the query. The VTL engine builds the query for the
     data of the SDMX artefact referenced by the `sdmxUrn` of the
     `VtlDatasetMapping`, according to the syntax of the SDMX REST API
-    version, by using the `QueryParameter`s (e.g. the `key` and the
-    query parameters for selecting the periods).
+    version, by using the query parameters (e.g. the `key` and the
+    parameters for selecting the periods).
 - `UrlExtraction`, meant for web services that are not fully
     compliant with the SDMX REST API. It specifies the complete URL of
     the query through a template (`urlTemplate`), whose tokens enclosed
     in curly braces (e.g. `{startPeriod}`) are replaced by the values of
-    the homonymous `QueryParameter`s.
+    the query parameters having the same names.
 
 A `QueryParameter` is a name-value pair (`name` and `value`), which can
 be fixed or not (`isFixed`):
@@ -492,7 +490,7 @@ univocally, while each `VtlDataExtraction` belongs to just one
 
 The restriction of the data to the part of interest (e.g. to some values
 of some `Dimensions`, or to some periods) is expressed in the query
-through the `QueryParameter`s (e.g. a fixed `key` containing wildcards).
+through the query parameters (e.g. a fixed `key` containing wildcards).
 The `VtlDataExtraction` does not reference other SDMX artefacts (e.g.
 `Constraints`).
 
@@ -705,12 +703,12 @@ basic scalar type).
 | `VtlCodelistMapping` | Inherits from `VtlMapping` | Single mapping between a VTL Value Domain and the SDMX `Codelist` referenced by the `sdmxUrn`, whose `Codes` are the values of the Value Domain. |
 |  | `codelistAlias` | Deprecated. Replaced by the `vtlAlias`; if present, it has the same value. Name used in VTL to reference an SDMX codelist. The name/alias must be univocal: different SDMX artefacts cannot have the same VTL alias. |
 | `VtlDataExtraction` | Abstract class<br>Sub classes are: `QueryExtraction`, `UrlExtraction` | Specifies how to retrieve the data of an input VTL Data Set. |
-|  | `+parameters` | Association to the `QueryParameter`s used for retrieving the data. |
-| `QueryExtraction` | Inherits from `VtlDataExtraction` | Retrieval of the data through a query to a web service compliant with the SDMX REST API, built from the `entryPoint`, the `sdmxUrn` of the `VtlDatasetMapping` and the `QueryParameter`s. |
+|  | `+parameters` | Association to the query parameters used for retrieving the data. |
+| `QueryExtraction` | Inherits from `VtlDataExtraction` | Retrieval of the data through a query to a web service compliant with the SDMX REST API, built from the `entryPoint`, the `sdmxUrn` of the `VtlDatasetMapping` and the query parameters. |
 |  | `entryPoint` | The URL of the entry point of the SDMX REST web service. |
 |  | `sdmxApiVersion` | The version of the SDMX REST API implemented by the entry point, written as major.minor (e.g. 2.1). If not specified, the default version of the web service is assumed. |
 | `UrlExtraction` | Inherits from `VtlDataExtraction` | Retrieval of the data through a URL built from a template. |
-|  | `urlTemplate` | The complete URL of the query, whose tokens enclosed in curly braces (e.g. `{startPeriod}`) are replaced by the values of the homonymous `QueryParameter`s. |
+|  | `urlTemplate` | The complete URL of the query, whose tokens enclosed in curly braces (e.g. `{startPeriod}`) are replaced by the values of the query parameters having the same names. |
 | `QueryParameter` |  | A name-value pair used for retrieving the data of an input VTL Data Set. |
 |  | `name` | The name of the parameter (e.g. `key`, `startPeriod`), unique within the `VtlDataExtraction`. |
 |  | `value` | The value of the parameter: mandatory if the parameter is fixed, otherwise a default value, which can be overridden at run time. |

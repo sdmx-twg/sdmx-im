@@ -430,20 +430,22 @@ Changed Maintainable Artefacts
 
 New Identifiable Artefacts
 
-- `VtlDatasetMapping` – maps a VTL Data Set to a Data Structure
-    Definition, Dataflow or Provision Agreement; it replaces the
+- `VtlDatasetMapping`, which maps a VTL Data Set to a Data Structure
+    Definition, Dataflow or Provision Agreement and replaces the
     `VtlDataflowMapping`
 
 Changed Maintainable Artefacts
 
-- VTL Mapping Scheme – simplified and aligned with the SDMX 3 model:
+- The VTL Mapping Scheme is simplified and aligned with the SDMX 3
+    model:
     - all the VTL mappings have the VTL alias (`vtlAlias`) and the URN
         of the mapped SDMX artefact (`sdmxUrn`)
     - the `VtlDatasetMapping` has the mandatory `isInput` attribute
     - the Basic mapping is the only mapping method
     - an input `VtlDatasetMapping` can contain a VTL data extraction
-        (`QueryExtraction` or `UrlExtraction`, with `QueryParameter`s),
-        which specifies how the data of the VTL Data Set are retrieved
+        (`QueryExtraction` or `UrlExtraction`, with its query
+        parameters), which specifies how the data of the VTL Data Set
+        are retrieved
     - the references to SDMX artefacts written in the VTL statements
         through their URN or an abbreviation of their URN are deprecated
         in favour of the aliases of the VTL mappings
@@ -453,28 +455,27 @@ Changed Maintainable Artefacts
         `fromVtlMappingMethod`) and the subspace and superspace classes
         (`ToVtlSubspace`, `ToVtlSpaceKey`, `FromVtlSuperspace`,
         `FromVtlSpaceKey`)
-- Transformation Scheme, Ruleset Scheme, User Defined Operator Scheme –
-    `vtlVersion` mandatory
-- Ruleset Scheme – a Ruleset can also define a VTL 2.2 viral
-    propagation (`rulesetType` “viral”), which makes viral the Attributes
-    it applies to
-- Transformation Scheme – references all the other schemes used by the
-    VTL program
-- Ruleset Scheme, User Defined Operator Scheme – associations to the VTL
-    Mapping Scheme and from the User Defined Operator Scheme to the
-    Ruleset Scheme deprecated
-- Transformation Scheme – associations to the Name Personalisation
-    Scheme and to the Custom Type Scheme deprecated
+- The `vtlVersion` is mandatory in the Transformation Scheme, Ruleset
+    Scheme and User Defined Operator Scheme
+- A Ruleset can also define a VTL 2.2 viral propagation (`rulesetType`
+    “viral”), which makes viral the Attributes it applies to
+- The Transformation Scheme references all the other schemes used by
+    the VTL program
+- The associations of the Ruleset Scheme and of the User Defined
+    Operator Scheme with the VTL Mapping Scheme, and of the User Defined
+    Operator Scheme with the Ruleset Scheme, are deprecated
+- The associations of the Transformation Scheme with the Name
+    Personalisation Scheme and the Custom Type Scheme are deprecated
 
 Deprecated Maintainable Artefacts
 
-- Name Personalisation Scheme – the names assigned by default by the VTL
-    operators can be changed in the VTL program (e.g. with the `rename`
-    clause)
-- Custom Type Scheme – the default conversions between VTL and SDMX data
-    types apply, unless overridden by the representation defined in the
-    Data Structure Definition; explicit conversions use the VTL `cast`
-    operator
+- Name Personalisation Scheme, as the names assigned by default by the
+    VTL operators can be changed in the VTL program (e.g. with the
+    `rename` clause)
+- Custom Type Scheme, as the default conversions between VTL and SDMX
+    data types apply, unless overridden by the representation defined in
+    the Data Structure Definition, and explicit conversions use the VTL
+    `cast` operator
 
 The conversion of the existing VTL definitions based on the deprecated
 constructs is described in the Section
