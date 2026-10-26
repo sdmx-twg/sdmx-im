@@ -86,7 +86,9 @@ because the association between a `TransformationScheme` and a
 alias (`vtlAlias`) to be used in the VTL Transformations, Rulesets[^3]
 or User Defined Operators[^4] to reference an SDMX artefact, together with the URN of such artefact
 (`sdmxUrn`). A `VtlMappingScheme` is a container for zero or more
-`VtlMapping`.
+`VtlMapping`. The aliases used in the Transformations, Rulesets and User
+Defined Operators of a VTL program are mapped by the `VtlMappingScheme`
+of its `TransformationScheme`.
 
 [^3]: See also the section "VTL-DL Rulesets" in the VTL Reference Manual.
 [^4]:
@@ -96,7 +98,7 @@ or User Defined Operators[^4] to reference an SDMX artefact, together with the U
     their invocation, it is also possible that an UDO invokes directly some
     specific SDMX artefacts. These SDMX artefacts have to be mapped to the
     corresponding aliases used in the definition of the UDO through the
-    `VtlMappingScheme` and `VtlMapping` classes as well.
+    `VtlMappingScheme` of the `TransformationScheme` as well.
 
 The correspondence between aliases and SDMX artefacts is defined within
 a `VtlMappingScheme`. An alias identifies one and just one SDMX artefact,
@@ -483,7 +485,8 @@ which contains the Rules.
 In the signature, given the mapping between VTL and SDMX better
 described in the following paragraphs, a reference to a VTL Value Domain
 becomes a reference to an SDMX `Codelist` (mapped through a
-`VtlCodelistMapping`), while a reference to a VTL
+`VtlCodelistMapping` of the `VtlMappingScheme` of the
+`TransformationScheme`), while a reference to a VTL
 Represented Variable becomes a reference to an SDMX `Concept`, assuming for
 it a definite representation[^15].
 
@@ -2304,5 +2307,7 @@ constructs of SDMX 3.0 and 3.1 is represented in SDMX 3.2:
 | `VtlConceptMapping` | No mapping: the VTL Variables correspond to the components having the same names in the VTL Data Sets. |
 | `NamePersonalisationScheme` and `NamePersonalisation` | The desired names are assigned in the VTL program (e.g. through the `rename` clause). |
 | `CustomTypeScheme` and `CustomType` | The representation of an output is the one defined in the `DataStructureDefinition` of the referenced SDMX artefact, and explicit conversions are expressed in the VTL program through the `cast` operator. The default rules apply to the NULLs and to the format of the literals. |
+| Association of a `RulesetScheme` or of a `UserDefinedOperatorScheme` with a `VtlMappingScheme` | The `VtlMapping`s are included in the `VtlMappingScheme` of each `TransformationScheme` that uses the Rulesets or the User Defined Operators, without repeating the aliases already mapped to the same SDMX artefact. An alias that identifies different SDMX artefacts in the two schemes is renamed in the VTL statements of the Rulesets or User Defined Operators. |
+| Association of a `UserDefinedOperatorScheme` with a `RulesetScheme` | The `RulesetScheme` is referenced by each `TransformationScheme` that uses the User Defined Operators. |
 | A VTL scheme without `vtlVersion` | The `vtlVersion` is set to the version of the VTL in which its definitions are written. |
-| References to SDMX artefacts through their URN or abbreviated URN in the VTL statements | User-defined aliases, mapped to the URNs of the SDMX artefacts through `VtlMapping`s. |
+| References to SDMX artefacts through their URN or abbreviated URN in the VTL statements | User-defined aliases, mapped to the URNs of the SDMX artefacts through the `VtlMapping`s of the `VtlMappingScheme` of the `TransformationScheme`. |

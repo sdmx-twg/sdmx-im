@@ -458,6 +458,11 @@ Changed Maintainable Artefacts
 - Ruleset Scheme – a Ruleset can also define a VTL 2.2 viral
     propagation (`rulesetType` “viral”), which makes viral the Attributes
     it applies to
+- Transformation Scheme – references all the other schemes used by the
+    VTL program
+- Ruleset Scheme, User Defined Operator Scheme – associations to the VTL
+    Mapping Scheme and from the User Defined Operator Scheme to the
+    Ruleset Scheme deprecated
 - Transformation Scheme – associations to the Name Personalisation
     Scheme and to the Custom Type Scheme deprecated
 

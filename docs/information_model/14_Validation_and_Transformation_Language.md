@@ -50,18 +50,20 @@ In SDMX 3.2, the interconnection between VTL and SDMX has been
 simplified and aligned with the SDMX 3 model. The VTL Data Sets can be
 mapped to Data Structure Definitions, Dataflows and Provision
 Agreements, and the Basic mapping is the only method for converting the
-data structures between SDMX and VTL. The retrieval of the data of the
-input VTL Data Sets can also be specified. The constructs made redundant
-by these changes have been deprecated. They are still described below
-for the existing definitions that use them, but they should not be used
-in new definitions. The conversion of the existing definitions is
-described in the Section
+data structures between SDMX and VTL. The `TransformationScheme`
+references all the other schemes used by a VTL program. The retrieval of
+the data of the input VTL Data Sets can also be specified. The constructs
+made redundant by these changes have been deprecated. They are still
+described below for the existing definitions that use them, but they
+should not be used in new definitions. The conversion of the existing
+definitions is described in the Section
 [“Conversion of definitions based on deprecated constructs” in the SDMX Technical Notes](../../technical_notes/technical_notes/11_Validation_and_Transformation_Language__VTL_.md#conversion-of-definitions-based-on-deprecated-constructs).
 In the diagrams, the deprecated classes are shown in grey and marked as
 «deprecated». The same applies to the deprecated attributes of the
 classes that are not deprecated (i.e. the `codelistAlias`). The
-associations of the deprecated classes are also shown in grey, and are
-marked as «deprecated» when they link a class that is not deprecated.
+deprecated associations and the associations of the deprecated classes
+are also shown in grey, and are marked as «deprecated» when they link a
+class that is not deprecated.
 
 ## Model - Inheritance view
 
@@ -209,7 +211,12 @@ The `TransformationScheme` has an association to zero or more
 `RulesetScheme`, zero or more `UserDefinedOperatorScheme`, zero or one
 `VtlMappingScheme`, zero or one `NamePersonalisationScheme` and zero or
 one `CustomTypeScheme` (the last two associations are deprecated, like
-the related schemes).
+the related schemes). These schemes provide all the definitions used by
+the VTL program. Therefore, the `RulesetScheme`s and the
+`UserDefinedOperatorScheme`s of a `TransformationScheme` must contain
+all the rulesets and user defined operators used by its
+`Transformation`s, also indirectly (e.g. the rulesets invoked by a user
+defined operator).
 
 Like the `TransformationScheme`, the `RulesetScheme` and the
 `UserDefinedOperatorScheme` must include the attribute `vtlVersion`,
@@ -219,11 +226,13 @@ version of VTL can be linked to such schemes only if they are consistent
 with the same VTL version.
 
 The `VtlMappingScheme` associated to a `TransformationScheme` must
-contain the mappings between the aliases used in the
-`TransformationScheme` for referencing SDMX artefacts and the URNs of
-these artefacts. As the VTL is strongly typed and has no declarations of
-variables, these mappings provide the definitions of the VTL Data Sets
-and Value Domains used in the `TransformationScheme`: therefore, a
+contain the mappings between the aliases used for referencing SDMX
+artefacts and the URNs of these artefacts. These aliases can be used in
+the `Transformation`s, as well as in the rulesets and user defined
+operators of the `TransformationScheme`. As the VTL is strongly typed and
+has no declarations of variables, these mappings provide the definitions
+of the VTL Data Sets and Value Domains used in the
+`TransformationScheme`: therefore, a
 `TransformationScheme` that references SDMX artefacts is complete only
 together with its `VtlMappingScheme`. The association remains optional
 (zero or one), which also allows for the deprecated references to SDMX
@@ -277,11 +286,6 @@ complete only together with the `RulesetScheme`s that contain them.
 These `RulesetScheme`s cannot contain more than one viral propagation
 for the same Value Domain or Variable.
 
-The `RulesetScheme` can have an association with zero or one
-`VtlMappingScheme`, which contains the mappings between the aliases used
-in the `rulesetDefinition` for referencing SDMX artefacts and the URNs of
-these artefacts.
-
 The rulesets defined on Value Domains reference `Codelists`, which are
 mapped to the VTL Value Domains through the `VtlCodelistMapping`. The
 rulesets defined on Variables reference the VTL Variables, which
@@ -291,6 +295,11 @@ are the ids of the SDMX `Components`; therefore, these references do not
 need any mapping (the `VtlConceptMapping`, formerly used to map Variables
 to SDMX `Concepts`, is deprecated). In conclusion, in the VTL rulesets
 there can exist mappings for `Codelists`.
+
+!!! note
+    The association of the `RulesetScheme` with the `VtlMappingScheme`
+    has been deprecated in SDMX 3.2; thus, the mappings used by the
+    rulesets are provided by the `TransformationScheme`.
 
 ##### User Defined Operator Scheme
 
@@ -306,15 +315,19 @@ Although the VTL user defined operators are conceived to be defined on
 generic operands, so that the specific artefacts to be manipulated are
 passed as parameters at the invocation, it is also possible that they
 reference specific SDMX artefacts like `Dataflows` and `Codelists`.
-Therefore, the `UserDefinedOperatorScheme` can link to zero or one
-`VtlMappingScheme`, which must contain the mappings between the VTL
-aliases and the URNs of the corresponding SDMX artefacts (see the
+Like the other aliases of the VTL program, these references are mapped
+by the `VtlMappingScheme` of the `TransformationScheme` (see the
 [VTL Mapping Section](#vtl-mapping) below).
 
 The definition of a `UserDefinedOperator` can also make use of VTL
-rulesets; therefore, the `UserDefinedOperatorScheme` can link to zero, one
-or more `RulesetScheme`, **which** must contain the definition of these
-Rulesets (see also the [Ruleset Scheme Section](#ruleset-scheme) above).
+rulesets, which are contained in the `RulesetScheme`s of the
+`TransformationScheme` (see also the [Ruleset Scheme Section](#ruleset-scheme) above).
+
+!!! note
+    The associations of the `UserDefinedOperatorScheme` with the
+    `VtlMappingScheme` and with the `RulesetScheme` have been deprecated in
+    SDMX 3.2; thus, the mappings and the rulesets used by the user defined
+    operators are provided by the `TransformationScheme`.
 
 ##### VTL Mapping
 
@@ -405,8 +418,8 @@ variables, the `VtlMapping`s act as the definitions of the VTL Data Sets
 and Value Domains referenced by a VTL program, whose data structures and
 values are derived from the referenced SDMX artefacts. Therefore, the
 `VtlMappingScheme` is part of the definition of the
-`TransformationScheme`s, `RulesetScheme`s and
-`UserDefinedOperatorScheme`s that reference SDMX artefacts.
+`TransformationScheme`s that reference SDMX artefacts, also through
+their rulesets and user defined operators.
 
 ##### VTL Data Extraction
 
