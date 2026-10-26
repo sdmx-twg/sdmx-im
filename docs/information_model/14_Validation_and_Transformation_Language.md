@@ -69,7 +69,7 @@ class that is not deprecated.
 
 ### Class Diagram
 
-![](media/sdmx_transformation-vtl_inheritance.svg)
+![](media/sdmx_transformation-transformation-inheritance.svg)
 /// figure-caption | 47
 Class inheritance diagram in the Transformations and
 Expressions Package
@@ -124,7 +124,7 @@ with its subclasses `QueryExtraction` and `UrlExtraction`, and the
 
 ### Class Diagram
 
-![](media/sdmx_transformation-vtl_relationship.svg)
+![](media/sdmx_transformation-transformation-relationship.svg)
 /// figure-caption
 Relationship diagram in the Transformations and Expressions
 Package
@@ -430,7 +430,7 @@ where and how the data of an input VTL Data Set can be obtained,
 typically through a query to a web service compliant with the SDMX REST
 API, which returns the SDMX data to be converted into the VTL Data Set.
 
-![](media/sdmx_transformation-vtl_data_extraction.svg)
+![](media/sdmx_transformation-transformation-data_extraction.svg)
 /// figure-caption
 Data extraction diagram in the Transformations and Expressions
 Package
