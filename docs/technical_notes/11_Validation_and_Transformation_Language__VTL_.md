@@ -1969,8 +1969,8 @@ overriding assumption is applied for all the SDMX Dataflows calculated
 in the `TransformationScheme`.
 
 !!! note
-    Together with the `CustomTypeScheme`, the `nullValue` attribute of the
-    `CustomType` has been deprecated in SDMX 3.2; thus, the default
+    The `CustomTypeScheme` and the `CustomType`, with its `nullValue`
+    attribute, have been deprecated in SDMX 3.2; thus, the default
     assumption applies, i.e. a NULL in VTL becomes a missing value in SDMX.
 
 ### Format of the literals used in VTL Transformations
@@ -2006,8 +2006,8 @@ the `CustomType` of such VTL basic scalar type. The overriding assumption
 is applied for all the literals of a related VTL `TransformationScheme`.
 
 !!! note
-    Together with the `CustomTypeScheme`, the `vtlLiteralFormat` attribute
-    of the `CustomType` has been deprecated in SDMX 3.2; thus, the
+    The `CustomTypeScheme` and the `CustomType`, with its
+    `vtlLiteralFormat` attribute, have been deprecated in SDMX 3.2; thus, the
     literals are expressed according to the “default output format”
     mentioned above, unless a different format is specified in a VTL
     `cast` operation.

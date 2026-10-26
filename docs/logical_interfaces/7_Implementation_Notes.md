@@ -47,11 +47,11 @@ The following table lists the Maintainable Artefacts.
 |  | Data Consumer Scheme | Data Consumer |
 |  | Reporting Taxonomy | Reporting Category |
 |  | Transformation Scheme | Transformation |
-|  | Custom Type Scheme (deprecated) | Custom Type |
-|  | Name Personalisation Scheme (deprecated) | Name Personalisation |
-|  | Vtl Mapping Scheme | Vtl Dataset Mapping, Vtl Codelist Mapping, Vtl Dataflow Mapping (deprecated), Vtl Concept Mapping (deprecated) |
 |  | Ruleset Scheme | Ruleset |
 |  | User Defined Operator Scheme | User Defined Operator |
+|  | Vtl Mapping Scheme | Vtl Dataset Mapping, Vtl Codelist Mapping, Vtl Dataflow Mapping (deprecated), Vtl Concept Mapping (deprecated) |
+|  | Name Personalisation Scheme (deprecated) | Name Personalisation (deprecated) |
+|  | Custom Type Scheme (deprecated) | Custom Type (deprecated) |
 | Enumerated List | Value List | Value Item |
 | Structure | Data Structure Definition | Dimension Descriptor, Group Dimension Descriptor, Dimension, Time Dimension, Attribute Descriptor, Data Attribute, Measure Descriptor, Measure |
 |  | Metadata Structure Definition | Metadata Attribute Descriptor, Metadata Attribute |
@@ -84,9 +84,9 @@ The artefacts included in the structural definitions are:
 - All types of Item Scheme (Codelist, Concept Scheme, Category Scheme,
     Organisation Scheme, Agency Scheme, Data Provider Scheme, Metadata
     Provider Scheme, Data Consumer Scheme, Organisation Unit Scheme,
-    Transformation Scheme, Name Personalisation Scheme (deprecated),
-    Custom Type Scheme (deprecated), Vtl Mapping Scheme, Ruleset Scheme,
-    User Defined Operator Scheme)
+    Transformation Scheme, Ruleset Scheme, User Defined Operator Scheme,
+    Vtl Mapping Scheme, Name Personalisation Scheme (deprecated), Custom
+    Type Scheme (deprecated))
 - All types of Enumerated List (`ValueList`)[^1]
 - All types of Structure (Data Structure Definition, Metadata
     Structure Definition)

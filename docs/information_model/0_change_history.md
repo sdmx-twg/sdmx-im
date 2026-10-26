@@ -470,13 +470,14 @@ Changed Maintainable Artefacts
 
 Deprecated Maintainable Artefacts
 
-- Name Personalisation Scheme, as the names assigned by default by the
-    VTL operators can be changed in the VTL program (e.g. with the
-    `rename` clause)
-- Custom Type Scheme, as the default conversions between VTL and SDMX
-    data types apply, unless overridden by the representation defined in
-    the Data Structure Definition, and explicit conversions use the VTL
-    `cast` operator
+- Name Personalisation Scheme, together with its items (Name
+    Personalisation), as the names assigned by default by the VTL
+    operators can be changed in the VTL program (e.g. with the `rename`
+    clause)
+- Custom Type Scheme, together with its items (Custom Type), as the
+    default conversions between VTL and SDMX data types apply, unless
+    overridden by the representation defined in the Data Structure
+    Definition, and explicit conversions use the VTL `cast` operator
 
 The conversion of the existing VTL definitions based on the deprecated
 constructs is described in the Section
