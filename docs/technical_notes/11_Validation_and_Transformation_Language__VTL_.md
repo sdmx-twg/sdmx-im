@@ -790,7 +790,8 @@ derived from the viral propagations (see the paragraph
 “[References to SDMX artefacts from VTL Rulesets](#references-to-sdmx-artefacts-from-vtl-rulesets)”
 above). A `DataAttribute` becomes a viral VTL Attribute when a
 `RulesetScheme` linked to the `TransformationScheme` contains a viral
-propagation defined on the Variable named after its id or on the Value
+propagation for it. This viral propagation is defined either on the
+Variable named after the id of the `DataAttribute` or on the Value
 Domain mapped to the `Codelist` of its representation. The other
 `DataAttributes` become non-viral VTL Attributes, which the VTL
 operators do not propagate by default. For example, if a viral
@@ -799,10 +800,11 @@ propagation is defined on the Variable `OBS_STATUS`, the
 
 A VTL engine that does not support the viral Attributes raises an error
 instead of executing a `TransformationScheme` that uses viral
-propagations. The correspondence between the Value Domain of a viral
-propagation and the representations of the `DataAttributes` (e.g. when
-they use another version of the `Codelist`) is validated in the
-semantic analysis of the `TransformationScheme`.
+propagations. The Value Domains of the `DataAttributes` are validated
+in the semantic analysis of the `TransformationScheme` (see the
+paragraph
+“[Mapping variables and value domains between VTL and SDMX](#mapping-variables-and-value-domains-between-vtl-and-sdmx)”
+below).
 
 With the Basic mapping, one SDMX observation[^21] generates one VTL data
 point.
@@ -1569,6 +1571,21 @@ paragraph
 “[Mapping VTL Data Sets and Value Domains to SDMX artefacts](#mapping-vtl-data-sets-and-value-domains-to-sdmx-artefacts)”
 above).
 
+A `Component` whose representation is a `Codelist` referenced by a
+`VtlCodelistMapping` is defined on the corresponding Value Domain. Its
+VTL scalar type is the Value Domain Scalar Type named after the
+`vtlAlias` of the `VtlCodelistMapping`. For example, a `DataAttribute`
+represented by the `Codelist` mapped to `CL_CONF` has the VTL type
+`attribute<CL_CONF>`. The Rulesets and the viral propagations defined
+on Value Domains rely on this correspondence. The other `Components`
+have only a basic scalar type (see the paragraph
+“[Mapping SDMX data types to VTL basic scalar types](#mapping-sdmx-data-types-to-vtl-basic-scalar-types)”
+below). The correspondence between the representations of the
+`Components` and the Value Domains (e.g. when a `Codelist` is
+referenced by several `VtlCodelistMapping`s, or when a representation
+uses another version of the `Codelist`) is validated in the semantic
+analysis of the `TransformationScheme`.
+
 !!! note
     The mapping of the VTL Represented Variables to SDMX `Concepts`
     through the `VtlConceptMapping` has been deprecated in SDMX 3.2; thus,
@@ -1800,6 +1817,12 @@ VTL program taking in input the default VTL basic scalar type above and
 applying to it the VTL type conversion features (see the implicit and
 explicit type conversion and the "cast" operator in the VTL Reference
 Manual).
+
+In addition, a `Component` represented by a `Codelist` can be defined
+on a VTL Value Domain, whose Value Domain Scalar Type is then its VTL
+scalar type (see the paragraph
+“[Mapping variables and value domains between VTL and SDMX](#mapping-variables-and-value-domains-between-vtl-and-sdmx)”
+above).
 
 ### Mapping VTL basic scalar types to SDMX data types
 
