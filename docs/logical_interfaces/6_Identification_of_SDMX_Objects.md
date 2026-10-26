@@ -448,6 +448,7 @@ URN. The classes marked as “(deprecated)” have been deprecated in SDMX
 |  | `VtlConceptMapping` (deprecated) |
 |  | `VtlDataflowMapping` (deprecated) |
 |  | `VtlDatasetMapping` |
+|  | `VtlExecution` |
 |  | `VtlMappingScheme` |
 |  |  |
 
@@ -541,7 +542,8 @@ urn:sdmx.org.sdmx.infomodel.{package}.{classname}=
 | `VtlCodelistMapping` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlCodelistMappingId` | `ECB:CLIST_MP(2.0.0).ABZ` |
 | `VtlConceptMapping` (deprecated) | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlConceptMappingId` | `ECB:CLIST_MP(1.0.0).XYA` |
 | `VtlDataflowMapping` (deprecated) | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlDataflowMappingId` | `ECB:CLIST_MP(1.0.0).MOQ` |
-| `VtlDatasetMapping` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlDatasetMappingId` | `ECB:CLIST_MP(2.0.0).DS1` |
+| `VtlDatasetMapping` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version).vtlDatasetMappingId` | `AG:CLIST_MP(2.0.0).DS1` |
+| `VtlExecution` | `vtlExecutionAgencyId:vtlExecutionId(version)` | `AG:EXEC_CALC(1.0.0)` |
 | `VtlMappingScheme` | `vtlMappingSchemeAgencyId:vtlMappingSchemeId(version)` | `ECB:CLIST_MP(2.0.0)` |
 
 ///table-caption

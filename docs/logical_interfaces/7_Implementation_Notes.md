@@ -69,6 +69,7 @@ The following table lists the Maintainable Artefacts.
 | None | Hierarchy | Hierarchical Code |
 | None | Hierarchy Association |  |
 | None | Categorisation |  |
+| None | Vtl Execution | Query Extraction, Url Extraction, Query Parameter |
 | Constraint | Data Constraint | DataKeySet |
 |  |  | CubeRegion |
 | Constraint | Metadata Constraint | MetadataTargetRegion |

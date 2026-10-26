@@ -428,6 +428,14 @@ Changed Maintainable Artefacts
 - A `Codelist`, may extend other `Codelist`s *only* of the same `Codelist` type. However, extending is not supported for `GeoGridCodelist`s. Unique URN classes are introduced for each Codelist type.
 - Added `validFrom` and `validTo` properties to `Code`s
 
+New Maintainable Artefacts
+
+- VTL Execution, which specifies how the data of the input VTL Data
+    Sets of a Transformation Scheme are retrieved (`QueryExtraction` or
+    `UrlExtraction`, with their query parameters) and is maintained
+    independently of the Transformation Scheme, so that other
+    organisations can also execute it on their own data
+
 New Identifiable Artefacts
 
 - `VtlDatasetMapping`, which maps a VTL Data Set to a Data Structure
@@ -442,10 +450,6 @@ Changed Maintainable Artefacts
         of the mapped SDMX artefact (`sdmxUrn`)
     - the `VtlDatasetMapping` has the mandatory `isInput` attribute
     - the Basic mapping is the only mapping method
-    - an input `VtlDatasetMapping` can contain a VTL data extraction
-        (`QueryExtraction` or `UrlExtraction`, with its query
-        parameters), which specifies how the data of the VTL Data Set
-        are retrieved
     - the references to SDMX artefacts written in the VTL statements
         through their URN or an abbreviation of their URN are deprecated
         in favour of the aliases of the VTL mappings

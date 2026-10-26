@@ -25,10 +25,10 @@ The purpose of this model package is to enable the:
 - execution of VTL algorithms, either interpreting the VTL
     transformations or translating them in whatever other computer
     language is deemed as appropriate;
-- optional definition of where the data of the input VTL Data Sets can
-    be retrieved from (e.g. a web service compliant with the SDMX
-    REST API), so that a VTL program can be executed on the basis of its
-    SDMX definition.
+- optional definition of executions of a VTL program, which specify
+    where the data of its input VTL Data Sets can be retrieved from (e.g.
+    a web service compliant with the SDMX REST API), so that the program
+    can be executed on the basis of its SDMX definition.
 
 This model package does not explain the VTL language or any of the
 content published in the VTL guides. Rather, this is an illustration of
@@ -53,7 +53,8 @@ Agreements, and the Basic mapping is the only method for converting the
 data structures between SDMX and VTL. The `TransformationScheme`
 references all the other schemes used by a VTL program, whose execution
 detects any missing definition. The retrieval of the data of the input
-VTL Data Sets can also be specified. The constructs
+VTL Data Sets can also be specified, in a `VtlExecution` maintained
+independently of the VTL program. The constructs
 made redundant by these changes have been deprecated. They are still
 described below for the existing definitions that use them, but they
 should not be used in new definitions. The conversion of the existing
@@ -101,6 +102,9 @@ following attributes:
 - `repositoryURL`
 - `isPartial`
 
+The `VtlExecution` inherits from `MaintainableArtefact` and therefore has
+the same attributes as the schemes, except `isPartial`.
+
 The model artefacts `Transformation`, `Ruleset`, `UserDefinedOperator` and
 `VtlMapping`, as well as the deprecated `NamePersonalisation` and
 `CustomType`, inherit the attributes and associations of `Item` which
@@ -118,8 +122,8 @@ The `VtlMapping` also has the attributes `vtlAlias` and `sdmxUrn` (see
 the [VTL Mapping Section](#vtl-mapping) below). The `VtlDataExtraction`,
 with its subclasses `QueryExtraction` and `UrlExtraction`, and the
 `QueryParameter` are not identifiable, as they are part of a
-`VtlDatasetMapping` (see the
-[VTL Data Extraction Section](#vtl-data-extraction) below).
+`VtlExecution` (see the
+[VTL Execution Section](#vtl-execution) below).
 
 ## Model - Relationship View
 
@@ -411,7 +415,7 @@ rules apply:
     `VtlMappingScheme` or in different ones. For example, two VTL Data
     Sets can be mapped to the same `DataStructureDefinition` and be fed
     with different parts of its data (see the
-    [VTL Data Extraction Section](#vtl-data-extraction) below).
+    [VTL Execution Section](#vtl-execution) below).
 
 [^15]: For a thorough description of the Basic mapping, see the Section
     [“Mapping between SDMX and VTL artefacts” in the SDMX Technical Notes](../../technical_notes/technical_notes/11_Validation_and_Transformation_Language__VTL_.md#mapping-between-sdmx-and-vtl-artefacts).
@@ -431,35 +435,54 @@ values are derived from the referenced SDMX artefacts. Therefore, the
 `TransformationScheme` that references SDMX artefacts, also through its
 rulesets and user defined operators.
 
-##### VTL Data Extraction
+##### VTL Execution
 
 The VTL mappings define the VTL Data Sets and Value Domains used by a
 VTL program. In order to execute the program, the data of the input VTL
-Data Sets also need to be retrieved. The `VtlDataExtraction` specifies
-where and how the data of an input VTL Data Set can be obtained,
-typically through a query to a web service compliant with the SDMX REST
-API, which returns the SDMX data to be converted into the VTL Data Set.
+Data Sets also need to be retrieved. The `VtlExecution` specifies where
+and how these data can be obtained, typically through queries to web
+services compliant with the SDMX REST API, which return the SDMX data
+to be converted into the VTL Data Sets.
 
-![](media/sdmx_transformation-transformation-data_extraction.svg)
+![](media/sdmx_transformation-transformation-execution.svg)
 /// figure-caption
-Data extraction diagram in the Transformations and Expressions
-Package
+Execution diagram in the Transformations and Expressions Package
 ///
 
-The `VtlDataExtraction` is optional. When it is not defined, the data to
-be processed are provided to the VTL engine at run time (the mechanism
-for doing so is not part of this specification). When it is defined,
-the VTL engine can retrieve the data directly, so that the
-`TransformationScheme` can be executed on the basis of its SDMX
-definition: the data structures are obtained from the SDMX artefacts
-referenced by the VTL mappings and the data from the data extractions.
+A `VtlExecution` references the `TransformationScheme` to be executed
+and contains one or more data extractions (`VtlDataExtraction`). The VTL
+mappings are part of the definition of the VTL program, while the
+`VtlExecution` is an execution configuration, which can be specific to
+an organisation or to a system (e.g. the same data can be retrieved from
+different sources). As it is maintained independently of the
+`TransformationScheme`, an organisation can also define executions for
+the VTL programs maintained by other organisations. Several executions
+can reference the same `TransformationScheme`, and the sources of the
+data can change without a new version of the VTL program.
 
-A `VtlDatasetMapping` having `isInput` equal to `true` can contain zero
-or one `VtlDataExtraction`, while a `VtlDatasetMapping` having `isInput`
-equal to `false` cannot contain any, as the outputs are produced by the
-`TransformationScheme` (the storage of the persistent results is up to
-the VTL engine). The Value Domains do not need any `VtlDataExtraction`,
-as their values are obtained from the referenced `Codelists`.
+The `VtlExecution` is optional. Without it, the data to be processed
+are provided to the VTL engine at run time (the mechanism for doing so
+is not part of this specification). With it, the VTL engine can retrieve
+the data directly, so that the `TransformationScheme` can be executed on
+the basis of its SDMX definition: the data structures are obtained from
+the SDMX artefacts referenced by the VTL mappings and the data from the
+data extractions.
+
+Each `VtlDataExtraction` references the `VtlDatasetMapping` of the input
+VTL Data Set whose data it retrieves. The following rules apply:
+
+1. The `VtlDatasetMapping` belongs to the `VtlMappingScheme` of the
+    `TransformationScheme` and has `isInput` equal to `true`. The outputs
+    are produced by the `TransformationScheme` (the storage of the
+    persistent results is up to the VTL engine), and the Value Domains do
+    not need any data extraction, as their values are obtained from the
+    referenced `Codelists`.
+2. A `VtlExecution` contains at most one `VtlDataExtraction` for each
+    input VTL Data Set. The data of the input VTL Data Sets without a
+    data extraction are provided to the VTL engine at run time.
+
+The validation of the `VtlExecution` against the `VtlMappingScheme` of
+its `TransformationScheme` detects any violation of these rules.
 
 The `VtlDataExtraction` is an abstract class, which contains zero or
 more query parameters (`QueryParameter`) and has two subclasses:
@@ -472,12 +495,25 @@ more query parameters (`QueryParameter`) and has two subclasses:
     data of the SDMX artefact referenced by the `sdmxUrn` of the
     `VtlDatasetMapping`, according to the syntax of the SDMX REST API
     version, by using the query parameters (e.g. the `key` and the
-    parameters for selecting the periods).
+    parameters for selecting the periods). Optionally, the query can be
+    made for another `Dataflow` or `ProvisionAgreement`, referenced by
+    the `contextUrn` (see below).
 - `UrlExtraction`, meant for web services that are not fully
     compliant with the SDMX REST API. It specifies the complete URL of
     the query through a template (`urlTemplate`), whose tokens enclosed
     in curly braces (e.g. `{startPeriod}`) are replaced by the values of
     the query parameters having the same names.
+
+The `contextUrn` of the `QueryExtraction` is the URN of a `Dataflow` or
+`ProvisionAgreement` that uses the same `DataStructureDefinition` as
+the SDMX artefact referenced by the `VtlDatasetMapping` (i.e. the
+`DataStructureDefinition` itself or the one used by the `Dataflow`,
+referenced directly or through the `ProvisionAgreement`). As the data
+structure of the VTL Data Set is derived from this
+`DataStructureDefinition`, the VTL program can process these data
+without changes. For example, an organisation can execute a
+`TransformationScheme` maintained by another organisation on the data
+of its own `Dataflows`.
 
 A `QueryParameter` is a name-value pair (`name` and `value`), which can
 be fixed or not (`isFixed`):
@@ -491,24 +527,23 @@ be fixed or not (`isFixed`):
 The `name` of a `QueryParameter` is unique within its
 `VtlDataExtraction`.
 
-The non-fixed parameters allow the same `TransformationScheme` to be
-executed repeatedly, for example for different periods, without changing
-its definition. The values provided at run time are assigned to the input
+The non-fixed parameters allow the same `VtlExecution` to be used
+repeatedly, for example for different periods, without changing its
+definition. The values provided at run time are assigned to the input
 VTL Data Sets through their aliases. As the same SDMX artefact can be
 mapped to several VTL Data Sets, its URN does not identify a VTL Data Set
-univocally, while each `VtlDataExtraction` belongs to just one
+univocally, while each `VtlDataExtraction` references just one
 `VtlDatasetMapping`.
 
 The restriction of the data to the part of interest (e.g. to some values
 of some `Dimensions`, or to some periods) is expressed in the query
-through the query parameters (e.g. a fixed `key` containing wildcards).
-The `VtlDataExtraction` does not reference other SDMX artefacts (e.g.
-`Constraints`).
+through the query parameters (e.g. a fixed `key` containing wildcards),
+without referring to other SDMX artefacts (e.g. `Constraints`).
 
 The `VtlDataExtraction` and the `QueryParameter` are not identifiable:
-they are part of their `VtlDatasetMapping`.[^16]
+they are part of their `VtlExecution`.[^16]
 
-[^16]: For guidance on the use of the VTL data extraction and for some
+[^16]: For guidance on the use of the VTL execution and for some
     examples, see the Section
     [“Retrieving the data of the input VTL Data Sets” in the SDMX Technical Notes](../../technical_notes/technical_notes/11_Validation_and_Transformation_Language__VTL_.md#retrieving-the-data-of-the-input-vtl-data-sets).
 
@@ -588,10 +623,11 @@ referenced by its `sdmxUrn`.
     The `ToVtlSubspace`, `ToVtlSpaceKey`, `FromVtlSuperspace` and
     `FromVtlSpaceKey` have been deprecated in SDMX 3.2; thus, the same
     SDMX artefact can be mapped to distinct input VTL Data Sets, each one
-    fed with the desired part of the SDMX data through the parameters of
-    its `VtlDataExtraction` (see above). Parts of VTL Data Sets can be
-    selected and combined in the VTL program through the VTL operators
-    (e.g. `sub`, `filter`, `calc` and `union`).
+    fed with the desired part of the SDMX data through the query
+    parameters of its data extraction (see the
+    [VTL Execution Section](#vtl-execution) above). Parts of VTL Data
+    Sets can be selected and combined in the VTL program through the VTL
+    operators (e.g. `sub`, `filter`, `calc` and `union`).
 
 Although in general one SDMX Dataflow is mapped to one VTL dataset and
 vice-versa, it is also allowed to map distinct parts of a single SDMX
@@ -710,14 +746,18 @@ basic scalar type).
 |  | `sdmxUrn` | The URN of the SDMX artefact referenced through the alias (mandatory, except for the deprecated `VtlDataflowMapping` having the conventional alias “generic_dataflow”). |
 | `VtlDatasetMapping` | Inherits from `VtlMapping` | Single mapping between a VTL Data Set and the SDMX `DataStructureDefinition`, `Dataflow` or `ProvisionAgreement` referenced by the `sdmxUrn`. |
 |  | `isInput` | A mandatory boolean that indicates whether the VTL Data Set is an input of the VTL program (`true`), whose definition and data are obtained from SDMX, or an output (`false`), whose data are converted into SDMX. An output must be the result of a persistent `Transformation`. |
-|  | `+extraction` | Association to the `VtlDataExtraction` that specifies how to retrieve the data of an input VTL Data Set. |
 | `VtlCodelistMapping` | Inherits from `VtlMapping` | Single mapping between a VTL Value Domain and the SDMX `Codelist` referenced by the `sdmxUrn`, whose `Codes` are the values of the Value Domain. |
 |  | `codelistAlias` | Deprecated. Replaced by the `vtlAlias`; if present, it has the same value. Name used in VTL to reference an SDMX codelist. The name/alias must be univocal: different SDMX artefacts cannot have the same VTL alias. |
+| `VtlExecution` | Inherits from `MaintainableArtefact` | Specifies how to retrieve the data of the input VTL Data Sets of a `TransformationScheme`, for executing it. It is maintained independently of the `TransformationScheme`. |
+|  | `+transformationScheme` | Association to the `TransformationScheme` to be executed. |
+|  | `+extractions` | Association to the data extractions of the input VTL Data Sets, at most one for each input. |
 | `VtlDataExtraction` | Abstract class<br>Sub classes are: `QueryExtraction`, `UrlExtraction` | Specifies how to retrieve the data of an input VTL Data Set. |
+|  | `+datasetMapping` | Association to the `VtlDatasetMapping` of the input VTL Data Set, which belongs to the `VtlMappingScheme` of the `TransformationScheme` and has `isInput` equal to `true`. |
 |  | `+parameters` | Association to the query parameters used for retrieving the data. |
-| `QueryExtraction` | Inherits from `VtlDataExtraction` | Retrieval of the data through a query to a web service compliant with the SDMX REST API, built from the `entryPoint`, the `sdmxUrn` of the `VtlDatasetMapping` and the query parameters. |
+| `QueryExtraction` | Inherits from `VtlDataExtraction` | Retrieval of the data through a query to a web service compliant with the SDMX REST API, built from the `entryPoint`, the `contextUrn` or the `sdmxUrn` of the `VtlDatasetMapping`, and the query parameters. |
 |  | `entryPoint` | The URL of the entry point of the SDMX REST web service. |
-|  | `sdmxApiVersion` | The version of the SDMX REST API implemented by the entry point, written as major.minor (e.g. 2.1). If not specified, the default version of the web service is assumed. |
+|  | `sdmxApiVersion` | The version of the SDMX REST API implemented by the entry point, given by the code of a release of the SDMX REST API and written as major.minor, without the leading “v” and the patch number (e.g. 1.5, 2.1 or 2.2, from the releases v1.5.0, v2.1.0 and v2.2.2). If not specified, the default version of the web service is assumed. |
+|  | `contextUrn` | The URN of the `Dataflow` or `ProvisionAgreement` whose data are queried, which uses the same `DataStructureDefinition` as the SDMX artefact referenced by the `VtlDatasetMapping`. If not specified, the data of the SDMX artefact referenced by the `sdmxUrn` of the `VtlDatasetMapping` are queried. |
 | `UrlExtraction` | Inherits from `VtlDataExtraction` | Retrieval of the data through a URL built from a template. |
 |  | `urlTemplate` | The complete URL of the query, whose tokens enclosed in curly braces (e.g. `{startPeriod}`) are replaced by the values of the query parameters having the same names. |
 | `QueryParameter` |  | A name-value pair used for retrieving the data of an input VTL Data Set. |

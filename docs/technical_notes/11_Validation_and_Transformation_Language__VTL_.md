@@ -653,7 +653,7 @@ The following rules apply to the `VtlDatasetMapping`:
     “[Retrieving the data of the input VTL Data Sets](#retrieving-the-data-of-the-input-vtl-data-sets)”
     below).
 
-For example, the `TransformationScheme` `OECD:TS_DIFF(1.0)`, whose
+For example, the `TransformationScheme` `AG:TS_DIFF(1.0)`, whose
 `vtlVersion` is “2.2”, calculates the difference between two VTL Data
 Sets and stores the result persistently:
 
@@ -661,14 +661,14 @@ Sets and stores the result persistently:
 diff <- ds_a - ds_b;
 ```
 
-Its `VtlMappingScheme` `OECD:VTL_MAP(1.0)` contains the following VTL
+Its `VtlMappingScheme` `AG:VTL_MAP(1.0)` contains the following VTL
 dataset mappings:
 
 | `vtlAlias` | `sdmxUrn` | `isInput` |
 | :--- | :--- | :--- |
-| `ds_a` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=OECD.SDD.NAD:DF_A(1.0)` | `true` |
-| `ds_b` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=OECD.SDD.NAD:DF_B(1.0)` | `true` |
-| `diff` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=OECD.SDD.NAD:DF_DIFF(1.0)` | `false` |
+| `ds_a` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG:DF_A(1.0)` | `true` |
+| `ds_b` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG:DF_B(1.0)` | `true` |
+| `diff` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG:DF_DIFF(1.0)` | `false` |
 
 Under the Basic mapping, the `Dimensions` and the `TimeDimension` of the
 `Dataflows` become VTL Identifiers and their `Measures` become VTL
@@ -677,7 +677,7 @@ engine (assuming that `DF_A` and `DF_B` have the same `Dimensions` and
 `Measures`). The data structure of `DF_DIFF` must correspond to that of
 the result.
 
-As a second example, the `TransformationScheme` `ESTAT:TS_AREACHK(1.0)`,
+As a second example, the `TransformationScheme` `AG:TS_AREACHK(1.0)`,
 whose `vtlVersion` is “2.2”, selects the data points of a VTL Data Set
 whose reference area is not a valid code of an SDMX `Codelist`:
 
@@ -689,8 +689,8 @@ Its `VtlMappingScheme` contains the following VTL mappings:
 
 | Class | `vtlAlias` | `sdmxUrn` | `isInput` |
 | :--- | :--- | :--- | :--- |
-| `VtlDatasetMapping` | `ds_x` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=ESTAT:DF_X(1.0)` | `true` |
-| `VtlDatasetMapping` | `ds_invalid` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=ESTAT:DF_INVALID(1.0)` | `false` |
+| `VtlDatasetMapping` | `ds_x` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG:DF_X(1.0)` | `true` |
+| `VtlDatasetMapping` | `ds_invalid` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG:DF_INVALID(1.0)` | `false` |
 | `VtlCodelistMapping` | `cl_area` | `urn:sdmx:org.sdmx.infomodel.codelist.Codelist=SDMX:CL_AREA(2.0)` | (not applicable) |
 
 `cl_area` is the name of the VTL Value Domain whose values are the
@@ -734,7 +734,7 @@ systems). As already said, the SDMX `Datasets` are instances of SDMX
 `Dataflow`s, therefore a VTL Transformation defined on some SDMX `Dataflow`s
 can be applied on some corresponding SDMX `Datasets`. In SDMX, the
 retrieval of the data of the input VTL Data Sets can optionally be
-specified through the `VtlDataExtraction` (see the section
+specified through a `VtlExecution` (see the section
 “[Retrieving the data of the input VTL Data Sets](#retrieving-the-data-of-the-input-vtl-data-sets)”
 below).
 
@@ -1196,11 +1196,11 @@ The `VtlMappingScheme` is a container for zero or more `VtlDataflowMapping`
     in the direction from SDMX to VTL, a subset is selected in the VTL
     program through the VTL `sub` clause, which also drops the
     `Dimensions` having a fixed value. The retrieval of the data can be
-    restricted through the parameters of the `VtlDataExtraction` (e.g. a
-    fixed `key`), and the same SDMX artefact can be mapped to distinct
-    input VTL Data Sets having distinct aliases. In the direction from VTL
-    to SDMX, the VTL `calc` and `union` operators can be used as explained
-    below.
+    restricted through the query parameters of a data extraction of a
+    `VtlExecution` (e.g. a fixed `key`), and the same SDMX artefact can be
+    mapped to distinct input VTL Data Sets having distinct aliases. In the
+    direction from VTL to SDMX, the VTL `calc` and `union` operators can be
+    used as explained below.
 
 Until now it has been assumed to map one SDMX `Dataflow` to one VTL Data
 Set and vice-versa. This mapping one-to-one is not mandatory according
@@ -2018,42 +2018,58 @@ formats.
 
 ## Retrieving the data of the input VTL Data Sets
 
-### VTL data extraction
+### VTL execution
 
 The mappings between VTL and SDMX described above specify the data
 structures of the VTL Data Sets used by a VTL program. In order to
 execute the program, the data of the input
-VTL Data Sets are also needed. The `VtlDataExtraction` (see the section
-of the SDMX IM relevant to the VTL) specifies where and how the data
-of an input VTL Data Set can be obtained, typically through a query to a
-web service compliant with the
-[SDMX REST API](https://github.com/sdmx-twg/sdmx-rest), which returns
-the SDMX data to be converted into the VTL Data Set. The query is driven
-by name-value parameters, which can be fixed or overridable at run time,
-so that the same `TransformationScheme` can be executed repeatedly, for
+VTL Data Sets are also needed. The `VtlExecution` (see the section
+of the SDMX IM relevant to the VTL) specifies where and how these data
+can be obtained, typically through queries to web services compliant
+with the [SDMX REST API](https://github.com/sdmx-twg/sdmx-rest), which
+return the SDMX data to be converted into the VTL Data Sets. The queries
+are driven by name-value parameters, which can be fixed or overridable
+at run time, so that the same `VtlExecution` can be used repeatedly, for
 example for different periods, without changing its definition.
 
-The `VtlDataExtraction` is optional, because it is not needed for
-defining or executing a VTL program. When it is not defined for an input
-VTL Data Set, the data (or the information for retrieving them)
-are provided to the VTL engine at run time. When it is defined, the VTL
-engine can retrieve the data directly. Run-time values are then needed
-only for the non-fixed parameters that have no `value`, while the values
-of the other non-fixed parameters can still be overridden. Therefore, a
-`TransformationScheme` whose input VTL Data
-Sets have a `VtlDataExtraction` can be executed by providing the VTL
-engine only with the reference to the `TransformationScheme` and,
-possibly, with the values of some parameters. The VTL engine obtains the
-data structures from the SDMX artefacts referenced by the VTL mappings
-and the data from the data extractions.
+A `VtlExecution` references the `TransformationScheme` to be executed
+and contains a data extraction (`VtlDataExtraction`) for each input VTL
+Data Set whose data it retrieves. Each `VtlDataExtraction` references
+the `VtlDatasetMapping` of its input VTL Data Set, which belongs to the
+`VtlMappingScheme` of the `TransformationScheme`.
+
+The `VtlExecution` is optional, because it is not needed for defining or
+executing a VTL program. Without a `VtlExecution`, the data of the input
+VTL Data Sets (or the information for retrieving them) are provided to
+the VTL engine at run time. The same applies to the input VTL Data Sets
+that have no data extraction in the `VtlExecution`, while the VTL engine
+retrieves the data of the others directly. Run-time values are then
+needed only for the non-fixed parameters that have no `value`, while the
+values of the other non-fixed parameters can still be overridden.
+Therefore, a `TransformationScheme` can be executed by providing the VTL
+engine only with the reference to a `VtlExecution` having a data
+extraction for each input VTL Data Set and, possibly, with the values of
+some parameters. The VTL engine obtains the data structures from the
+SDMX artefacts referenced by the VTL mappings and the data from the data
+extractions.
 
 While the mappings between VTL and SDMX are part of the public
-definition of a VTL program, the `VtlDataExtraction` is an execution
-configuration, which can be specific to an organisation or to
-a system (e.g. the same data can be retrieved from different sources),
-although it can refer to public web services as well. As it belongs to
-its `VtlDatasetMapping`, the `VtlDataExtraction` is part of the
-`VtlMappingScheme`, which can also be published without the extractions.
+definition of a VTL program, the `VtlExecution` is an execution
+configuration, which can be specific to an organisation or to a system
+(e.g. the same data can be retrieved from different sources), although
+it can refer to public web services as well. The `VtlExecution` is a
+maintainable artefact, distinct from the `TransformationScheme` and from
+its `VtlMappingScheme`, so that:
+
+- an organisation can define executions for the VTL programs maintained
+    by other organisations, for example to apply to its own data the
+    validation rules published by another organisation, before reporting
+    the data to it;
+- several executions can reference the same `TransformationScheme`, for
+    example one for each source of the data;
+- the sources of the data and the query parameters can change without a
+    new version of the `TransformationScheme` or of its
+    `VtlMappingScheme`.
 
 The `VtlDataExtraction` applies only to the input VTL Data Sets, i.e. to
 a `VtlDatasetMapping` having `isInput` equal to `true`: the outputs are
@@ -2075,7 +2091,7 @@ above).
 
 ### Query and URL extractions
 
-A `VtlDataExtraction` belongs to one input `VtlDatasetMapping` and
+A `VtlDataExtraction` references one input `VtlDatasetMapping` and
 contains zero or more query parameters (`QueryParameter`). It can take
 two forms, which can be chosen for each input VTL Data Set depending on
 the source of its data:
@@ -2084,13 +2100,19 @@ the source of its data:
     SDMX REST API. It specifies the entry point of the web service
     (`entryPoint`, e.g. `https://sdmx.example.org/rest`) and, optionally,
     the version of the SDMX REST API implemented by the entry point
-    (`sdmxApiVersion`), written as major.minor (e.g. `1.5` or `2.1`). If
-    the `sdmxApiVersion` is not specified, the default version of the web
-    service is assumed. As
-    the syntax of the query depends on the version, specifying the
-    `sdmxApiVersion` is recommended.
+    (`sdmxApiVersion`). The values of the `sdmxApiVersion` are given by
+    the codes of the
+    [releases of the SDMX REST API](https://github.com/sdmx-twg/sdmx-rest/releases),
+    written as major.minor, i.e. without the leading “v” and the patch
+    number, which does not change the syntax of the queries. For example,
+    the releases from `v1.0.0` to `v2.2.2` give the values `1.0`, `1.1`,
+    `1.2`, `1.3`, `1.4`, `1.5`, `2.0`, `2.1` and `2.2`. If the
+    `sdmxApiVersion` is not specified, the default version of the web
+    service is assumed. As the syntax of the query depends on the version,
+    specifying the `sdmxApiVersion` is recommended.
     The VTL engine builds the data query for the SDMX artefact referenced
-    by the `sdmxUrn` of the `VtlDatasetMapping`, according to the syntax
+    by the `contextUrn`, if specified (see below), or otherwise by the
+    `sdmxUrn` of the `VtlDatasetMapping`, according to the syntax
     of the version of the SDMX REST API, by using the query parameters.
     The parameter named `key`, if present, provides the key of the data
     query (i.e. the combination of the values of the `Dimensions`,
@@ -2115,6 +2137,26 @@ the source of its data:
 The VTL engines are expected to support both forms, so that a
 `TransformationScheme` can be executed independently of the form used.
 
+The `contextUrn` of the `QueryExtraction` is named after the context of
+the data queries of the SDMX REST API, i.e. the artefact whose data are
+queried. It references a `Dataflow` or a `ProvisionAgreement` that uses
+the same `DataStructureDefinition` as the SDMX artefact referenced by
+the `VtlDatasetMapping`, i.e. the `DataStructureDefinition` itself or
+the one used by the `Dataflow`, referenced directly or through the
+`ProvisionAgreement`. As the data structure of the VTL Data Set is
+derived from this `DataStructureDefinition` through the Basic mapping,
+the VTL program processes the data of the context without changes. For
+example, the `contextUrn` allows:
+
+- executing a VTL program whose VTL Data Sets are mapped to
+    `DataStructureDefinitions` on the data of specific `Dataflows`, also
+    with version 1.x of the SDMX REST API, which has no data queries by
+    `DataStructureDefinition`;
+- executing a VTL program on the data of `Dataflows` other than the
+    mapped ones, such as the `Dataflows` of another organisation that
+    use the same `DataStructureDefinition`, without copying the
+    `TransformationScheme` and its `VtlMappingScheme`.
+
 ### Query parameters and run-time values
 
 A `QueryParameter` is a name-value pair (`name` and `value`), which can be
@@ -2136,14 +2178,14 @@ the VTL engine and should not be put in the query parameters or in the
 
 The values of the parameters are resolved as follows:
 
-1. The `VtlDataExtraction` of each input VTL Data Set lists
-    its query parameters, with their fixed values or defaults.
-2. The VTL engine executes the `TransformationScheme`,
-    possibly receiving at run time the values of some non-fixed
-    parameters. These values are assigned to the input VTL Data Sets
-    through their aliases. As the same SDMX artefact can be mapped to
-    several VTL Data Sets, its URN does not identify a VTL Data Set
-    univocally, while each `VtlDataExtraction` belongs to just one
+1. Each data extraction of the `VtlExecution` lists its query
+    parameters, with their fixed values or defaults.
+2. The VTL engine executes the `TransformationScheme` of the
+    `VtlExecution`, possibly receiving at run time the values of some
+    non-fixed parameters. These values are assigned to the input VTL
+    Data Sets through their aliases. As the same SDMX artefact can be
+    mapped to several VTL Data Sets, its URN does not identify a VTL Data
+    Set univocally, while each `VtlDataExtraction` references just one
     `VtlDatasetMapping`. How the values are passed to the VTL engine is
     not part of this specification.
 3. The fixed parameters keep their values, while the
@@ -2162,9 +2204,13 @@ engine resolves the query):
 | Condition | Detected at | Result |
 | :--- | :--- | :--- |
 | A `QueryParameter` having `isFixed` equal to `true` and no `value` | Validation | Invalid definition: a fixed parameter must have a value. |
-| A `VtlDataExtraction` in a `VtlDatasetMapping` having `isInput` equal to `false` | Validation | Invalid definition: the data extractions apply only to the inputs. |
+| A `VtlDataExtraction` whose `VtlDatasetMapping` does not belong to the `VtlMappingScheme` of the `TransformationScheme` of its `VtlExecution` | Validation | Invalid definition: the data extractions apply only to the VTL Data Sets of the executed program. |
+| A `VtlDataExtraction` whose `VtlDatasetMapping` has `isInput` equal to `false` | Validation | Invalid definition: the data extractions apply only to the inputs. |
+| A `VtlExecution` having two data extractions for the same `VtlDatasetMapping` | Validation | Invalid definition: an input VTL Data Set has at most one data extraction in an execution. |
 | A `VtlDatasetMapping` having `isInput` equal to `false` whose `vtlAlias` is not the result of a persistent `Transformation` | Validation | Invalid definition: the outputs must be persistent. |
-| A `QueryExtraction` whose `sdmxApiVersion` is not a published version of the SDMX REST API | Validation | Invalid definition: the version of the SDMX REST API is unknown. |
+| A `QueryExtraction` whose `sdmxApiVersion` does not correspond to a release of the SDMX REST API | Validation | Invalid definition: the version of the SDMX REST API is unknown. |
+| A `QueryExtraction` whose `contextUrn` does not reference a `Dataflow` or a `ProvisionAgreement` using the `DataStructureDefinition` of the SDMX artefact referenced by the `VtlDatasetMapping` | Validation | Invalid definition: the data of the context do not have the data structure of the VTL Data Set. |
+| An input VTL Data Set without a data extraction in the `VtlExecution`, whose data are not provided at run time | Run time | Error: the data of the input cannot be obtained and the execution fails. |
 | A non-fixed `QueryParameter` without `value`, whose value is not provided at run time | Run time | Error: the query cannot be built and the execution fails. |
 | A token of the `urlTemplate` of a `UrlExtraction` having no `QueryParameter` with the same name | Run time | Error: the URL cannot be built and the execution fails. |
 
@@ -2172,11 +2218,13 @@ engine resolves the query):
 
 #### Example 1: Difference between two Dataflows
 
-This example completes the `TransformationScheme` `OECD:TS_DIFF(1.0)`
+This example completes the `TransformationScheme` `AG:TS_DIFF(1.0)`
 described in the paragraph
 “[Mapping VTL Data Sets and Value Domains to SDMX artefacts](#mapping-vtl-data-sets-and-value-domains-to-sdmx-artefacts)”.
-The `VtlDataExtraction` of the input VTL Data Set `ds_a` is shown below in
-the two forms (the one of `ds_b` is analogous).
+The `VtlExecution` `AG:EXEC_DIFF(1.0)` references it and contains the
+data extractions of its input VTL Data Sets `ds_a` and `ds_b`. The data
+extraction of `ds_a` is shown below in the two forms (the one of `ds_b`
+is analogous).
 
 As a `QueryExtraction`, assuming that the data are retrieved from a web
 service implementing version 1.5 of the SDMX REST API:
@@ -2202,14 +2250,14 @@ default, therefore its value must be provided at run time.
 As a `UrlExtraction`:
 
 - `urlTemplate`:
-    `https://sdmx.example.org/rest/data/OECD.SDD.NAD,DF_A,1.0/A.USA.?startPeriod={startPeriod}&endPeriod={endPeriod}`
+    `https://sdmx.example.org/rest/data/AG,DF_A,1.0/A.USA.?startPeriod={startPeriod}&endPeriod={endPeriod}`
 - query parameters: `startPeriod` (non-fixed, with default `2015`) and
     `endPeriod` (non-fixed, without default), which provide the values of
     the tokens having the same names; the key is already part of the URL.
 
-The VTL engine is provided with the reference to the
-`TransformationScheme` and with the following run-time values, addressed
-to the input VTL Data Sets through their aliases:
+The VTL engine is provided with the reference to the `VtlExecution` and
+with the following run-time values, addressed to the input VTL Data Sets
+through their aliases:
 
 | Alias | Run-time values |
 | :--- | :--- |
@@ -2222,16 +2270,16 @@ the default `2015`). Therefore, in both forms, the VTL engine retrieves
 the data of `ds_a` through the following query:
 
 ```text
-https://sdmx.example.org/rest/data/OECD.SDD.NAD,DF_A,1.0/A.USA.?startPeriod=2020&endPeriod=2023
+https://sdmx.example.org/rest/data/AG,DF_A,1.0/A.USA.?startPeriod=2020&endPeriod=2023
 ```
 
 Similarly, it retrieves the data of `ds_b`, then it calculates `diff`
 and, as this is a persistent output (`isInput` equal to `false`), it
-stores the result as data of the `Dataflow` `OECD.SDD.NAD:DF_DIFF(1.0)`.
+stores the result as data of the `Dataflow` `AG:DF_DIFF(1.0)`.
 
 #### Example 2: Two VTL Data Sets mapped to the same Data Structure Definition
 
-The following `TransformationScheme` `ESTAT:TS_POPRATIO(1.0)`, whose
+The following `TransformationScheme` `AG:TS_POPRATIO(1.0.0)`, whose
 `vtlVersion` is “2.2”, calculates the ratio between the male and the
 female population:
 
@@ -2240,25 +2288,25 @@ ratio <- pop_m [ sub SEX = "M" ] / pop_f [ sub SEX = "F" ];
 ```
 
 The two input VTL Data Sets are mapped to the same
-`DataStructureDefinition` `ESTAT:POP(1.0.0)`, having the `Dimensions`
+`DataStructureDefinition` `AG:POP(1.0.0)`, having the `Dimensions`
 `REF_AREA`, `SEX` and `AGE`, the `TimeDimension` `TIME_PERIOD` and the
 `Measure` `OBS_VALUE`:
 
 | `vtlAlias` | `sdmxUrn` | `isInput` |
 | :--- | :--- | :--- |
-| `pop_m` | `urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=ESTAT:POP(1.0.0)` | `true` |
-| `pop_f` | `urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=ESTAT:POP(1.0.0)` | `true` |
-| `ratio` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=ESTAT:DF_POPRATIO(1.0.0)` | `false` |
+| `pop_m` | `urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=AG:POP(1.0.0)` | `true` |
+| `pop_f` | `urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=AG:POP(1.0.0)` | `true` |
+| `ratio` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG:DF_POPRATIO(1.0.0)` | `false` |
 
 This is allowed because the mapping is many-to-many and a
 `VtlDatasetMapping` can reference a `DataStructureDefinition`: `pop_m` and
 `pop_f` are distinct VTL Data Sets, distinguished only by their aliases.
 
-Each input has a `QueryExtraction` on a web service implementing the
-version 2.1 of the SDMX REST API (`entryPoint`
-`https://sdmx.example.org/rest`, `sdmxApiVersion` `2.1`), with a
-different fixed `key` and the same non-fixed component filter on the
-time period:
+The `VtlExecution` `AG:EXEC_POPRATIO(1.0.0)` contains a `QueryExtraction`
+for each input, on a web service implementing version 2.1 of the SDMX
+REST API (`entryPoint` `https://sdmx.example.org/rest`, `sdmxApiVersion`
+`2.1`), with a different fixed `key` and the same non-fixed component
+filter on the time period:
 
 | Alias | Fixed `key` | Part of the data | Non-fixed parameter |
 | :--- | :--- | :--- | :--- |
@@ -2283,14 +2331,51 @@ addressed to them through their aliases, for example:
 The VTL engine retrieves the data through the following queries:
 
 ```text
-https://sdmx.example.org/rest/data/datastructure/ESTAT/POP/1.0.0/*.M.*?c[TIME_PERIOD]=ge:2015
-https://sdmx.example.org/rest/data/datastructure/ESTAT/POP/1.0.0/*.F.*?c[TIME_PERIOD]=ge:2015
+https://sdmx.example.org/rest/data/datastructure/AG/POP/1.0.0/*.M.*?c[TIME_PERIOD]=ge:2015
+https://sdmx.example.org/rest/data/datastructure/AG/POP/1.0.0/*.F.*?c[TIME_PERIOD]=ge:2015
 ```
 
 Then, it calculates `ratio` and stores it as data of the `Dataflow`
-`ESTAT:DF_POPRATIO(1.0.0)`, whose data structure has the `Dimensions`
+`AG:DF_POPRATIO(1.0.0)`, whose data structure has the `Dimensions`
 `REF_AREA` and `AGE`, the `TimeDimension` `TIME_PERIOD` and the `Measure`
 `OBS_VALUE`.
+
+#### Example 3: Execution on the data of another organisation
+
+The agency `AG2` calculates the same ratio on its own population data,
+by executing the `TransformationScheme` `AG:TS_POPRATIO(1.0.0)` of
+Example 2. The data of `AG2` belong to the `Dataflow` `AG2:DF_POP(1.0)`,
+which uses the `DataStructureDefinition` `AG:POP(1.0.0)`. They are
+disseminated by a web service implementing version 1.5 of the SDMX REST
+API, which has no data queries by `DataStructureDefinition`.
+
+`AG2` maintains the `VtlExecution` `AG2:EXEC_POPRATIO(1.0)`, which
+references `AG:TS_POPRATIO(1.0.0)` and contains a `QueryExtraction` for
+each input. Both extractions have the `entryPoint`
+`https://sdmx.example.org/ag2/rest`, the `sdmxApiVersion` `1.5` and the
+`contextUrn`
+`urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG2:DF_POP(1.0)`:
+
+| Alias | Fixed `key` | Non-fixed parameter |
+| :--- | :--- | :--- |
+| `pop_m` | `.M.` | `startPeriod`, default `2010` |
+| `pop_f` | `.F.` | `startPeriod`, default `2010` |
+
+According to version 1.x of the SDMX REST API, the `Dimensions` `REF_AREA`
+and `AGE` are wildcarded by omitting their values. Without run-time
+values, the VTL engine retrieves the data through the following
+queries:
+
+```text
+https://sdmx.example.org/ag2/rest/data/AG2,DF_POP,1.0/.M.?startPeriod=2010
+https://sdmx.example.org/ag2/rest/data/AG2,DF_POP,1.0/.F.?startPeriod=2010
+```
+
+Then, it calculates `ratio`, whose data structure is the one of the
+`Dataflow` `AG:DF_POPRATIO(1.0.0)` (the storage of the persistent
+results is up to the VTL engine). `AG2` uses the `TransformationScheme`
+and the `VtlMappingScheme` maintained by `AG` without copying them, and
+the `VtlExecution` of `AG` (Example 2) is not affected.
 
 ## Conversion of definitions based on deprecated constructs
 
@@ -2306,7 +2391,7 @@ constructs of SDMX 3.0 and 3.1 is represented in SDMX 3.2:
 | Direction of the `VtlDataflowMapping` | The `isInput` attribute of the `VtlDatasetMapping`: `false` if the alias is the result of a persistent `Transformation` (`<-`), as indicated by a `fromVtlMappingMethod` if specified, `true` if it is only used as an operand, as indicated by a `toVtlMappingMethod` if specified. An alias used in both ways (e.g. by two transformation schemes sharing the same `VtlMappingScheme`) is mapped twice, with distinct aliases, and the VTL programs are adapted accordingly. |
 | A `VtlDataflowMapping` whose alias is the result of a non-persistent `Transformation` (`:=`) | No `VtlDatasetMapping`, as only the persistent results can be mapped as outputs: the result remains internal to the VTL program or, if it has to be stored as SDMX data, its `Transformation` becomes persistent (`<-`) and it is mapped through a `VtlDatasetMapping` having `isInput` equal to `false`. |
 | `toVtlMappingMethod`, `fromVtlMappingMethod` and the conventional "generic_dataflow" | No attribute: the Basic mapping always applies, and the `VtlDataflowMapping` of the conventional "generic_dataflow" is dropped. Where a different method was specified, the corresponding restructuring is performed in the VTL program (e.g. through the `pivot`, `unpivot` or `calc` clauses). |
-| `ToVtlSubspace` and `ToVtlSpaceKey` (ordered concatenation notation from SDMX to VTL) | The VTL program selects each part of the `Dataflow` from a VTL Data Set mapped to the `Dataflow` through an input `VtlDatasetMapping` with a user-defined alias, by means of the `sub` clause, which also drops the mapping `Dimensions`. The retrieval of the data can be restricted to the same part through the query parameters of the `VtlDataExtraction` (e.g. a fixed `key` with the values of the mapping `Dimensions` and wildcards for the others). Distinct parts can also be mapped to distinct VTL Data Sets. |
+| `ToVtlSubspace` and `ToVtlSpaceKey` (ordered concatenation notation from SDMX to VTL) | The VTL program selects each part of the `Dataflow` from a VTL Data Set mapped to the `Dataflow` through an input `VtlDatasetMapping` with a user-defined alias, by means of the `sub` clause, which also drops the mapping `Dimensions`. The retrieval of the data can be restricted to the same part through the query parameters of a data extraction of a `VtlExecution` (e.g. a fixed `key` with the values of the mapping `Dimensions` and wildcards for the others). Distinct parts can also be mapped to distinct VTL Data Sets. |
 | `FromVtlSuperspace` and `FromVtlSpaceKey` (ordered concatenation notation from VTL to SDMX) | The VTL program adds the mapping `Dimensions` to the VTL Data Sets through the `calc` clause and combines them through the `union` operator. The result is mapped to the `Dataflow` through a `VtlDatasetMapping` having `isInput` equal to `false`. |
 | `VtlConceptMapping` | No mapping: the VTL Variables correspond to the components having the same names in the VTL Data Sets. |
 | `NamePersonalisationScheme` and `NamePersonalisation` | The desired names are assigned in the VTL program (e.g. through the `rename` clause). |
