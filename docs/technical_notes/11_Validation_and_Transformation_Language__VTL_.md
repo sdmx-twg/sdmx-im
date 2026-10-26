@@ -84,21 +84,23 @@ the SDMX artefacts directly in the VTL statements (they are possible
 because the association between a `TransformationScheme` and a
 `VtlMappingScheme` is optional). A `VtlMapping` allows specifying the
 alias (`vtlAlias`) to be used in the VTL Transformations, Rulesets[^3]
-or User Defined Operators[^4] to reference an SDMX artefact, together with the URN of such artefact
-(`sdmxUrn`). A `VtlMappingScheme` is a container for zero or more
-`VtlMapping`. The aliases used in the Transformations, Rulesets and User
-Defined Operators of a VTL program are mapped by the `VtlMappingScheme`
-of its `TransformationScheme`.
+or User Defined Operators[^4] to reference an SDMX artefact, together
+with the URN of such artefact (`sdmxUrn`). A `VtlMappingScheme` is a
+container for zero or more `VtlMapping`. The aliases used in the
+Transformations, Rulesets and User Defined Operators of a VTL program
+are mapped by the `VtlMappingScheme` of its `TransformationScheme`. A
+VTL engine collects these definitions and mappings from the
+`TransformationScheme` and runs them as one program, whose semantic
+analysis detects any missing Ruleset, User Defined Operator or mapping.
+Therefore, the `RulesetScheme`, the `UserDefinedOperatorScheme` and the
+`VtlMappingScheme` do not need to be associated with one another.
 
 [^3]: See also the section "VTL-DL Rulesets" in the VTL Reference Manual.
 [^4]:
-    The VTLMappings are used also for User Defined Operators (UDO).
-    Although UDOs are envisaged to be defined on generic operands, so that
-    the specific artefacts to be manipulated are passed as parameters at
-    their invocation, it is also possible that an UDO invokes directly some
-    specific SDMX artefacts. These SDMX artefacts have to be mapped to the
-    corresponding aliases used in the definition of the UDO through the
-    `VtlMappingScheme` of the `TransformationScheme` as well.
+    User Defined Operators (UDO) are envisaged to be defined on generic
+    operands, which are passed as parameters at their invocation. However,
+    a UDO can also reference specific SDMX artefacts, whose aliases are
+    mapped like the other aliases of the VTL program.
 
 The correspondence between aliases and SDMX artefacts is defined within
 a `VtlMappingScheme`. An alias identifies one and just one SDMX artefact,
@@ -620,8 +622,9 @@ As the VTL is strongly typed and does not include declarations of
 variables, these mappings provide the definitions of the VTL Data Sets
 and Value Domains used in the VTL program. Therefore, they are part of
 the public definition of the VTL program: a `TransformationScheme` that
-references SDMX artefacts is not complete without the `VtlMappingScheme`
-containing these mappings.
+references SDMX artefacts, also through its Rulesets and User Defined
+Operators, is not complete without the `VtlMappingScheme` containing
+these mappings.
 
 The following rules apply to the `VtlDatasetMapping`:
 
@@ -1575,7 +1578,8 @@ paragraph
 above).
 
 A `Component` whose representation is a `Codelist` referenced by a
-`VtlCodelistMapping` is defined on the corresponding Value Domain. Its
+`VtlCodelistMapping` of the `VtlMappingScheme` of the
+`TransformationScheme` is defined on the corresponding Value Domain. Its
 VTL scalar type is the Value Domain Scalar Type named after the
 `vtlAlias` of the `VtlCodelistMapping`. For example, a `DataAttribute`
 represented by the `Codelist` mapped to `CL_CONF` has the VTL type

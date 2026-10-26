@@ -51,8 +51,9 @@ simplified and aligned with the SDMX 3 model. The VTL Data Sets can be
 mapped to Data Structure Definitions, Dataflows and Provision
 Agreements, and the Basic mapping is the only method for converting the
 data structures between SDMX and VTL. The `TransformationScheme`
-references all the other schemes used by a VTL program. The retrieval of
-the data of the input VTL Data Sets can also be specified. The constructs
+references all the other schemes used by a VTL program, whose execution
+detects any missing definition. The retrieval of the data of the input
+VTL Data Sets can also be specified. The constructs
 made redundant by these changes have been deprecated. They are still
 described below for the existing definitions that use them, but they
 should not be used in new definitions. The conversion of the existing
@@ -217,6 +218,14 @@ operator schemes of a `TransformationScheme` must contain all the
 rulesets and user defined operators used by its transformations, also
 indirectly (e.g. the rulesets invoked by a user defined operator).
 
+To run the program, a VTL engine collects the transformations, rulesets
+and user defined operators of the `TransformationScheme` and of the
+schemes that it references, and the mappings of its `VtlMappingScheme`.
+The semantic analysis and the execution of the program detect any
+missing ruleset, user defined operator or mapping. For this reason, the
+`RulesetScheme`, the `UserDefinedOperatorScheme` and the
+`VtlMappingScheme` do not need to be associated with one another.
+
 Like the `TransformationScheme`, the `RulesetScheme` and the
 `UserDefinedOperatorScheme` must include the attribute `vtlVersion`,
 which the deprecated `NamePersonalisationScheme` and `CustomTypeScheme`
@@ -298,7 +307,8 @@ there can exist mappings for `Codelists`.
 !!! note
     The association of the `RulesetScheme` with the `VtlMappingScheme`
     has been deprecated in SDMX 3.2; thus, the mappings used by the
-    rulesets are provided by the `TransformationScheme`.
+    rulesets are provided by the `TransformationScheme` (see the
+    [Transformation Scheme Section](#transformation-scheme) above).
 
 ##### User Defined Operator Scheme
 
@@ -326,7 +336,8 @@ rulesets, which are contained in the ruleset schemes of the
     The associations of the `UserDefinedOperatorScheme` with the
     `VtlMappingScheme` and with the `RulesetScheme` have been deprecated in
     SDMX 3.2; thus, the mappings and the rulesets used by the user defined
-    operators are provided by the `TransformationScheme`.
+    operators are provided by the `TransformationScheme` (see the
+    [Transformation Scheme Section](#transformation-scheme) above).
 
 ##### VTL Mapping
 

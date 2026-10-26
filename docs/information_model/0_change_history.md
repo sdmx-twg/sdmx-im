@@ -463,7 +463,8 @@ Changed Maintainable Artefacts
     the VTL program
 - The associations of the Ruleset Scheme and of the User Defined
     Operator Scheme with the VTL Mapping Scheme, and of the User Defined
-    Operator Scheme with the Ruleset Scheme, are deprecated
+    Operator Scheme with the Ruleset Scheme, are deprecated, as the
+    execution of the Transformation Scheme detects any missing definition
 - The associations of the Transformation Scheme with the Name
     Personalisation Scheme and the Custom Type Scheme are deprecated
 
