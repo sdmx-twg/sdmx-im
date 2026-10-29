@@ -456,7 +456,12 @@ these classes provide for structured references to the SDMX artefacts
 referenced in the VTL statements. The aliases follow the VTL naming rules: for
 example, an alias containing characters that are not allowed in the VTL
 regular names must be written between single quotes in the VTL
-statements.
+statements. The same applies to an alias that coincides with a VTL
+keyword (e.g. `'diff'`). The single quotes are not part of the name: a
+name written between single quotes and the same name written without
+them (e.g. `'ds_diff'` and `ds_diff`) denote the same VTL artefact.
+Therefore, the `vtlAlias` always contains the name without the single
+quotes, which are written only in the VTL statements.
 
 ### References to SDMX artefacts from VTL Rulesets
 
