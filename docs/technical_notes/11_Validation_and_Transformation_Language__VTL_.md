@@ -658,7 +658,7 @@ For example, the `TransformationScheme` `AG:TS_DIFF(1.0)`, whose
 Sets and stores the result persistently:
 
 ```text
-diff <- ds_a - ds_b;
+ds_diff <- ds_a - ds_b;
 ```
 
 Its `VtlMappingScheme` `AG:VTL_MAP(1.0)` contains the following VTL
@@ -668,7 +668,7 @@ dataset mappings:
 | :--- | :--- | :--- |
 | `ds_a` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG:DF_A(1.0)` | `true` |
 | `ds_b` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG:DF_B(1.0)` | `true` |
-| `diff` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG:DF_DIFF(1.0)` | `false` |
+| `ds_diff` | `urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AG:DF_DIFF(1.0)` | `false` |
 
 Under the Basic mapping, the `Dimensions` and the `TimeDimension` of the
 `Dataflows` become VTL Identifiers and their `Measures` become VTL
@@ -2273,7 +2273,7 @@ the data of `ds_a` through the following query:
 https://sdmx.example.org/rest/data/AG,DF_A,1.0/A.USA.?startPeriod=2020&endPeriod=2023
 ```
 
-Similarly, it retrieves the data of `ds_b`, then it calculates `diff`
+Similarly, it retrieves the data of `ds_b`, then it calculates `ds_diff`
 and, as this is a persistent output (`isInput` equal to `false`), it
 stores the result as data of the `Dataflow` `AG:DF_DIFF(1.0)`.
 
