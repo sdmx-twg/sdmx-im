@@ -141,7 +141,7 @@ Relationship class diagram of the Data Structure Definition excluding representa
 
 #### Narrative
 
-A `DataStructureDefinition` defines the `Dimension`s, `TimeDimension`,
+A `DataStructureDefinition`, often abbreviated as DSD, defines the `Dimension`s, `TimeDimension`,
 `DataAttributes`, and `Measure`s, and associated `Representation`s, that
 comprise the valid structure of data and related attributes that may be
 contained in a `DataSet`. In addition, a
@@ -157,7 +157,8 @@ and
 A `Dataflow` may optionally define which `Dimensions` it uses, by defining a
 `DimensionConstraint` (this is a mandatory requirement if the
 `DataStructureDefinition` sets its `evolvingStructure` property to `‘true’` and 
-is semantically referenced by the `Dataflow`).
+is semantically referenced by the `Dataflow`).  
+SDMX implementations are free to interpret `Dataflow`s as data views (sub cubes) on a DSD-wide data cube with unique data content or as separate (physical) data instances.
 
 There are two types of dimensions each having a common association to
 `Concept`:
