@@ -60,12 +60,13 @@ described below for the existing definitions that use them, but they
 should not be used in new definitions. The conversion of the existing
 definitions is described in the Section
 [“Conversion of definitions based on deprecated constructs” in the SDMX Technical Notes](../../technical_notes/technical_notes/11_Validation_and_Transformation_Language__VTL_.md#conversion-of-definitions-based-on-deprecated-constructs).
-In the diagrams, the deprecated classes are shown in grey and marked as
-«deprecated». The same applies to the deprecated attributes of the
-classes that are not deprecated (i.e. the `codelistAlias`). The
-deprecated associations and the associations of the deprecated classes
-are also shown in grey, and are marked as «deprecated» when they link a
-class that is not deprecated.
+In the diagrams, the deprecated classes keep the colours of the other
+classes, are marked as «deprecated» and have grey text and a diagonal
+hatch. The deprecated attributes of the classes that are not deprecated
+(i.e. the `codelistAlias`) are marked as «deprecated» and written in
+grey. The deprecated associations and the associations of the deprecated
+classes are shown in grey, and are marked as «deprecated» when they link
+a class that is not deprecated.
 
 ## Model - Inheritance view
 
