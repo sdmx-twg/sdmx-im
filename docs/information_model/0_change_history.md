@@ -427,3 +427,62 @@ Changed Maintainable Artefacts
 - MaintainableArtefact property `serviceURL` is deprecated. |
 - A `Codelist`, may extend other `Codelist`s *only* of the same `Codelist` type. However, extending is not supported for `GeoGridCodelist`s. Unique URN classes are introduced for each Codelist type.
 - Added `validFrom` and `validTo` properties to `Code`s
+
+New Maintainable Artefacts
+
+- VTL Execution, which specifies how the data of the input VTL Data
+    Sets of a Transformation Scheme are retrieved (`QueryExtraction` or
+    `UrlExtraction`, with their query parameters) and is maintained
+    independently of the Transformation Scheme, so that other
+    organisations can also execute it on their own data
+
+New Identifiable Artefacts
+
+- `VtlDatasetMapping`, which maps a VTL Data Set to a Data Structure
+    Definition, Dataflow or Provision Agreement and replaces the
+    `VtlDataflowMapping`
+
+Changed Maintainable Artefacts
+
+- The VTL Mapping Scheme is simplified and aligned with the SDMX 3
+    model:
+    - all the VTL mappings have the VTL alias (`vtlAlias`) and the URN
+        of the mapped SDMX artefact (`sdmxUrn`)
+    - the `VtlDatasetMapping` has the mandatory `isInput` attribute
+    - the Basic mapping is the only mapping method
+    - the references to SDMX artefacts written in the VTL statements
+        through their URN or an abbreviation of their URN are deprecated
+        in favour of the aliases of the VTL mappings
+    - deprecated: `VtlDataflowMapping`, `VtlConceptMapping`, the
+        attributes `dataflowAlias`, `codelistAlias` and `conceptAlias`,
+        the mapping methods (`toVtlMappingMethod`,
+        `fromVtlMappingMethod`) and the subspace and superspace classes
+        (`ToVtlSubspace`, `ToVtlSpaceKey`, `FromVtlSuperspace`,
+        `FromVtlSpaceKey`)
+- The `vtlVersion` is mandatory in the Transformation Scheme, Ruleset
+    Scheme and User Defined Operator Scheme
+- A Ruleset can also define a VTL 2.2 viral propagation (`rulesetType`
+    “viral”), which makes viral the Attributes it applies to
+- The Transformation Scheme references all the other schemes used by
+    the VTL program
+- The associations of the Ruleset Scheme and of the User Defined
+    Operator Scheme with the VTL Mapping Scheme, and of the User Defined
+    Operator Scheme with the Ruleset Scheme, are deprecated, as the
+    execution of the Transformation Scheme detects any missing definition
+- The associations of the Transformation Scheme with the Name
+    Personalisation Scheme and the Custom Type Scheme are deprecated
+
+Deprecated Maintainable Artefacts
+
+- Name Personalisation Scheme, together with its items (Name
+    Personalisation), as the names assigned by default by the VTL
+    operators can be changed in the VTL program (e.g. with the `rename`
+    clause)
+- Custom Type Scheme, together with its items (Custom Type), as the
+    default conversions between VTL and SDMX data types apply, unless
+    overridden by the representation defined in the Data Structure
+    Definition, and explicit conversions use the VTL `cast` operator
+
+The conversion of the existing VTL definitions based on the deprecated
+constructs is described in the Section
+[“Conversion of definitions based on deprecated constructs” in the SDMX Technical Notes](../../technical_notes/technical_notes/11_Validation_and_Transformation_Language__VTL_.md#conversion-of-definitions-based-on-deprecated-constructs).

@@ -435,6 +435,15 @@ includes:
     meant to be executed together (in the same run) and may contain any
     number of transformations in order to produce any number of results.
     Thus, a transformation scheme can be considered as a VTL 'program'.
+    The data sets and value domains used by the transformations are
+    mapped to SDMX artefacts (data structure definitions, dataflows,
+    provision agreements and codelists) through a VTL mapping scheme.
+- **VTL Execution:** A VTL execution specifies where the data of the
+    input data sets of a transformation scheme are retrieved from, for
+    example through queries to SDMX web services. It is maintained
+    independently of the transformation scheme, so that an organisation
+    can also execute the transformation schemes of other organisations on
+    its own data.
 
 ## SDMX Registry Services
 
