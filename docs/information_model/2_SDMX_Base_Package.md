@@ -187,8 +187,9 @@ creation of list schemes for use in simple taxonomies, for example.
 
 The `ItemScheme` is the basis for `CategoryScheme`, `Codelist`,
 `ConceptScheme`, `ReportingTaxonomy`, `OrganisationScheme`,
-`TransformationScheme`, `CustomTypeScheme`, `NamePersonalisationScheme`,
-`RulesetScheme`, `VtlMappingScheme` and `UserDefinedOperatorScheme`.
+`TransformationScheme`, `RulesetScheme`, `UserDefinedOperatorScheme`,
+`VtlMappingScheme` and the deprecated `NamePersonalisationScheme` and
+`CustomTypeScheme`.
 
 ### Class Diagram
 
@@ -250,10 +251,10 @@ have only parent `Item`.
 
 | Class      | Feature | Description |
 | :---       | :---    | :---        |
-| `ItemScheme` | Inherits from: `MaintainableArtefact`<br>Direct subclasses: `CategoryScheme`, `ConceptScheme`, `Codelist`, `ReportingTaxonomy`, `OrganisationScheme`, `TransformationScheme`, `CustomTypeScheme`, `NamePersonalisationScheme`, `RulesetScheme`, `VtlMappingScheme`, `UserDefinedOperatorScheme` | The descriptive information for an arrangement or division of objects into groups based on shared characteristics. |
+| `ItemScheme` | Inherits from: `MaintainableArtefact`<br>Direct subclasses: `CategoryScheme`, `ConceptScheme`, `Codelist`, `ReportingTaxonomy`, `OrganisationScheme`, `TransformationScheme`, `RulesetScheme`, `UserDefinedOperatorScheme`, `VtlMappingScheme`, `NamePersonalisationScheme` (deprecated), `CustomTypeScheme` (deprecated) | The descriptive information for an arrangement or division of objects into groups based on shared characteristics. |
 |            | `isPartial` | Indicates whether the `ItemScheme` contains a subset of the full set of Items in the maintained scheme. |
 |            | `/items`    | Association to the Items in the scheme. |
-| `Item`     | Inherits from: `NameableArtefact`<br>Direct subclasses: `Category`, `Concept`, `Code`, `ReportingCategory`, `Organisation`, `Transformation`, `CustomType`, `NamePersonalisation`, `Ruleset`, `VtlMapping`, `UserDefinedOperator` | An item of content in an `ItemScheme`. This may be a node in a taxonomy or ontology, a code in a code list, etc.<br>Note: at the conceptual level, `Organisation` is not hierarchic. |
+| `Item`     | Inherits from: `NameableArtefact`<br>Direct subclasses: `Category`, `Concept`, `Code`, `ReportingCategory`, `Organisation`, `Transformation`, `Ruleset`, `UserDefinedOperator`, `VtlMapping`, `NamePersonalisation` (deprecated), `CustomType` (deprecated) | An item of content in an `ItemScheme`. This may be a node in a taxonomy or ontology, a code in a code list, etc.<br>Note: at the conceptual level, `Organisation` is not hierarchic. |
 |            | `hierarchy` | Allows an `Item` to optionally have one or more child `Item`s. |
 
 

@@ -47,11 +47,11 @@ The following table lists the Maintainable Artefacts.
 |  | Data Consumer Scheme | Data Consumer |
 |  | Reporting Taxonomy | Reporting Category |
 |  | Transformation Scheme | Transformation |
-|  | Custom Type Scheme | Custom Type |
-|  | Name Personalisation Scheme | Name Personalisation |
-|  | Vtl Mapping Scheme | Vtl Codelist Mapping, Vtl Concept Mapping |
 |  | Ruleset Scheme | Ruleset |
 |  | User Defined Operator Scheme | User Defined Operator |
+|  | Vtl Mapping Scheme | Vtl Dataset Mapping, Vtl Codelist Mapping, Vtl Dataflow Mapping (deprecated), Vtl Concept Mapping (deprecated) |
+|  | Name Personalisation Scheme (deprecated) | Name Personalisation (deprecated) |
+|  | Custom Type Scheme (deprecated) | Custom Type (deprecated) |
 | Enumerated List | Value List | Value Item |
 | Structure | Data Structure Definition | Dimension Descriptor, Group Dimension Descriptor, Dimension, Time Dimension, Attribute Descriptor, Data Attribute, Measure Descriptor, Measure |
 |  | Metadata Structure Definition | Metadata Attribute Descriptor, Metadata Attribute |
@@ -69,6 +69,7 @@ The following table lists the Maintainable Artefacts.
 | None | Hierarchy | Hierarchical Code |
 | None | Hierarchy Association |  |
 | None | Categorisation |  |
+| None | Vtl Execution | Query Extraction, Url Extraction, Query Parameter |
 | Constraint | Data Constraint | DataKeySet |
 |  |  | CubeRegion |
 | Constraint | Metadata Constraint | MetadataTargetRegion |
@@ -84,9 +85,9 @@ The artefacts included in the structural definitions are:
 - All types of Item Scheme (Codelist, Concept Scheme, Category Scheme,
     Organisation Scheme, Agency Scheme, Data Provider Scheme, Metadata
     Provider Scheme, Data Consumer Scheme, Organisation Unit Scheme,
-    Transformation Scheme, Name Personalisation Scheme, Custom Type
-    Scheme, Vtl Mapping Scheme, Ruleset Scheme, User Defined Operator
-    Scheme)
+    Transformation Scheme, Ruleset Scheme, User Defined Operator Scheme,
+    Vtl Mapping Scheme, Name Personalisation Scheme (deprecated), Custom
+    Type Scheme (deprecated))
 - All types of Enumerated List (`ValueList`)[^1]
 - All types of Structure (Data Structure Definition, Metadata
     Structure Definition)

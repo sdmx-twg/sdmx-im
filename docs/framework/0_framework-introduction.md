@@ -54,7 +54,10 @@ The following sections are obsolete:
     specification has been updated to align with changes to the information
     model and other modifications to the Standard such as the introduction
     of Semantic Versioning for the versioning of structural metadata
-    artefacts. Section 2 (Information Model) sets out details of the
-    'Transformation and Expressions' package for defining and managing VTL
-    2.0 programs and Section 6 (Technical Notes) provides detailed guidance
+    artefacts. For 3.2, the interconnection between VTL and SDMX has been
+    simplified and the constructs no longer needed have been deprecated.
+    The retrieval of the input data of VTL programs can also be specified.
+    Section 2 (Information Model) sets out details of the 'Transformations and
+    Expressions' package for defining and managing VTL programs and
+    Section 6 (Technical Notes) provides detailed guidance
     on implementing and using VTL with SDMX.
