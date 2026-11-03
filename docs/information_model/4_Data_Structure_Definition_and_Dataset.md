@@ -503,7 +503,7 @@ Observation) to which it is associated.
 |  | `valueFor` | Associates the `Measure`(s) defined in the Data Structure Definition. The source multiplicity (1..*) indicates that more than one value may be provided for a `Measure`, if the latter allows it. |
 |  | `attachedAttribute` | Association to the Attribute Values relating to the Observation. |
 |  | `observationDimension` | Association to the Key Value that holds the value of the "Dimension at the Observation Level". |
-| `ObservationValue` | Abstract class. Subclasses: `UncodedObservationValue`, `CodedObservation` |  |
+| `ObservationValue` | Abstract class. Subclasses: `UncodedObservationValue`, `CodedObservationValue` |  |
 | `UncodedObservationValue` | Abstract class. Inherits from `ObservationValue`. Subclasses: `OtherUncodedMeasureValue`, `TextMeasureValue` |  |
 | `OtherUncodedMeasureValue` | Inherits from `UncodedObservationValue` | An observation that has a text value. |
 |  | `value` | The value of the Uncoded Observation. |
