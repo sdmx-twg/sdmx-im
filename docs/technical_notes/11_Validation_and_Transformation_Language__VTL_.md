@@ -1833,14 +1833,24 @@ Manual).
 The `BasicTimePeriod`, the `StandardTimePeriod` and the
 `ObservationalTimePeriod`, which are supersets of several formats, are
 converted to `time_period`, because it is the VTL basic scalar type that
-can hold their values in general. When a `DateTime` is found, its time
-and time zone information are dropped in the conversion, so that it
-becomes the `time_period` of its day. A `TimeRange` found in an
-`ObservationalTimePeriod` is invalid, as it cannot be converted to
-`time_period`. If a specific format is needed,
-like the `DateTime` or the `TimeRange`, the `Component` must be
-represented with that SDMX data type, which is converted to `date` or to
-`time` respectively.
+can hold their values in general. Each value is converted according to
+its format, as described in the following table.
+
+| Format of the value | Conversion to `time_period` |
+| :--- | :--- |
+| `GregorianYear`, `GregorianYearMonth` or `GregorianDay` | The period of one year, one month or one day that the value denotes |
+| `ReportingTimePeriod` (any of its formats) | The same period |
+| `DateTime` | The period of one day that contains the value: its time is dropped |
+| `TimeRange` (only in an `ObservationalTimePeriod`) | The regular period that the value covers, if it starts with a date and covers exactly one year, semester, quarter, month, week or day (e.g. `2025-01-01/P1Y` is the year 2025); otherwise, the value is invalid |
+/// figure-caption
+Conversion of the values of the supersets of time formats to time_period
+///
+
+The time zone of a value, if any, is dropped in the conversion.
+
+If a specific format is needed, like the `DateTime` or the `TimeRange`,
+the `Component` must be represented with that SDMX data type, which is
+converted to `date` or to `time` respectively.
 
 In addition, a `Component` represented by a `Codelist` can be defined
 on a VTL Value Domain, whose Value Domain Scalar Type is then its VTL
