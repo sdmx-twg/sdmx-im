@@ -1841,7 +1841,7 @@ its format, as described in the following table.
 | `GregorianYear`, `GregorianYearMonth` or `GregorianDay` | The period of one year, one month or one day that the value denotes |
 | `ReportingTimePeriod` (any of its formats) | The same period |
 | `DateTime` | The period of one day that contains the value: its time is dropped |
-| `TimeRange` (only in an `ObservationalTimePeriod`) | The regular period that the value covers, if it starts with a date and covers exactly one year, semester, quarter, month, week or day (e.g. `2025-01-01/P1Y` is the year 2025); otherwise, the value is invalid |
+| `TimeRange` (only in an `ObservationalTimePeriod`) | The regular period that the value covers, if it starts with a date (or with a date at the time 00:00:00) and covers exactly one year, semester, trimester, quarter, month, week or day (e.g. `2025-01-01/P1Y` is the year 2025); otherwise, the value is invalid |
 /// figure-caption
 Conversion of the values of the supersets of time formats to time_period
 ///
