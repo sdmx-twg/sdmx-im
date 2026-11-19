@@ -1835,7 +1835,9 @@ The `BasicTimePeriod`, the `StandardTimePeriod` and the
 converted to `time_period`, because it is the VTL basic scalar type that
 can hold their values in general. When a `DateTime` is found, its time
 and time zone information are dropped in the conversion, so that it
-becomes the `time_period` of its day. If a specific format is needed,
+becomes the `time_period` of its day. A `TimeRange` found in an
+`ObservationalTimePeriod` is invalid, as it cannot be converted to
+`time_period`. If a specific format is needed,
 like the `DateTime` or the `TimeRange`, the `Component` must be
 represented with that SDMX data type, which is converted to `date` or to
 `time` respectively.
