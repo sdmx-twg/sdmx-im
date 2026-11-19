@@ -1792,8 +1792,8 @@ the SDMX data types to the VTL basic scalar types.
 | `InclusiveValueRange` (decimal number within a closed interval, whose bounds are specified in the SDMX representation by the facets `minValue` and `maxValue`) | `number` |
 | `ExclusiveValueRange` (decimal number within an open interval, whose bounds are specified in the SDMX representation by the facets `minValue` and `maxValue`) | `number` |
 | `Incremental` (decimal number that increases by a specific interval, defined by the interval facet, typically enforced outside of the XML validation) | `number` |
-| `ObservationalTimePeriod` (superset of `StandardTimePeriod` and `TimeRange`) | `time` |
-| `StandardTimePeriod` (superset of `BasicTimePeriod` and `ReportingTimePeriod`) | `time` |
+| `ObservationalTimePeriod` (superset of `StandardTimePeriod` and `TimeRange`) | `time_period` |
+| `StandardTimePeriod` (superset of `BasicTimePeriod` and `ReportingTimePeriod`) | `time_period` |
 | `BasicTimePeriod` (superset of `GregorianTimePeriod` and `DateTime`) | `time_period` |
 | `GregorianTimePeriod` (superset of `GregorianYear`, `GregorianYearMonth`, and `GregorianDay`) | `time_period` |
 | `GregorianYear` (`YYYY`) | `time_period` (a period of one year) |
@@ -1830,10 +1830,15 @@ applying to it the VTL type conversion features (see the implicit and
 explicit type conversion and the "cast" operator in the VTL Reference
 Manual).
 
-A `BasicTimePeriod` is converted to `time_period` because it is the only
-VTL basic scalar type that can hold all its values. When a `DateTime` is
-found, its time and time zone information are dropped in the conversion,
-so that it becomes the `time_period` of its day.
+The `BasicTimePeriod`, the `StandardTimePeriod` and the
+`ObservationalTimePeriod`, which are supersets of several formats, are
+converted to `time_period`, because it is the VTL basic scalar type that
+can hold their values in general. When a `DateTime` is found, its time
+and time zone information are dropped in the conversion, so that it
+becomes the `time_period` of its day. If a specific format is needed,
+like the `DateTime` or the `TimeRange`, the `Component` must be
+represented with that SDMX data type, which is converted to `date` or to
+`time` respectively.
 
 In addition, a `Component` represented by a `Codelist` can be defined
 on a VTL Value Domain, whose Value Domain Scalar Type is then its VTL
