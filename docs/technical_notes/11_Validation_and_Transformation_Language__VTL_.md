@@ -1794,7 +1794,7 @@ the SDMX data types to the VTL basic scalar types.
 | `Incremental` (decimal number that increases by a specific interval, defined by the interval facet, typically enforced outside of the XML validation) | `number` |
 | `ObservationalTimePeriod` (superset of `StandardTimePeriod` and `TimeRange`) | `time` |
 | `StandardTimePeriod` (superset of `BasicTimePeriod` and `ReportingTimePeriod`) | `time` |
-| `BasicTimePeriod` (superset of `GregorianTimePeriod` and `DateTime`) | `time` |
+| `BasicTimePeriod` (superset of `GregorianTimePeriod` and `DateTime`) | `time_period` |
 | `GregorianTimePeriod` (superset of `GregorianYear`, `GregorianYearMonth`, and `GregorianDay`) | `time_period` |
 | `GregorianYear` (`YYYY`) | `time_period` (a period of one year) |
 | `GregorianYearMonth` / `GregorianMonth` (`YYYY-MM`) | `time_period` (a period of one month) |
@@ -1829,6 +1829,11 @@ VTL program taking in input the default VTL basic scalar type above and
 applying to it the VTL type conversion features (see the implicit and
 explicit type conversion and the "cast" operator in the VTL Reference
 Manual).
+
+A `BasicTimePeriod` is converted to `time_period` because it is the only
+VTL basic scalar type that can hold all its values. When a `DateTime` is
+found, its time and time zone information are dropped in the conversion,
+so that it becomes the `time_period` of its day.
 
 In addition, a `Component` represented by a `Codelist` can be defined
 on a VTL Value Domain, whose Value Domain Scalar Type is then its VTL
