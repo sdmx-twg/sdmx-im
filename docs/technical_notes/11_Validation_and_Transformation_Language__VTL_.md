@@ -1794,10 +1794,10 @@ the SDMX data types to the VTL basic scalar types.
 | `Incremental` (decimal number that increases by a specific interval, defined by the interval facet, typically enforced outside of the XML validation) | `number` |
 | `ObservationalTimePeriod` (superset of `StandardTimePeriod` and `TimeRange`) | `time` |
 | `StandardTimePeriod` (superset of `BasicTimePeriod` and `ReportingTimePeriod`) | `time` |
-| `BasicTimePeriod` (superset of `GregorianTimePeriod` and `DateTime`) | `date` |
-| `GregorianTimePeriod` (superset of `GregorianYear`, `GregorianYearMonth`, and `GregorianDay`) | `date` |
-| `GregorianYear` (`YYYY`) | `date` |
-| `GregorianYearMonth` / `GregorianMonth` (`YYYY-MM`) | `date` |
+| `BasicTimePeriod` (superset of `GregorianTimePeriod` and `DateTime`) | `time` |
+| `GregorianTimePeriod` (superset of `GregorianYear`, `GregorianYearMonth`, and `GregorianDay`) | `time_period` |
+| `GregorianYear` (`YYYY`) | `time_period` (a period of one year) |
+| `GregorianYearMonth` / `GregorianMonth` (`YYYY-MM`) | `time_period` (a period of one month) |
 | `GregorianDay` (`YYYY-MM-DD`) | `date` |
 | `ReportingTimePeriod` (superset of `ReportingYear`, `ReportingSemester`, `ReportingTrimester`, `ReportingQuarter`, `ReportingMonth`, `ReportingWeek`, `ReportingDay`) | `time_period` |
 | `ReportingYear` (`YYYY-A1` – 1 year period) | `time_period` |
@@ -1844,10 +1844,10 @@ scalar types to the SDMX data types .
 | VTL basic scalar type | Default SDMX data type (`BasicComponentDataType`) | Default output format |
 | :--- | :--- | :--- |
 | `string` | `String` | Like XML (`xs:string`) |
-| `number` | `Float` | Like XML (`xs:float`) |
+| `number` | `Double` | Like XML (`xs:double`) |
 | `integer` | `Integer` | Like XML (`xs:int`) |
 | `date` | `DateTime` | `YYYY-MM-DDT00:00:00Z` |
-| `time` | `StandardTimePeriod` | `<date>/<date>` (as defined above) |
+| `time` | `TimeRange` | `YYYY-MM-DD/<duration>` (according to SDMX) |
 | `time_period` | `ReportingTimePeriod` (`StandardReportingPeriod`) | `YYYY-Pppp` (according to SDMX) |
 | `duration` | `Duration` | Like XML (`xs:duration`) `PnYnMnDTnHnMnS` |
 | `boolean` | `Boolean` | Like XML (`xs:boolean`) with the values `"true"` or `"false"` |
@@ -1949,8 +1949,11 @@ representation specified in the DSD overrides any default
 conversion[^40].
 
 [^40]:
-    The representation given in the DSD should obviously be compatible
-    with the VTL data type.
+    The representation given in the DSD must be compatible with the VTL
+    data type, i.e. it must be a data type that can parse the values of
+    the result. The SDMX data types that the table of the paragraph
+    "Mapping SDMX data types to VTL basic scalar types" converts to that
+    VTL data type are always compatible.
 
 ### Null Values
 
