@@ -1814,6 +1814,7 @@ the SDMX data types to the VTL basic scalar types.
 | `Day` (`---DD`; specifies a day independent of a month or year) | `string` |
 | `Time` (`hh:mm:ss`; time independent of a date) | `string` |
 | `Duration` (corresponds to XML Schema `xs:duration` datatype) | `duration` |
+| `GeospatialInformation` (a geo feature set, expressed as text) | `string` |
 | `XHTML` | Metadata type – not applicable |
 | `KeyValues` | Metadata type – not applicable |
 | `IdentifiableReference` | Metadata type – not applicable |
@@ -1853,6 +1854,12 @@ implementation.
 The support of the periods of four months, i.e. of the
 `ReportingTrimester` and of the time ranges that cover a trimester, is
 left to the implementation.
+
+A reporting period is converted as it is written, whatever the start day
+of its reporting year, which remains available in the
+`REPORTING_YEAR_START_DAY` attribute. The resulting `time_period` is
+therefore relative to its reporting year, and it is only comparable with
+the periods of data that have the same reporting year start day.
 
 If a specific format is needed, like the `DateTime` or the `TimeRange`,
 the `Component` must be represented with that SDMX data type, which is
@@ -1986,7 +1993,7 @@ conversion[^40].
     data type, i.e. it must be a data type that can parse the values of
     the result. The SDMX data types that the table of the paragraph
     "Mapping SDMX data types to VTL basic scalar types" converts to that
-    VTL data type are always compatible.
+    VTL data type are compatible, provided the values fit.
 
 ### Null Values
 
