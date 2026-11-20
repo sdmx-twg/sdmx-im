@@ -1846,7 +1846,13 @@ its format, as described in the following table.
 Conversion of the values of the supersets of time formats to time_period
 ///
 
-The time zone of a value, if any, is dropped in the conversion.
+The time zone of a value, if any, is dropped in the conversion. For the
+other SDMX data types, the treatment of the time zone is left to the
+implementation.
+
+The support of the periods of four months, i.e. of the
+`ReportingTrimester` and of the time ranges that cover a trimester, is
+left to the implementation.
 
 If a specific format is needed, like the `DateTime` or the `TimeRange`,
 the `Component` must be represented with that SDMX data type, which is
@@ -1876,6 +1882,11 @@ scalar types to the SDMX data types .
 /// figure-caption
 Mappings from VTL Basic Scalar Types to SDMX data types
 ///
+
+A VTL `time` is converted to a `TimeRange` whose start is the first day
+of the time interval and whose duration covers the interval up to its
+last day, included, expressed in years, months and days (e.g. the `time`
+from 1 January 2025 to 31 December 2025 is `2025-01-01/P1Y`).
 
 In case a different default conversion is desired, it can be achieved
 through the `CustomTypeScheme` and `CustomType` artefacts (see also the
