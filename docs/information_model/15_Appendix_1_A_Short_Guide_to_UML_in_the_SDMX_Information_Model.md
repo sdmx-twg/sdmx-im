@@ -22,7 +22,7 @@ The **actor** can be defined as follows:
 The actor is depicted as a stick man as shown below.
 
 ![](media/image75.svg)
-/// figure-caption | 49
+/// figure-caption | 50
 Actor
 ///
 
@@ -63,11 +63,11 @@ In fact, if the UML is used purely as a means of modelling data, then
 there is little difference between a class and an entity.
 
 ![](media/image79.svg) 
-/// figure-caption | 53
+/// figure-caption | 54
 Class and its attributes
 ///
 
-Figure 53 shows that a class is represented by a rectangle split into
+Figure 54 shows that a class is represented by a rectangle split into
 three compartments. The top compartment is for the class name, the
 second is for attributes and the last is for operations. Only the first
 compartment is mandatory. The name of the class is `Annotation`, and it
@@ -160,13 +160,13 @@ It can be useful to name associations as this gives some more semantic
 meaning to the model i.e. the purpose of the association. It is possible
 for two classes to be joined by two (or more) associations, and in this
 case it is extremely useful to name the purpose of the association.
-Figure 58 shows a simple aggregation between `CategoryScheme` and `Category`
+Figure 59 shows a simple aggregation between `CategoryScheme` and `Category`
 called `/items` (this means it is derived from the association between
 the super classes – in this case between the `ItemScheme` and the
 `Item`, and another between Category called `/hierarchy`.
 
 ![](media/image84.svg) 
-/// figure-caption | 58
+/// figure-caption | 59
 Association names and end names
 ///
 
