@@ -141,7 +141,7 @@ Relationship class diagram of the Data Structure Definition excluding representa
 
 #### Narrative
 
-A `DataStructureDefinition` defines the `Dimension`s, `TimeDimension`,
+A `DataStructureDefinition`, often abbreviated as DSD, defines the `Dimension`s, `TimeDimension`,
 `DataAttributes`, and `Measure`s, and associated `Representation`s, that
 comprise the valid structure of data and related attributes that may be
 contained in a `DataSet`. In addition, a
@@ -157,7 +157,8 @@ and
 A `Dataflow` may optionally define which `Dimensions` it uses, by defining a
 `DimensionConstraint` (this is a mandatory requirement if the
 `DataStructureDefinition` sets its `evolvingStructure` property to `‘true’` and 
-is semantically referenced by the `Dataflow`).
+is semantically referenced by the `Dataflow`).  
+SDMX implementations are free to interpret `Dataflow`s as data views (sub cubes) on a DSD-wide data cube with unique data content or as separate (physical) data instances.
 
 There are two types of dimensions each having a common association to
 `Concept`:
@@ -502,14 +503,14 @@ Observation) to which it is associated.
 |  | `valueFor` | Associates the `Measure`(s) defined in the Data Structure Definition. The source multiplicity (1..*) indicates that more than one value may be provided for a `Measure`, if the latter allows it. |
 |  | `attachedAttribute` | Association to the Attribute Values relating to the Observation. |
 |  | `observationDimension` | Association to the Key Value that holds the value of the "Dimension at the Observation Level". |
-| `ObservationValue` | Abstract class. Subclasses: `UncodedObservationValue`, `CodedObservation` |  |
+| `ObservationValue` | Abstract class. Subclasses: `UncodedObservationValue`, `CodedObservationValue` |  |
 | `UncodedObservationValue` | Abstract class. Inherits from `ObservationValue`. Subclasses: `OtherUncodedMeasureValue`, `TextMeasureValue` |  |
-| `OtherUncodedMeasureValue` | Inherits from `UncodedObservationValue` | An observation that has a text value. |
+| `OtherUncodedMeasureValue` | Inherits from `UncodedObservationValue` | A measure value that is of type text. |
 |  | `value` | The value of the Uncoded Observation. |
 |  | `startTime` | This attribute is only used if the `textFormat` of the `Measure` is of the Timespan type in the Data Structure Definition (in which case the value field takes a duration). |
 | `TextMeasureValue` | Inherits from `UncodedObservationValue` | An observation that has a localised text value. |
 |  | `text` | The localised text values. |
-| `CodedObservation` | Inherits from `ObservationValue` | An Observation that takes its value from a code in a Code list. |
+| `CodedObservationValue` | Inherits from `ObservationValue` | An measure value that takes its value from a code in a Code list. |
 |  | `valueOf` | Association to the Code that is the value of the Observation. Note that this is a conceptual association showing that the Code must exist in the Codelist(s) associated with the `Measure`(s) in the Data Structure Definition. In the actual Data Set the value of the Code is placed in the Observation. |
 | `AttributeValue` | Abstract class. Subclasses: `DataAttributeValue`, `MetadataAttributeValue` | Represents the value for any Attribute reported in the Dataset, i.e., Data or Metadata Attribute. |
 | `DataAttributeValue` | Abstract class. Inherits from `AttributeValue`. Subclasses: `UncodedAttributeValue`, `CodedAttributeValue` | The value of a Data Attribute, such as the instance of a Coded Attribute or of an Uncoded Attribute in a structure such as a Data Structure Definition. |
