@@ -222,8 +222,8 @@ or value is constrained.
 | `DataKey` |  | The values of a key in a data set. |
 |  | `isIncluded` | Indicates whether the Data Key is included in the constraint definition or excluded from the constraint definition. |
 |  | `+keyValue` | Associates the Component Values that comprise the key. |
-|  | `validFrom` | Date from which the Data Key is valid. |
-|  | `validTo` | Date from which the Data Key is superseded. |
+|  | `validFrom` | A `StandardTimePeriodType`. Point in time from which the Data Key is valid. |
+|  | `validTo` | A `StandardTimePeriodType`. Point in time from which the Data Key is superseded. |
 | `ComponentValue` |  | The identification and value of a Component of the key (e.g., Dimension) |
 |  | `value` | The value of Component |
 |  | `+valueFor` | Association to the Component (e.g., Dimension) in the Structure to which the Constrainable Artefact is linked. |
@@ -241,8 +241,8 @@ or value is constrained.
 |  | `removePrefix` | Indicates whether the Codes should keep or not the prefix, as defined in the extension of Codelist. |
 |  | `+valuesFor` | Association to the Component in the Structure to which the Constrainable Artefact is linked, which defines the valid Representation for the Member Values. |
 | `SelectionValue` | Abstract class. Sub classes are: `MemberValue` `TimeRangeValue` `LocalisedMemberValue` | A collection of values for the Member Selections that, combined with other Member Selections, comprise the value content of the Cube Region. |
-|  | `validFrom` | Date from which the Selection Value is valid. |
-|  | `validTo` | Date from which the Selection Value is superseded. |
+|  | `validFrom` | A `StandardTimePeriodType`. Point in time from which the Selection Value is valid. |
+|  | `validTo` | A `StandardTimePeriodType`. Point in time from which the Selection Value is superseded. |
 | `MemberValue` | Inherits from `SelectionValue` | A single value of the set of values for the Member Selection. |
 |  | `value` | A value of the member. |
 |  | `cascadeValues` | Indicates that the child nodes of the member are included in the Member Selection (e.g., child codes) |
